@@ -1,0 +1,129 @@
+\hypertarget{structevhtp__callback__s}{\section{evhtp\-\_\-callback\-\_\-s Struct Reference}
+\label{structevhtp__callback__s}\index{evhtp\-\_\-callback\-\_\-s@{evhtp\-\_\-callback\-\_\-s}}
+}
+
+
+structure containing a single callback and configuration  
+
+
+
+
+{\ttfamily \#include $<$evhtp.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structevhtp__callback__s_a868386a43f28c816f0e8e12f7c9aec7d}{T\-A\-I\-L\-Q\-\_\-\-E\-N\-T\-R\-Y} (\hyperlink{structevhtp__callback__s}{evhtp\-\_\-callback\-\_\-s}) next
+\end{DoxyCompactItemize}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{evhtp_8h_a6f45c416976c807084c7f71cb15c4f37}{evhtp\-\_\-callback\-\_\-type} \hyperlink{structevhtp__callback__s_a6da94264a51bd354aca3d22098a2aee5}{type}
+\item 
+\hyperlink{evhtp_8h_a7339527d6a07b47cd28bf29572c9e082}{evhtp\-\_\-callback\-\_\-cb} \hyperlink{structevhtp__callback__s_a783ee29046d4ff3e8c75f811e80fd57b}{cb}
+\item 
+unsigned int \hyperlink{structevhtp__callback__s_a09f9a9ce240560b1d191b42ed56af642}{hash}
+\item 
+void $\ast$ \hyperlink{structevhtp__callback__s_aafd3d1a6343925cb274875556a6faa0e}{cbarg}
+\item 
+\hyperlink{evhtp_8h_ac77d779459ec62f309d1fb09c5540786}{evhtp\-\_\-hooks\-\_\-t} $\ast$ \hyperlink{structevhtp__callback__s_ac97663394f74c9030e57c771cfb7981e}{hooks}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>char $\ast$ \hyperlink{structevhtp__callback__s_a44196e6a5696d10442c29e639437196e}{path}\\
+\>char $\ast$ \hyperlink{structevhtp__callback__s_ac921642f435071137acef3e073973b99}{glob}\\
+\>regex\_t $\ast$ \hyperlink{structevhtp__callback__s_af71a3fad7fee5d731252ce89e56f948f}{regex}\\
+\} \hyperlink{structevhtp__callback__s_a46fe687f5d6aa04ca3260318f08188b4}{val}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+structure containing a single callback and configuration 
+
+The definition structure which is used within the evhtp\-\_\-callbacks\-\_\-t structure. This holds information about what should execute for either a single or regex path.
+
+For example, if you registered a callback to be executed on a request for \char`\"{}/herp/derp\char`\"{}, your defined callback will be executed.
+
+Optionally you can set callback-\/specific hooks just like per-\/connection hooks using the same rules. 
+
+Definition at line 344 of file evhtp.\-h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structevhtp__callback__s_a868386a43f28c816f0e8e12f7c9aec7d}{\index{evhtp\-\_\-callback\-\_\-s@{evhtp\-\_\-callback\-\_\-s}!T\-A\-I\-L\-Q\-\_\-\-E\-N\-T\-R\-Y@{T\-A\-I\-L\-Q\-\_\-\-E\-N\-T\-R\-Y}}
+\index{T\-A\-I\-L\-Q\-\_\-\-E\-N\-T\-R\-Y@{T\-A\-I\-L\-Q\-\_\-\-E\-N\-T\-R\-Y}!evhtp_callback_s@{evhtp\-\_\-callback\-\_\-s}}
+\subsubsection[{T\-A\-I\-L\-Q\-\_\-\-E\-N\-T\-R\-Y}]{\setlength{\rightskip}{0pt plus 5cm}T\-A\-I\-L\-Q\-\_\-\-E\-N\-T\-R\-Y (
+\begin{DoxyParamCaption}
+\item[{{\bf evhtp\-\_\-callback\-\_\-s}}]{}
+\end{DoxyParamCaption}
+)}}\label{structevhtp__callback__s_a868386a43f28c816f0e8e12f7c9aec7d}
+
+
+\subsection{Field Documentation}
+\hypertarget{structevhtp__callback__s_a783ee29046d4ff3e8c75f811e80fd57b}{\index{evhtp\-\_\-callback\-\_\-s@{evhtp\-\_\-callback\-\_\-s}!cb@{cb}}
+\index{cb@{cb}!evhtp_callback_s@{evhtp\-\_\-callback\-\_\-s}}
+\subsubsection[{cb}]{\setlength{\rightskip}{0pt plus 5cm}{\bf evhtp\-\_\-callback\-\_\-cb} cb}}\label{structevhtp__callback__s_a783ee29046d4ff3e8c75f811e80fd57b}
+the actual callback function 
+
+Definition at line 346 of file evhtp.\-h.
+
+\hypertarget{structevhtp__callback__s_aafd3d1a6343925cb274875556a6faa0e}{\index{evhtp\-\_\-callback\-\_\-s@{evhtp\-\_\-callback\-\_\-s}!cbarg@{cbarg}}
+\index{cbarg@{cbarg}!evhtp_callback_s@{evhtp\-\_\-callback\-\_\-s}}
+\subsubsection[{cbarg}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ cbarg}}\label{structevhtp__callback__s_aafd3d1a6343925cb274875556a6faa0e}
+user-\/defind arguments passed to the cb 
+
+Definition at line 348 of file evhtp.\-h.
+
+\hypertarget{structevhtp__callback__s_ac921642f435071137acef3e073973b99}{\index{evhtp\-\_\-callback\-\_\-s@{evhtp\-\_\-callback\-\_\-s}!glob@{glob}}
+\index{glob@{glob}!evhtp_callback_s@{evhtp\-\_\-callback\-\_\-s}}
+\subsubsection[{glob}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ glob}}\label{structevhtp__callback__s_ac921642f435071137acef3e073973b99}
+
+
+Definition at line 353 of file evhtp.\-h.
+
+\hypertarget{structevhtp__callback__s_a09f9a9ce240560b1d191b42ed56af642}{\index{evhtp\-\_\-callback\-\_\-s@{evhtp\-\_\-callback\-\_\-s}!hash@{hash}}
+\index{hash@{hash}!evhtp_callback_s@{evhtp\-\_\-callback\-\_\-s}}
+\subsubsection[{hash}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int hash}}\label{structevhtp__callback__s_a09f9a9ce240560b1d191b42ed56af642}
+the full hash generated integer 
+
+Definition at line 347 of file evhtp.\-h.
+
+\hypertarget{structevhtp__callback__s_ac97663394f74c9030e57c771cfb7981e}{\index{evhtp\-\_\-callback\-\_\-s@{evhtp\-\_\-callback\-\_\-s}!hooks@{hooks}}
+\index{hooks@{hooks}!evhtp_callback_s@{evhtp\-\_\-callback\-\_\-s}}
+\subsubsection[{hooks}]{\setlength{\rightskip}{0pt plus 5cm}{\bf evhtp\-\_\-hooks\-\_\-t}$\ast$ hooks}}\label{structevhtp__callback__s_ac97663394f74c9030e57c771cfb7981e}
+per-\/callback hooks 
+
+Definition at line 349 of file evhtp.\-h.
+
+\hypertarget{structevhtp__callback__s_a44196e6a5696d10442c29e639437196e}{\index{evhtp\-\_\-callback\-\_\-s@{evhtp\-\_\-callback\-\_\-s}!path@{path}}
+\index{path@{path}!evhtp_callback_s@{evhtp\-\_\-callback\-\_\-s}}
+\subsubsection[{path}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ path}}\label{structevhtp__callback__s_a44196e6a5696d10442c29e639437196e}
+
+
+Definition at line 352 of file evhtp.\-h.
+
+\hypertarget{structevhtp__callback__s_af71a3fad7fee5d731252ce89e56f948f}{\index{evhtp\-\_\-callback\-\_\-s@{evhtp\-\_\-callback\-\_\-s}!regex@{regex}}
+\index{regex@{regex}!evhtp_callback_s@{evhtp\-\_\-callback\-\_\-s}}
+\subsubsection[{regex}]{\setlength{\rightskip}{0pt plus 5cm}regex\-\_\-t$\ast$ regex}}\label{structevhtp__callback__s_af71a3fad7fee5d731252ce89e56f948f}
+
+
+Definition at line 355 of file evhtp.\-h.
+
+\hypertarget{structevhtp__callback__s_a6da94264a51bd354aca3d22098a2aee5}{\index{evhtp\-\_\-callback\-\_\-s@{evhtp\-\_\-callback\-\_\-s}!type@{type}}
+\index{type@{type}!evhtp_callback_s@{evhtp\-\_\-callback\-\_\-s}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf evhtp\-\_\-callback\-\_\-type} type}}\label{structevhtp__callback__s_a6da94264a51bd354aca3d22098a2aee5}
+the type of callback (regex$\vert$path) 
+
+Definition at line 345 of file evhtp.\-h.
+
+\hypertarget{structevhtp__callback__s_a46fe687f5d6aa04ca3260318f08188b4}{\index{evhtp\-\_\-callback\-\_\-s@{evhtp\-\_\-callback\-\_\-s}!val@{val}}
+\index{val@{val}!evhtp_callback_s@{evhtp\-\_\-callback\-\_\-s}}
+\subsubsection[{val}]{\setlength{\rightskip}{0pt plus 5cm}union \{ ... \}   val}}\label{structevhtp__callback__s_a46fe687f5d6aa04ca3260318f08188b4}
+
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{evhtp_8h}{evhtp.\-h}\end{DoxyCompactItemize}

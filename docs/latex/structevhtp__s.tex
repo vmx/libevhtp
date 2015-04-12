@@ -1,0 +1,279 @@
+\hypertarget{structevhtp__s}{\section{evhtp\-\_\-s Struct Reference}
+\label{structevhtp__s}\index{evhtp\-\_\-s@{evhtp\-\_\-s}}
+}
+
+
+main structure containing all configuration information  
+
+
+
+
+{\ttfamily \#include $<$evhtp.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structevhtp__s_a7c3276340515ffaf4c81acf83e74b488}{T\-A\-I\-L\-Q\-\_\-\-H\-E\-A\-D} (, \hyperlink{structevhtp__alias__s}{evhtp\-\_\-alias\-\_\-s}) aliases
+\item 
+\hyperlink{structevhtp__s_a671ea539b6cc9654bf0fa080a7197b0b}{T\-A\-I\-L\-Q\-\_\-\-H\-E\-A\-D} (, \hyperlink{structevhtp__s}{evhtp\-\_\-s}) vhosts
+\item 
+\hyperlink{structevhtp__s_a0559b45940aab93bfdcbb46b0c5fb0a1}{T\-A\-I\-L\-Q\-\_\-\-E\-N\-T\-R\-Y} (\hyperlink{structevhtp__s}{evhtp\-\_\-s}) next\-\_\-vhost
+\end{DoxyCompactItemize}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{evhtp_8h_aa670c92d77f9a732e03a7d48ada2b31b}{evhtp\-\_\-t} $\ast$ \hyperlink{structevhtp__s_adff9fa3bd346936d706e1a30c3bf4ca1}{parent}
+\item 
+evbase\-\_\-t $\ast$ \hyperlink{structevhtp__s_abc4ce26b166a97e5766105f253a4fe21}{evbase}
+\item 
+\hyperlink{evhtp_8h_accea3745ada200d1acc361354315579c}{evserv\-\_\-t} $\ast$ \hyperlink{structevhtp__s_adbf9415567b9a26229148539d64a5eda}{server}
+\item 
+char $\ast$ \hyperlink{structevhtp__s_a4e06dd572147d48785afd0439576487a}{server\-\_\-name}
+\item 
+void $\ast$ \hyperlink{structevhtp__s_a9ce2ec4812a92cb6ab39f6e81e9173a9}{arg}
+\item 
+int \hyperlink{structevhtp__s_a8d3f621cd735373f6657f8ea1a4d21de}{bev\-\_\-flags}
+\item 
+uint64\-\_\-t \hyperlink{structevhtp__s_ac0c51866465cd3ccc68751b0ce806cbc}{max\-\_\-body\-\_\-size}
+\item 
+uint64\-\_\-t \hyperlink{structevhtp__s_a79992dc6217af1d8e8801040ca6ef21e}{max\-\_\-keepalive\-\_\-requests}
+\item 
+uint8\-\_\-t \hyperlink{structevhtp__s_a080501d1bfb2e3144769e7e8ac9b7225}{disable\-\_\-100\-\_\-cont}\-: 1
+\item 
+uint8\-\_\-t \hyperlink{structevhtp__s_a6d985d690e3d26f87d8a7345c2226fed}{enable\-\_\-reuseport}\-: 1
+\item 
+uint8\-\_\-t \hyperlink{structevhtp__s_ac550f99410cfa96e60a714fd16a7665d}{enable\-\_\-nodelay}\-: 1
+\item 
+uint8\-\_\-t \hyperlink{structevhtp__s_a9c0ae79aec9b8805cc2ff3fbc0d6eb77}{enable\-\_\-defer\-\_\-accept}\-: 1
+\item 
+uint8\-\_\-t \hyperlink{structevhtp__s_ac1a86b4f13c0cf801df27e12ce75f046}{pad}\-: 4
+\item 
+int \hyperlink{structevhtp__s_ad4fd469906d549a4621db759d7f214ca}{parser\-\_\-flags}
+\item 
+\hyperlink{evhtp_8h_a3a45854457c03a9028160078945046da}{evhtp\-\_\-ssl\-\_\-ctx\-\_\-t} $\ast$ \hyperlink{structevhtp__s_a21d5d9eef41ecdb08b82db795aa6da98}{ssl\-\_\-ctx}
+\item 
+\hyperlink{evhtp_8h_adb4d7b6af31986dd5a7a33f5ac41dde6}{evhtp\-\_\-ssl\-\_\-cfg\-\_\-t} $\ast$ \hyperlink{structevhtp__s_afb6cdde78523e94fa84f57e55280513f}{ssl\-\_\-cfg}
+\item 
+evthr\-\_\-pool\-\_\-t $\ast$ \hyperlink{structevhtp__s_a350014aec537fdf8ef6f82efe17d5757}{thr\-\_\-pool}
+\item 
+pthread\-\_\-mutex\-\_\-t $\ast$ \hyperlink{structevhtp__s_a33586b4184d23f2b8f4df153ec23af13}{lock}
+\item 
+\hyperlink{evhtp_8h_add7ca63c155e4e9f116dd6972a32782a}{evhtp\-\_\-thread\-\_\-init\-\_\-cb} \hyperlink{structevhtp__s_af7bcd46ddf1d6d7dde1383c28f746e97}{thread\-\_\-init\-\_\-cb}
+\item 
+void $\ast$ \hyperlink{structevhtp__s_aa7d8ed7967f5071085f57741dde79056}{thread\-\_\-init\-\_\-cbarg}
+\item 
+\hyperlink{evhtp_8h_a9570ba758e99f90fc29f4b427953e6a5}{evhtp\-\_\-callbacks\-\_\-t} $\ast$ \hyperlink{structevhtp__s_a43bc08d49284feb774b73ee06cf0a769}{callbacks}
+\item 
+\hyperlink{evhtp_8h_ac6661001dc475c8e25760071e26311e1}{evhtp\-\_\-defaults\-\_\-t} \hyperlink{structevhtp__s_a5ca39f6268aea8173dbdc0a1e297925b}{defaults}
+\item 
+struct timeval \hyperlink{structevhtp__s_a485801666b7fb0cccc50d9fa42e5cbb9}{recv\-\_\-timeo}
+\item 
+struct timeval \hyperlink{structevhtp__s_a7ffa291d73974047489f8880e5363603}{send\-\_\-timeo}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+main structure containing all configuration information 
+
+Definition at line 288 of file evhtp.\-h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structevhtp__s_a0559b45940aab93bfdcbb46b0c5fb0a1}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!T\-A\-I\-L\-Q\-\_\-\-E\-N\-T\-R\-Y@{T\-A\-I\-L\-Q\-\_\-\-E\-N\-T\-R\-Y}}
+\index{T\-A\-I\-L\-Q\-\_\-\-E\-N\-T\-R\-Y@{T\-A\-I\-L\-Q\-\_\-\-E\-N\-T\-R\-Y}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{T\-A\-I\-L\-Q\-\_\-\-E\-N\-T\-R\-Y}]{\setlength{\rightskip}{0pt plus 5cm}T\-A\-I\-L\-Q\-\_\-\-E\-N\-T\-R\-Y (
+\begin{DoxyParamCaption}
+\item[{{\bf evhtp\-\_\-s}}]{}
+\end{DoxyParamCaption}
+)}}\label{structevhtp__s_a0559b45940aab93bfdcbb46b0c5fb0a1}
+\hypertarget{structevhtp__s_a7c3276340515ffaf4c81acf83e74b488}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!T\-A\-I\-L\-Q\-\_\-\-H\-E\-A\-D@{T\-A\-I\-L\-Q\-\_\-\-H\-E\-A\-D}}
+\index{T\-A\-I\-L\-Q\-\_\-\-H\-E\-A\-D@{T\-A\-I\-L\-Q\-\_\-\-H\-E\-A\-D}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{T\-A\-I\-L\-Q\-\_\-\-H\-E\-A\-D}]{\setlength{\rightskip}{0pt plus 5cm}T\-A\-I\-L\-Q\-\_\-\-H\-E\-A\-D (
+\begin{DoxyParamCaption}
+\item[{{\bf evhtp\-\_\-alias\-\_\-s}}]{}
+\end{DoxyParamCaption}
+)}}\label{structevhtp__s_a7c3276340515ffaf4c81acf83e74b488}
+\hypertarget{structevhtp__s_a671ea539b6cc9654bf0fa080a7197b0b}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!T\-A\-I\-L\-Q\-\_\-\-H\-E\-A\-D@{T\-A\-I\-L\-Q\-\_\-\-H\-E\-A\-D}}
+\index{T\-A\-I\-L\-Q\-\_\-\-H\-E\-A\-D@{T\-A\-I\-L\-Q\-\_\-\-H\-E\-A\-D}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{T\-A\-I\-L\-Q\-\_\-\-H\-E\-A\-D}]{\setlength{\rightskip}{0pt plus 5cm}T\-A\-I\-L\-Q\-\_\-\-H\-E\-A\-D (
+\begin{DoxyParamCaption}
+\item[{{\bf evhtp\-\_\-s}}]{}
+\end{DoxyParamCaption}
+)}}\label{structevhtp__s_a671ea539b6cc9654bf0fa080a7197b0b}
+
+
+\subsection{Field Documentation}
+\hypertarget{structevhtp__s_a9ce2ec4812a92cb6ab39f6e81e9173a9}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!arg@{arg}}
+\index{arg@{arg}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{arg}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ arg}}\label{structevhtp__s_a9ce2ec4812a92cb6ab39f6e81e9173a9}
+user-\/defined evhtp\-\_\-t specific arguments 
+
+Definition at line 293 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_a8d3f621cd735373f6657f8ea1a4d21de}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!bev\-\_\-flags@{bev\-\_\-flags}}
+\index{bev\-\_\-flags@{bev\-\_\-flags}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{bev\-\_\-flags}]{\setlength{\rightskip}{0pt plus 5cm}int bev\-\_\-flags}}\label{structevhtp__s_a8d3f621cd735373f6657f8ea1a4d21de}
+bufferevent flags to use on bufferevent\-\_\-$\ast$\-\_\-socket\-\_\-new() 
+
+Definition at line 294 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_a43bc08d49284feb774b73ee06cf0a769}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!callbacks@{callbacks}}
+\index{callbacks@{callbacks}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{callbacks}]{\setlength{\rightskip}{0pt plus 5cm}{\bf evhtp\-\_\-callbacks\-\_\-t}$\ast$ callbacks}}\label{structevhtp__s_a43bc08d49284feb774b73ee06cf0a769}
+
+
+Definition at line 319 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_a5ca39f6268aea8173dbdc0a1e297925b}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!defaults@{defaults}}
+\index{defaults@{defaults}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{defaults}]{\setlength{\rightskip}{0pt plus 5cm}{\bf evhtp\-\_\-defaults\-\_\-t} defaults}}\label{structevhtp__s_a5ca39f6268aea8173dbdc0a1e297925b}
+
+
+Definition at line 320 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_a080501d1bfb2e3144769e7e8ac9b7225}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!disable\-\_\-100\-\_\-cont@{disable\-\_\-100\-\_\-cont}}
+\index{disable\-\_\-100\-\_\-cont@{disable\-\_\-100\-\_\-cont}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{disable\-\_\-100\-\_\-cont}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t disable\-\_\-100\-\_\-cont}}\label{structevhtp__s_a080501d1bfb2e3144769e7e8ac9b7225}
+if set, evhtp will not respond to Expect\-: 100-\/continue 
+
+Definition at line 297 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_a9c0ae79aec9b8805cc2ff3fbc0d6eb77}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!enable\-\_\-defer\-\_\-accept@{enable\-\_\-defer\-\_\-accept}}
+\index{enable\-\_\-defer\-\_\-accept@{enable\-\_\-defer\-\_\-accept}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{enable\-\_\-defer\-\_\-accept}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t enable\-\_\-defer\-\_\-accept}}\label{structevhtp__s_a9c0ae79aec9b8805cc2ff3fbc0d6eb77}
+
+
+Definition at line 297 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_ac550f99410cfa96e60a714fd16a7665d}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!enable\-\_\-nodelay@{enable\-\_\-nodelay}}
+\index{enable\-\_\-nodelay@{enable\-\_\-nodelay}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{enable\-\_\-nodelay}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t enable\-\_\-nodelay}}\label{structevhtp__s_ac550f99410cfa96e60a714fd16a7665d}
+
+
+Definition at line 297 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_a6d985d690e3d26f87d8a7345c2226fed}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!enable\-\_\-reuseport@{enable\-\_\-reuseport}}
+\index{enable\-\_\-reuseport@{enable\-\_\-reuseport}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{enable\-\_\-reuseport}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t enable\-\_\-reuseport}}\label{structevhtp__s_a6d985d690e3d26f87d8a7345c2226fed}
+
+
+Definition at line 297 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_abc4ce26b166a97e5766105f253a4fe21}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!evbase@{evbase}}
+\index{evbase@{evbase}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{evbase}]{\setlength{\rightskip}{0pt plus 5cm}evbase\-\_\-t$\ast$ evbase}}\label{structevhtp__s_abc4ce26b166a97e5766105f253a4fe21}
+the initialized event\-\_\-base 
+
+Definition at line 290 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_a33586b4184d23f2b8f4df153ec23af13}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!lock@{lock}}
+\index{lock@{lock}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{lock}]{\setlength{\rightskip}{0pt plus 5cm}pthread\-\_\-mutex\-\_\-t$\ast$ lock}}\label{structevhtp__s_a33586b4184d23f2b8f4df153ec23af13}
+parent lock for add/del cbs in threads 
+
+Definition at line 315 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_ac0c51866465cd3ccc68751b0ce806cbc}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!max\-\_\-body\-\_\-size@{max\-\_\-body\-\_\-size}}
+\index{max\-\_\-body\-\_\-size@{max\-\_\-body\-\_\-size}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{max\-\_\-body\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}uint64\-\_\-t max\-\_\-body\-\_\-size}}\label{structevhtp__s_ac0c51866465cd3ccc68751b0ce806cbc}
+
+
+Definition at line 295 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_a79992dc6217af1d8e8801040ca6ef21e}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!max\-\_\-keepalive\-\_\-requests@{max\-\_\-keepalive\-\_\-requests}}
+\index{max\-\_\-keepalive\-\_\-requests@{max\-\_\-keepalive\-\_\-requests}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{max\-\_\-keepalive\-\_\-requests}]{\setlength{\rightskip}{0pt plus 5cm}uint64\-\_\-t max\-\_\-keepalive\-\_\-requests}}\label{structevhtp__s_a79992dc6217af1d8e8801040ca6ef21e}
+
+
+Definition at line 296 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_ac1a86b4f13c0cf801df27e12ce75f046}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!pad@{pad}}
+\index{pad@{pad}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{pad}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t pad}}\label{structevhtp__s_ac1a86b4f13c0cf801df27e12ce75f046}
+
+
+Definition at line 297 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_adff9fa3bd346936d706e1a30c3bf4ca1}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!parent@{parent}}
+\index{parent@{parent}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf evhtp\-\_\-t}$\ast$ parent}}\label{structevhtp__s_adff9fa3bd346936d706e1a30c3bf4ca1}
+only when this is a vhost 
+
+Definition at line 289 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_ad4fd469906d549a4621db759d7f214ca}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!parser\-\_\-flags@{parser\-\_\-flags}}
+\index{parser\-\_\-flags@{parser\-\_\-flags}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{parser\-\_\-flags}]{\setlength{\rightskip}{0pt plus 5cm}int parser\-\_\-flags}}\label{structevhtp__s_ad4fd469906d549a4621db759d7f214ca}
+default query flags to alter 'strictness' (see E\-V\-H\-T\-P\-\_\-\-P\-A\-R\-S\-E\-\_\-\-Q\-U\-E\-R\-Y\-\_\-\-F\-L\-A\-G\-\_\-$\ast$) 
+
+Definition at line 303 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_a485801666b7fb0cccc50d9fa42e5cbb9}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!recv\-\_\-timeo@{recv\-\_\-timeo}}
+\index{recv\-\_\-timeo@{recv\-\_\-timeo}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{recv\-\_\-timeo}]{\setlength{\rightskip}{0pt plus 5cm}struct timeval recv\-\_\-timeo}}\label{structevhtp__s_a485801666b7fb0cccc50d9fa42e5cbb9}
+
+
+Definition at line 322 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_a7ffa291d73974047489f8880e5363603}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!send\-\_\-timeo@{send\-\_\-timeo}}
+\index{send\-\_\-timeo@{send\-\_\-timeo}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{send\-\_\-timeo}]{\setlength{\rightskip}{0pt plus 5cm}struct timeval send\-\_\-timeo}}\label{structevhtp__s_a7ffa291d73974047489f8880e5363603}
+
+
+Definition at line 323 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_adbf9415567b9a26229148539d64a5eda}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!server@{server}}
+\index{server@{server}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{server}]{\setlength{\rightskip}{0pt plus 5cm}{\bf evserv\-\_\-t}$\ast$ server}}\label{structevhtp__s_adbf9415567b9a26229148539d64a5eda}
+the libevent listener struct 
+
+Definition at line 291 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_a4e06dd572147d48785afd0439576487a}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!server\-\_\-name@{server\-\_\-name}}
+\index{server\-\_\-name@{server\-\_\-name}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{server\-\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ server\-\_\-name}}\label{structevhtp__s_a4e06dd572147d48785afd0439576487a}
+the name included in Host\-: responses 
+
+Definition at line 292 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_afb6cdde78523e94fa84f57e55280513f}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!ssl\-\_\-cfg@{ssl\-\_\-cfg}}
+\index{ssl\-\_\-cfg@{ssl\-\_\-cfg}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{ssl\-\_\-cfg}]{\setlength{\rightskip}{0pt plus 5cm}{\bf evhtp\-\_\-ssl\-\_\-cfg\-\_\-t}$\ast$ ssl\-\_\-cfg}}\label{structevhtp__s_afb6cdde78523e94fa84f57e55280513f}
+
+
+Definition at line 307 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_a21d5d9eef41ecdb08b82db795aa6da98}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!ssl\-\_\-ctx@{ssl\-\_\-ctx}}
+\index{ssl\-\_\-ctx@{ssl\-\_\-ctx}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{ssl\-\_\-ctx}]{\setlength{\rightskip}{0pt plus 5cm}{\bf evhtp\-\_\-ssl\-\_\-ctx\-\_\-t}$\ast$ ssl\-\_\-ctx}}\label{structevhtp__s_a21d5d9eef41ecdb08b82db795aa6da98}
+if ssl enabled, this is the servers C\-T\-X 
+
+Definition at line 306 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_a350014aec537fdf8ef6f82efe17d5757}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!thr\-\_\-pool@{thr\-\_\-pool}}
+\index{thr\-\_\-pool@{thr\-\_\-pool}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{thr\-\_\-pool}]{\setlength{\rightskip}{0pt plus 5cm}evthr\-\_\-pool\-\_\-t$\ast$ thr\-\_\-pool}}\label{structevhtp__s_a350014aec537fdf8ef6f82efe17d5757}
+connection threadpool 
+
+Definition at line 311 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_af7bcd46ddf1d6d7dde1383c28f746e97}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!thread\-\_\-init\-\_\-cb@{thread\-\_\-init\-\_\-cb}}
+\index{thread\-\_\-init\-\_\-cb@{thread\-\_\-init\-\_\-cb}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{thread\-\_\-init\-\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}{\bf evhtp\-\_\-thread\-\_\-init\-\_\-cb} thread\-\_\-init\-\_\-cb}}\label{structevhtp__s_af7bcd46ddf1d6d7dde1383c28f746e97}
+
+
+Definition at line 316 of file evhtp.\-h.
+
+\hypertarget{structevhtp__s_aa7d8ed7967f5071085f57741dde79056}{\index{evhtp\-\_\-s@{evhtp\-\_\-s}!thread\-\_\-init\-\_\-cbarg@{thread\-\_\-init\-\_\-cbarg}}
+\index{thread\-\_\-init\-\_\-cbarg@{thread\-\_\-init\-\_\-cbarg}!evhtp_s@{evhtp\-\_\-s}}
+\subsubsection[{thread\-\_\-init\-\_\-cbarg}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ thread\-\_\-init\-\_\-cbarg}}\label{structevhtp__s_aa7d8ed7967f5071085f57741dde79056}
+
+
+Definition at line 317 of file evhtp.\-h.
+
+
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{evhtp_8h}{evhtp.\-h}\end{DoxyCompactItemize}
