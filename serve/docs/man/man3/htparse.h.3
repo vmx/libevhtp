@@ -1,0 +1,311 @@
+.TH "htparse.h" 3 "Thu May 21 2015" "Version 1.2.10-dev" "Libevhtp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+htparse.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'evhtp-config\&.h'\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBhtparse_hooks\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct \fBhtparser\fP \fBhtparser\fP"
+.br
+.ti -1c
+.RI "typedef enum \fBhtp_scheme\fP \fBhtp_scheme\fP"
+.br
+.ti -1c
+.RI "typedef enum \fBhtp_method\fP \fBhtp_method\fP"
+.br
+.ti -1c
+.RI "typedef enum \fBhtp_type\fP \fBhtp_type\fP"
+.br
+.ti -1c
+.RI "typedef enum \fBhtpparse_error\fP \fBhtpparse_error\fP"
+.br
+.ti -1c
+.RI "typedef int(* \fBhtparse_hook\fP )(\fBhtparser\fP *)"
+.br
+.ti -1c
+.RI "typedef int(* \fBhtparse_data_hook\fP )(\fBhtparser\fP *, const char *, size_t)"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBhtp_type\fP { \fBhtp_type_request\fP = 0, \fBhtp_type_response\fP }"
+.br
+.ti -1c
+.RI "enum \fBhtp_scheme\fP { \fBhtp_scheme_none\fP = 0, \fBhtp_scheme_ftp\fP, \fBhtp_scheme_http\fP, \fBhtp_scheme_https\fP, \fBhtp_scheme_nfs\fP, \fBhtp_scheme_unknown\fP }"
+.br
+.ti -1c
+.RI "enum \fBhtp_method\fP { \fBhtp_method_GET\fP = 0, \fBhtp_method_HEAD\fP, \fBhtp_method_POST\fP, \fBhtp_method_PUT\fP, \fBhtp_method_DELETE\fP, \fBhtp_method_MKCOL\fP, \fBhtp_method_COPY\fP, \fBhtp_method_MOVE\fP, \fBhtp_method_OPTIONS\fP, \fBhtp_method_PROPFIND\fP, \fBhtp_method_PROPPATCH\fP, \fBhtp_method_LOCK\fP, \fBhtp_method_UNLOCK\fP, \fBhtp_method_TRACE\fP, \fBhtp_method_CONNECT\fP, \fBhtp_method_PATCH\fP, \fBhtp_method_UNKNOWN\fP }"
+.br
+.ti -1c
+.RI "enum \fBhtpparse_error\fP { \fBhtparse_error_none\fP = 0, \fBhtparse_error_too_big\fP, \fBhtparse_error_inval_method\fP, \fBhtparse_error_inval_reqline\fP, \fBhtparse_error_inval_schema\fP, \fBhtparse_error_inval_proto\fP, \fBhtparse_error_inval_ver\fP, \fBhtparse_error_inval_hdr\fP, \fBhtparse_error_inval_chunk_sz\fP, \fBhtparse_error_inval_chunk\fP, \fBhtparse_error_inval_state\fP, \fBhtparse_error_user\fP, \fBhtparse_error_status\fP, \fBhtparse_error_generic\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBhtparser_run\fP (\fBhtparser\fP *, \fBhtparse_hooks\fP *, const char *, size_t)"
+.br
+.ti -1c
+.RI "int \fBhtparser_should_keep_alive\fP (\fBhtparser\fP *p)"
+.br
+.ti -1c
+.RI "\fBhtp_scheme\fP \fBhtparser_get_scheme\fP (\fBhtparser\fP *)"
+.br
+.ti -1c
+.RI "\fBhtp_method\fP \fBhtparser_get_method\fP (\fBhtparser\fP *)"
+.br
+.ti -1c
+.RI "const char * \fBhtparser_get_methodstr\fP (\fBhtparser\fP *)"
+.br
+.ti -1c
+.RI "const char * \fBhtparser_get_methodstr_m\fP (\fBhtp_method\fP)"
+.br
+.ti -1c
+.RI "void \fBhtparser_set_major\fP (\fBhtparser\fP *, unsigned char)"
+.br
+.ti -1c
+.RI "void \fBhtparser_set_minor\fP (\fBhtparser\fP *, unsigned char)"
+.br
+.ti -1c
+.RI "unsigned char \fBhtparser_get_major\fP (\fBhtparser\fP *)"
+.br
+.ti -1c
+.RI "unsigned char \fBhtparser_get_minor\fP (\fBhtparser\fP *)"
+.br
+.ti -1c
+.RI "unsigned char \fBhtparser_get_multipart\fP (\fBhtparser\fP *)"
+.br
+.ti -1c
+.RI "unsigned int \fBhtparser_get_status\fP (\fBhtparser\fP *)"
+.br
+.ti -1c
+.RI "uint64_t \fBhtparser_get_content_length\fP (\fBhtparser\fP *)"
+.br
+.ti -1c
+.RI "uint64_t \fBhtparser_get_content_pending\fP (\fBhtparser\fP *)"
+.br
+.ti -1c
+.RI "uint64_t \fBhtparser_get_total_bytes_read\fP (\fBhtparser\fP *)"
+.br
+.ti -1c
+.RI "\fBhtpparse_error\fP \fBhtparser_get_error\fP (\fBhtparser\fP *)"
+.br
+.ti -1c
+.RI "const char * \fBhtparser_get_strerror\fP (\fBhtparser\fP *)"
+.br
+.ti -1c
+.RI "void * \fBhtparser_get_userdata\fP (\fBhtparser\fP *)"
+.br
+.ti -1c
+.RI "void \fBhtparser_set_userdata\fP (\fBhtparser\fP *, void *)"
+.br
+.ti -1c
+.RI "void \fBhtparser_init\fP (\fBhtparser\fP *, \fBhtp_type\fP)"
+.br
+.ti -1c
+.RI "\fBhtparser\fP * \fBhtparser_new\fP (void)"
+.br
+.in -1c
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef enum \fBhtp_method\fP \fBhtp_method\fP"
+
+.PP
+Definition at line 67 of file htparse\&.h\&.
+.SS "typedef enum \fBhtp_scheme\fP \fBhtp_scheme\fP"
+
+.PP
+Definition at line 66 of file htparse\&.h\&.
+.SS "typedef enum \fBhtp_type\fP \fBhtp_type\fP"
+
+.PP
+Definition at line 68 of file htparse\&.h\&.
+.SS "typedef int(*  htparse_data_hook)(\fBhtparser\fP *, const char *, size_t)"
+
+.PP
+Definition at line 72 of file htparse\&.h\&.
+.SS "typedef int(*  htparse_hook)(\fBhtparser\fP *)"
+
+.PP
+Definition at line 71 of file htparse\&.h\&.
+.SS "typedef struct \fBhtparser\fP \fBhtparser\fP"
+
+.PP
+Definition at line 63 of file htparse\&.h\&.
+.SS "typedef enum \fBhtpparse_error\fP \fBhtpparse_error\fP"
+
+.PP
+Definition at line 69 of file htparse\&.h\&.
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBhtp_method\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIhtp_method_GET \fP\fP
+.TP
+\fB\fIhtp_method_HEAD \fP\fP
+.TP
+\fB\fIhtp_method_POST \fP\fP
+.TP
+\fB\fIhtp_method_PUT \fP\fP
+.TP
+\fB\fIhtp_method_DELETE \fP\fP
+.TP
+\fB\fIhtp_method_MKCOL \fP\fP
+.TP
+\fB\fIhtp_method_COPY \fP\fP
+.TP
+\fB\fIhtp_method_MOVE \fP\fP
+.TP
+\fB\fIhtp_method_OPTIONS \fP\fP
+.TP
+\fB\fIhtp_method_PROPFIND \fP\fP
+.TP
+\fB\fIhtp_method_PROPPATCH \fP\fP
+.TP
+\fB\fIhtp_method_LOCK \fP\fP
+.TP
+\fB\fIhtp_method_UNLOCK \fP\fP
+.TP
+\fB\fIhtp_method_TRACE \fP\fP
+.TP
+\fB\fIhtp_method_CONNECT \fP\fP
+.TP
+\fB\fIhtp_method_PATCH \fP\fP
+.TP
+\fB\fIhtp_method_UNKNOWN \fP\fP
+.PP
+Definition at line 26 of file htparse\&.h\&.
+.SS "enum \fBhtp_scheme\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIhtp_scheme_none \fP\fP
+.TP
+\fB\fIhtp_scheme_ftp \fP\fP
+.TP
+\fB\fIhtp_scheme_http \fP\fP
+.TP
+\fB\fIhtp_scheme_https \fP\fP
+.TP
+\fB\fIhtp_scheme_nfs \fP\fP
+.TP
+\fB\fIhtp_scheme_unknown \fP\fP
+.PP
+Definition at line 17 of file htparse\&.h\&.
+.SS "enum \fBhtp_type\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIhtp_type_request \fP\fP
+.TP
+\fB\fIhtp_type_response \fP\fP
+.PP
+Definition at line 12 of file htparse\&.h\&.
+.SS "enum \fBhtpparse_error\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIhtparse_error_none \fP\fP
+.TP
+\fB\fIhtparse_error_too_big \fP\fP
+.TP
+\fB\fIhtparse_error_inval_method \fP\fP
+.TP
+\fB\fIhtparse_error_inval_reqline \fP\fP
+.TP
+\fB\fIhtparse_error_inval_schema \fP\fP
+.TP
+\fB\fIhtparse_error_inval_proto \fP\fP
+.TP
+\fB\fIhtparse_error_inval_ver \fP\fP
+.TP
+\fB\fIhtparse_error_inval_hdr \fP\fP
+.TP
+\fB\fIhtparse_error_inval_chunk_sz \fP\fP
+.TP
+\fB\fIhtparse_error_inval_chunk \fP\fP
+.TP
+\fB\fIhtparse_error_inval_state \fP\fP
+.TP
+\fB\fIhtparse_error_user \fP\fP
+.TP
+\fB\fIhtparse_error_status \fP\fP
+.TP
+\fB\fIhtparse_error_generic \fP\fP
+.PP
+Definition at line 46 of file htparse\&.h\&.
+.SH "Function Documentation"
+.PP 
+.SS "uint64_t htparser_get_content_length (\fBhtparser\fP *)"
+
+.SS "uint64_t htparser_get_content_pending (\fBhtparser\fP *)"
+
+.SS "\fBhtpparse_error\fP htparser_get_error (\fBhtparser\fP *)"
+
+.SS "unsigned char htparser_get_major (\fBhtparser\fP *)"
+
+.SS "\fBhtp_method\fP htparser_get_method (\fBhtparser\fP *)"
+
+.SS "const char* htparser_get_methodstr (\fBhtparser\fP *)"
+
+.SS "const char* htparser_get_methodstr_m (\fBhtp_method\fP)"
+
+.SS "unsigned char htparser_get_minor (\fBhtparser\fP *)"
+
+.SS "unsigned char htparser_get_multipart (\fBhtparser\fP *)"
+
+.SS "\fBhtp_scheme\fP htparser_get_scheme (\fBhtparser\fP *)"
+
+.SS "unsigned int htparser_get_status (\fBhtparser\fP *)"
+
+.SS "const char* htparser_get_strerror (\fBhtparser\fP *)"
+
+.SS "uint64_t htparser_get_total_bytes_read (\fBhtparser\fP *)"
+
+.SS "void* htparser_get_userdata (\fBhtparser\fP *)"
+
+.SS "void htparser_init (\fBhtparser\fP *, \fBhtp_type\fP)"
+
+.SS "\fBhtparser\fP* htparser_new (void)"
+
+.SS "size_t htparser_run (\fBhtparser\fP *, \fBhtparse_hooks\fP *, const char *, size_t)"
+
+.SS "void htparser_set_major (\fBhtparser\fP *, unsignedchar)"
+
+.SS "void htparser_set_minor (\fBhtparser\fP *, unsignedchar)"
+
+.SS "void htparser_set_userdata (\fBhtparser\fP *, void *)"
+
+.SS "int htparser_should_keep_alive (\fBhtparser\fP *p)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Libevhtp from the source code\&.

@@ -1,0 +1,238 @@
+.TH "evhtp_connection_t" 3 "Thu May 21 2015" "Version 1.2.10-dev" "Libevhtp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+evhtp_connection_t \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <evhtp\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "evhtp_t * \fBhtp\fP"
+.br
+.ti -1c
+.RI "evbase_t * \fBevbase\fP"
+.br
+.ti -1c
+.RI "\fBevbev_t\fP * \fBbev\fP"
+.br
+.ti -1c
+.RI "evthr_t * \fBthread\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_ssl_t\fP * \fBssl\fP"
+.br
+.ti -1c
+.RI "evhtp_hooks_t * \fBhooks\fP"
+.br
+.ti -1c
+.RI "htparser * \fBparser\fP"
+.br
+.ti -1c
+.RI "\fBevent_t\fP * \fBresume_ev\fP"
+.br
+.ti -1c
+.RI "struct sockaddr * \fBsaddr\fP"
+.br
+.ti -1c
+.RI "struct timeval \fBrecv_timeo\fP"
+.br
+.RI "\fIconn read timeouts (overrides global) \fP"
+.ti -1c
+.RI "struct timeval \fBsend_timeo\fP"
+.br
+.RI "\fIconn write timeouts (overrides global) \fP"
+.ti -1c
+.RI "evutil_socket_t \fBsock\fP"
+.br
+.ti -1c
+.RI "evhtp_request_t * \fBrequest\fP"
+.br
+.RI "\fIthe request currently being processed \fP"
+.ti -1c
+.RI "uint64_t \fBmax_body_size\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBbody_bytes_read\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBnum_requests\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_type\fP \fBtype\fP"
+.br
+.RI "\fIserver or client \fP"
+.ti -1c
+.RI "uint8_t \fBerror\fP: 1"
+.br
+.ti -1c
+.RI "uint8_t \fBowner\fP: 1"
+.br
+.RI "\fIset to 1 if this structure owns the bufferevent \fP"
+.ti -1c
+.RI "uint8_t \fBvhost_via_sni\fP: 1"
+.br
+.RI "\fIset to 1 if the vhost was found via SSL SNI \fP"
+.ti -1c
+.RI "uint8_t \fBpaused\fP: 1"
+.br
+.RI "\fIthis connection has been marked as paused \fP"
+.ti -1c
+.RI "uint8_t \fBconnected\fP: 1"
+.br
+.RI "\fIclient specific - set after successful connection \fP"
+.ti -1c
+.RI "uint8_t \fBwaiting\fP: 1"
+.br
+.RI "\fIused to make sure resuming happens AFTER sending a reply \fP"
+.ti -1c
+.RI "uint8_t \fBfree_connection\fP: 1"
+.br
+.ti -1c
+.RI "uint8_t \fBkeepalive\fP: 1"
+.br
+.RI "\fIset to 1 after the first request has been processed and the connection is kept open \fP"
+.ti -1c
+.RI "struct evbuffer * \fBscratch_buf\fP"
+.br
+.RI "\fIalways zero'd out after used \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 457 of file evhtp\&.h\&.
+.SH "Field Documentation"
+.PP 
+.SS "\fBevbev_t\fP* evhtp_connection_t::bev"
+
+.PP
+Definition at line 460 of file evhtp\&.h\&.
+.SS "uint64_t evhtp_connection_t::body_bytes_read"
+
+.PP
+Definition at line 476 of file evhtp\&.h\&.
+.SS "uint8_t evhtp_connection_t::connected"
+
+.PP
+client specific - set after successful connection 
+.PP
+Definition at line 479 of file evhtp\&.h\&.
+.SS "uint8_t evhtp_connection_t::error"
+
+.PP
+Definition at line 479 of file evhtp\&.h\&.
+.SS "evbase_t* evhtp_connection_t::evbase"
+
+.PP
+Definition at line 459 of file evhtp\&.h\&.
+.SS "uint8_t evhtp_connection_t::free_connection"
+
+.PP
+Definition at line 479 of file evhtp\&.h\&.
+.SS "evhtp_hooks_t* evhtp_connection_t::hooks"
+
+.PP
+Definition at line 467 of file evhtp\&.h\&.
+.SS "evhtp_t* evhtp_connection_t::htp"
+
+.PP
+Definition at line 458 of file evhtp\&.h\&.
+.SS "uint8_t evhtp_connection_t::keepalive"
+
+.PP
+set to 1 after the first request has been processed and the connection is kept open 
+.PP
+Definition at line 479 of file evhtp\&.h\&.
+.SS "uint64_t evhtp_connection_t::max_body_size"
+
+.PP
+Definition at line 475 of file evhtp\&.h\&.
+.SS "uint64_t evhtp_connection_t::num_requests"
+
+.PP
+Definition at line 477 of file evhtp\&.h\&.
+.SS "uint8_t evhtp_connection_t::owner"
+
+.PP
+set to 1 if this structure owns the bufferevent 
+.PP
+Definition at line 479 of file evhtp\&.h\&.
+.SS "htparser* evhtp_connection_t::parser"
+
+.PP
+Definition at line 468 of file evhtp\&.h\&.
+.SS "uint8_t evhtp_connection_t::paused"
+
+.PP
+this connection has been marked as paused 
+.PP
+Definition at line 479 of file evhtp\&.h\&.
+.SS "struct timeval evhtp_connection_t::recv_timeo"
+
+.PP
+conn read timeouts (overrides global) 
+.PP
+Definition at line 471 of file evhtp\&.h\&.
+.SS "evhtp_request_t* evhtp_connection_t::request"
+
+.PP
+the request currently being processed 
+.PP
+Definition at line 474 of file evhtp\&.h\&.
+.SS "\fBevent_t\fP* evhtp_connection_t::resume_ev"
+
+.PP
+Definition at line 469 of file evhtp\&.h\&.
+.SS "struct sockaddr* evhtp_connection_t::saddr"
+
+.PP
+Definition at line 470 of file evhtp\&.h\&.
+.SS "struct evbuffer* evhtp_connection_t::scratch_buf"
+
+.PP
+always zero'd out after used 
+.PP
+Definition at line 487 of file evhtp\&.h\&.
+.SS "struct timeval evhtp_connection_t::send_timeo"
+
+.PP
+conn write timeouts (overrides global) 
+.PP
+Definition at line 472 of file evhtp\&.h\&.
+.SS "evutil_socket_t evhtp_connection_t::sock"
+
+.PP
+Definition at line 473 of file evhtp\&.h\&.
+.SS "\fBevhtp_ssl_t\fP* evhtp_connection_t::ssl"
+
+.PP
+Definition at line 465 of file evhtp\&.h\&.
+.SS "evthr_t* evhtp_connection_t::thread"
+
+.PP
+Definition at line 462 of file evhtp\&.h\&.
+.SS "\fBevhtp_type\fP evhtp_connection_t::type"
+
+.PP
+server or client 
+.PP
+Definition at line 478 of file evhtp\&.h\&.
+.SS "uint8_t evhtp_connection_t::vhost_via_sni"
+
+.PP
+set to 1 if the vhost was found via SSL SNI 
+.PP
+Definition at line 479 of file evhtp\&.h\&.
+.SS "uint8_t evhtp_connection_t::waiting"
+
+.PP
+used to make sure resuming happens AFTER sending a reply 
+.PP
+Definition at line 479 of file evhtp\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Libevhtp from the source code\&.

@@ -1,0 +1,92 @@
+.TH "evhtp_path_t" 3 "Thu May 21 2015" "Version 1.2.10-dev" "Libevhtp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+evhtp_path_t \- 
+.PP
+structure which represents a URI path and or file  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <evhtp\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "char * \fBfull\fP"
+.br
+.RI "\fIthe full path+file (/a/b/c\&.html) \fP"
+.ti -1c
+.RI "char * \fBpath\fP"
+.br
+.RI "\fIthe path (/a/b/) \fP"
+.ti -1c
+.RI "char * \fBfile\fP"
+.br
+.RI "\fIthe filename if present (c\&.html) \fP"
+.ti -1c
+.RI "char * \fBmatch_start\fP"
+.br
+.ti -1c
+.RI "char * \fBmatch_end\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBmatched_soff\fP"
+.br
+.RI "\fIoffset of where the uri starts mainly used for regex matching \fP"
+.ti -1c
+.RI "unsigned int \fBmatched_eoff\fP"
+.br
+.RI "\fIoffset of where the uri ends mainly used for regex matching \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+structure which represents a URI path and or file 
+.PP
+Definition at line 413 of file evhtp\&.h\&.
+.SH "Field Documentation"
+.PP 
+.SS "char* evhtp_path_t::file"
+
+.PP
+the filename if present (c\&.html) 
+.PP
+Definition at line 416 of file evhtp\&.h\&.
+.SS "char* evhtp_path_t::full"
+
+.PP
+the full path+file (/a/b/c\&.html) 
+.PP
+Definition at line 414 of file evhtp\&.h\&.
+.SS "char* evhtp_path_t::match_end"
+
+.PP
+Definition at line 418 of file evhtp\&.h\&.
+.SS "char* evhtp_path_t::match_start"
+
+.PP
+Definition at line 417 of file evhtp\&.h\&.
+.SS "unsigned int evhtp_path_t::matched_eoff"
+
+.PP
+offset of where the uri ends mainly used for regex matching 
+.PP
+Definition at line 422 of file evhtp\&.h\&.
+.SS "unsigned int evhtp_path_t::matched_soff"
+
+.PP
+offset of where the uri starts mainly used for regex matching 
+.PP
+Definition at line 419 of file evhtp\&.h\&.
+.SS "char* evhtp_path_t::path"
+
+.PP
+the path (/a/b/) 
+.PP
+Definition at line 415 of file evhtp\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Libevhtp from the source code\&.

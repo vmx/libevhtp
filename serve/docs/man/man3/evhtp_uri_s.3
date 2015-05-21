@@ -1,0 +1,82 @@
+.TH "evhtp_uri_t" 3 "Thu May 21 2015" "Version 1.2.10-dev" "Libevhtp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+evhtp_uri_t \- 
+.PP
+a generic container representing an entire URI strucutre  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <evhtp\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "evhtp_authority_t * \fBauthority\fP"
+.br
+.ti -1c
+.RI "evhtp_path_t * \fBpath\fP"
+.br
+.ti -1c
+.RI "unsigned char * \fBfragment\fP"
+.br
+.RI "\fIdata after '#' in uri \fP"
+.ti -1c
+.RI "unsigned char * \fBquery_raw\fP"
+.br
+.RI "\fIthe unparsed query arguments \fP"
+.ti -1c
+.RI "\fBevhtp_query_t\fP * \fBquery\fP"
+.br
+.RI "\fIlist of k/v for query arguments \fP"
+.ti -1c
+.RI "htp_scheme \fBscheme\fP"
+.br
+.RI "\fIset if a scheme is found \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+a generic container representing an entire URI strucutre 
+.PP
+Definition at line 389 of file evhtp\&.h\&.
+.SH "Field Documentation"
+.PP 
+.SS "evhtp_authority_t* evhtp_uri_t::authority"
+
+.PP
+Definition at line 390 of file evhtp\&.h\&.
+.SS "unsigned char* evhtp_uri_t::fragment"
+
+.PP
+data after '#' in uri 
+.PP
+Definition at line 392 of file evhtp\&.h\&.
+.SS "evhtp_path_t* evhtp_uri_t::path"
+
+.PP
+Definition at line 391 of file evhtp\&.h\&.
+.SS "\fBevhtp_query_t\fP* evhtp_uri_t::query"
+
+.PP
+list of k/v for query arguments 
+.PP
+Definition at line 394 of file evhtp\&.h\&.
+.SS "unsigned char* evhtp_uri_t::query_raw"
+
+.PP
+the unparsed query arguments 
+.PP
+Definition at line 393 of file evhtp\&.h\&.
+.SS "htp_scheme evhtp_uri_t::scheme"
+
+.PP
+set if a scheme is found 
+.PP
+Definition at line 395 of file evhtp\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Libevhtp from the source code\&.

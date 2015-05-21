@@ -1,0 +1,250 @@
+.TH "evhtp_t" 3 "Thu May 21 2015" "Version 1.2.10-dev" "Libevhtp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+evhtp_t \- 
+.PP
+main structure containing all configuration information  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <evhtp\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTAILQ_HEAD\fP (, \fBevhtp_alias_s\fP) aliases"
+.br
+.ti -1c
+.RI "\fBTAILQ_HEAD\fP (, \fBevhtp_s\fP) vhosts"
+.br
+.ti -1c
+.RI "\fBTAILQ_ENTRY\fP (\fBevhtp_s\fP) next_vhost"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "evhtp_t * \fBparent\fP"
+.br
+.RI "\fIonly when this is a vhost \fP"
+.ti -1c
+.RI "evbase_t * \fBevbase\fP"
+.br
+.RI "\fIthe initialized event_base \fP"
+.ti -1c
+.RI "\fBevserv_t\fP * \fBserver\fP"
+.br
+.RI "\fIthe libevent listener struct \fP"
+.ti -1c
+.RI "char * \fBserver_name\fP"
+.br
+.RI "\fIthe name included in Host: responses \fP"
+.ti -1c
+.RI "void * \fBarg\fP"
+.br
+.RI "\fIuser-defined evhtp_t specific arguments \fP"
+.ti -1c
+.RI "int \fBbev_flags\fP"
+.br
+.RI "\fIbufferevent flags to use on bufferevent_*_socket_new() \fP"
+.ti -1c
+.RI "uint64_t \fBmax_body_size\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBmax_keepalive_requests\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBdisable_100_cont\fP: 1"
+.br
+.RI "\fIif set, evhtp will not respond to Expect: 100-continue \fP"
+.ti -1c
+.RI "uint8_t \fBenable_reuseport\fP: 1"
+.br
+.ti -1c
+.RI "uint8_t \fBenable_nodelay\fP: 1"
+.br
+.ti -1c
+.RI "uint8_t \fBenable_defer_accept\fP: 1"
+.br
+.ti -1c
+.RI "uint8_t \fBpad\fP: 4"
+.br
+.ti -1c
+.RI "int \fBparser_flags\fP"
+.br
+.RI "\fIdefault query flags to alter 'strictness' (see EVHTP_PARSE_QUERY_FLAG_*) \fP"
+.ti -1c
+.RI "\fBevhtp_ssl_ctx_t\fP * \fBssl_ctx\fP"
+.br
+.RI "\fIif ssl enabled, this is the servers CTX \fP"
+.ti -1c
+.RI "evhtp_ssl_cfg_t * \fBssl_cfg\fP"
+.br
+.ti -1c
+.RI "evthr_pool_t * \fBthr_pool\fP"
+.br
+.RI "\fIconnection threadpool \fP"
+.ti -1c
+.RI "pthread_mutex_t * \fBlock\fP"
+.br
+.RI "\fIparent lock for add/del cbs in threads \fP"
+.ti -1c
+.RI "\fBevhtp_thread_init_cb\fP \fBthread_init_cb\fP"
+.br
+.ti -1c
+.RI "void * \fBthread_init_cbarg\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_callbacks_t\fP * \fBcallbacks\fP"
+.br
+.ti -1c
+.RI "evhtp_defaults_t \fBdefaults\fP"
+.br
+.ti -1c
+.RI "struct timeval \fBrecv_timeo\fP"
+.br
+.ti -1c
+.RI "struct timeval \fBsend_timeo\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+main structure containing all configuration information 
+.PP
+Definition at line 290 of file evhtp\&.h\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "evhtp_t::TAILQ_ENTRY (\fBevhtp_s\fP)"
+
+.SS "evhtp_t::TAILQ_HEAD (\fBevhtp_alias_s\fP)"
+
+.SS "evhtp_t::TAILQ_HEAD (\fBevhtp_s\fP)"
+
+.SH "Field Documentation"
+.PP 
+.SS "void* evhtp_t::arg"
+
+.PP
+user-defined evhtp_t specific arguments 
+.PP
+Definition at line 295 of file evhtp\&.h\&.
+.SS "int evhtp_t::bev_flags"
+
+.PP
+bufferevent flags to use on bufferevent_*_socket_new() 
+.PP
+Definition at line 296 of file evhtp\&.h\&.
+.SS "\fBevhtp_callbacks_t\fP* evhtp_t::callbacks"
+
+.PP
+Definition at line 321 of file evhtp\&.h\&.
+.SS "evhtp_defaults_t evhtp_t::defaults"
+
+.PP
+Definition at line 322 of file evhtp\&.h\&.
+.SS "uint8_t evhtp_t::disable_100_cont"
+
+.PP
+if set, evhtp will not respond to Expect: 100-continue 
+.PP
+Definition at line 299 of file evhtp\&.h\&.
+.SS "uint8_t evhtp_t::enable_defer_accept"
+
+.PP
+Definition at line 299 of file evhtp\&.h\&.
+.SS "uint8_t evhtp_t::enable_nodelay"
+
+.PP
+Definition at line 299 of file evhtp\&.h\&.
+.SS "uint8_t evhtp_t::enable_reuseport"
+
+.PP
+Definition at line 299 of file evhtp\&.h\&.
+.SS "evbase_t* evhtp_t::evbase"
+
+.PP
+the initialized event_base 
+.PP
+Definition at line 292 of file evhtp\&.h\&.
+.SS "pthread_mutex_t* evhtp_t::lock"
+
+.PP
+parent lock for add/del cbs in threads 
+.PP
+Definition at line 317 of file evhtp\&.h\&.
+.SS "uint64_t evhtp_t::max_body_size"
+
+.PP
+Definition at line 297 of file evhtp\&.h\&.
+.SS "uint64_t evhtp_t::max_keepalive_requests"
+
+.PP
+Definition at line 298 of file evhtp\&.h\&.
+.SS "uint8_t evhtp_t::pad"
+
+.PP
+Definition at line 299 of file evhtp\&.h\&.
+.SS "evhtp_t* evhtp_t::parent"
+
+.PP
+only when this is a vhost 
+.PP
+Definition at line 291 of file evhtp\&.h\&.
+.SS "int evhtp_t::parser_flags"
+
+.PP
+default query flags to alter 'strictness' (see EVHTP_PARSE_QUERY_FLAG_*) 
+.PP
+Definition at line 305 of file evhtp\&.h\&.
+.SS "struct timeval evhtp_t::recv_timeo"
+
+.PP
+Definition at line 324 of file evhtp\&.h\&.
+.SS "struct timeval evhtp_t::send_timeo"
+
+.PP
+Definition at line 325 of file evhtp\&.h\&.
+.SS "\fBevserv_t\fP* evhtp_t::server"
+
+.PP
+the libevent listener struct 
+.PP
+Definition at line 293 of file evhtp\&.h\&.
+.SS "char* evhtp_t::server_name"
+
+.PP
+the name included in Host: responses 
+.PP
+Definition at line 294 of file evhtp\&.h\&.
+.SS "evhtp_ssl_cfg_t* evhtp_t::ssl_cfg"
+
+.PP
+Definition at line 309 of file evhtp\&.h\&.
+.SS "\fBevhtp_ssl_ctx_t\fP* evhtp_t::ssl_ctx"
+
+.PP
+if ssl enabled, this is the servers CTX 
+.PP
+Definition at line 308 of file evhtp\&.h\&.
+.SS "evthr_pool_t* evhtp_t::thr_pool"
+
+.PP
+connection threadpool 
+.PP
+Definition at line 313 of file evhtp\&.h\&.
+.SS "\fBevhtp_thread_init_cb\fP evhtp_t::thread_init_cb"
+
+.PP
+Definition at line 318 of file evhtp\&.h\&.
+.SS "void* evhtp_t::thread_init_cbarg"
+
+.PP
+Definition at line 319 of file evhtp\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Libevhtp from the source code\&.
