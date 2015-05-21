@@ -32,7 +32,7 @@ main structure containing all configuration information
 .br
 .RI "\fIonly when this is a vhost \fP"
 .ti -1c
-.RI "\fBevbase_t\fP * \fBevbase\fP"
+.RI "evbase_t * \fBevbase\fP"
 .br
 .RI "\fIthe initialized event_base \fP"
 .ti -1c
@@ -85,7 +85,7 @@ main structure containing all configuration information
 .RI "evhtp_ssl_cfg_t * \fBssl_cfg\fP"
 .br
 .ti -1c
-.RI "\fBevthr_pool_t\fP * \fBthr_pool\fP"
+.RI "evthr_pool_t * \fBthr_pool\fP"
 .br
 .RI "\fIconnection threadpool \fP"
 .ti -1c
@@ -115,7 +115,7 @@ main structure containing all configuration information
 .PP 
 main structure containing all configuration information 
 .PP
-Definition at line 288 of file evhtp\&.h\&.
+Definition at line 290 of file evhtp\&.h\&.
 .SH "Member Function Documentation"
 .PP 
 .SS "evhtp_t::TAILQ_ENTRY (\fBevhtp_s\fP)"
@@ -131,119 +131,119 @@ Definition at line 288 of file evhtp\&.h\&.
 .PP
 user-defined evhtp_t specific arguments 
 .PP
-Definition at line 293 of file evhtp\&.h\&.
+Definition at line 295 of file evhtp\&.h\&.
 .SS "int evhtp_t::bev_flags"
 
 .PP
 bufferevent flags to use on bufferevent_*_socket_new() 
 .PP
-Definition at line 294 of file evhtp\&.h\&.
+Definition at line 296 of file evhtp\&.h\&.
 .SS "\fBevhtp_callbacks_t\fP* evhtp_t::callbacks"
 
 .PP
-Definition at line 319 of file evhtp\&.h\&.
+Definition at line 321 of file evhtp\&.h\&.
 .SS "evhtp_defaults_t evhtp_t::defaults"
 
 .PP
-Definition at line 320 of file evhtp\&.h\&.
+Definition at line 322 of file evhtp\&.h\&.
 .SS "uint8_t evhtp_t::disable_100_cont"
 
 .PP
 if set, evhtp will not respond to Expect: 100-continue 
 .PP
-Definition at line 297 of file evhtp\&.h\&.
+Definition at line 299 of file evhtp\&.h\&.
 .SS "uint8_t evhtp_t::enable_defer_accept"
 
 .PP
-Definition at line 297 of file evhtp\&.h\&.
+Definition at line 299 of file evhtp\&.h\&.
 .SS "uint8_t evhtp_t::enable_nodelay"
 
 .PP
-Definition at line 297 of file evhtp\&.h\&.
+Definition at line 299 of file evhtp\&.h\&.
 .SS "uint8_t evhtp_t::enable_reuseport"
 
 .PP
-Definition at line 297 of file evhtp\&.h\&.
-.SS "\fBevbase_t\fP* evhtp_t::evbase"
+Definition at line 299 of file evhtp\&.h\&.
+.SS "evbase_t* evhtp_t::evbase"
 
 .PP
 the initialized event_base 
 .PP
-Definition at line 290 of file evhtp\&.h\&.
+Definition at line 292 of file evhtp\&.h\&.
 .SS "pthread_mutex_t* evhtp_t::lock"
 
 .PP
 parent lock for add/del cbs in threads 
 .PP
-Definition at line 315 of file evhtp\&.h\&.
+Definition at line 317 of file evhtp\&.h\&.
 .SS "uint64_t evhtp_t::max_body_size"
 
 .PP
-Definition at line 295 of file evhtp\&.h\&.
+Definition at line 297 of file evhtp\&.h\&.
 .SS "uint64_t evhtp_t::max_keepalive_requests"
 
 .PP
-Definition at line 296 of file evhtp\&.h\&.
+Definition at line 298 of file evhtp\&.h\&.
 .SS "uint8_t evhtp_t::pad"
 
 .PP
-Definition at line 297 of file evhtp\&.h\&.
+Definition at line 299 of file evhtp\&.h\&.
 .SS "evhtp_t* evhtp_t::parent"
 
 .PP
 only when this is a vhost 
 .PP
-Definition at line 289 of file evhtp\&.h\&.
+Definition at line 291 of file evhtp\&.h\&.
 .SS "int evhtp_t::parser_flags"
 
 .PP
 default query flags to alter 'strictness' (see EVHTP_PARSE_QUERY_FLAG_*) 
 .PP
-Definition at line 303 of file evhtp\&.h\&.
+Definition at line 305 of file evhtp\&.h\&.
 .SS "struct timeval evhtp_t::recv_timeo"
 
 .PP
-Definition at line 322 of file evhtp\&.h\&.
+Definition at line 324 of file evhtp\&.h\&.
 .SS "struct timeval evhtp_t::send_timeo"
 
 .PP
-Definition at line 323 of file evhtp\&.h\&.
+Definition at line 325 of file evhtp\&.h\&.
 .SS "\fBevserv_t\fP* evhtp_t::server"
 
 .PP
 the libevent listener struct 
 .PP
-Definition at line 291 of file evhtp\&.h\&.
+Definition at line 293 of file evhtp\&.h\&.
 .SS "char* evhtp_t::server_name"
 
 .PP
 the name included in Host: responses 
 .PP
-Definition at line 292 of file evhtp\&.h\&.
+Definition at line 294 of file evhtp\&.h\&.
 .SS "evhtp_ssl_cfg_t* evhtp_t::ssl_cfg"
 
 .PP
-Definition at line 307 of file evhtp\&.h\&.
+Definition at line 309 of file evhtp\&.h\&.
 .SS "\fBevhtp_ssl_ctx_t\fP* evhtp_t::ssl_ctx"
 
 .PP
 if ssl enabled, this is the servers CTX 
 .PP
-Definition at line 306 of file evhtp\&.h\&.
-.SS "\fBevthr_pool_t\fP* evhtp_t::thr_pool"
+Definition at line 308 of file evhtp\&.h\&.
+.SS "evthr_pool_t* evhtp_t::thr_pool"
 
 .PP
 connection threadpool 
 .PP
-Definition at line 311 of file evhtp\&.h\&.
+Definition at line 313 of file evhtp\&.h\&.
 .SS "\fBevhtp_thread_init_cb\fP evhtp_t::thread_init_cb"
 
 .PP
-Definition at line 316 of file evhtp\&.h\&.
+Definition at line 318 of file evhtp\&.h\&.
 .SS "void* evhtp_t::thread_init_cbarg"
 
 .PP
-Definition at line 317 of file evhtp\&.h\&.
+Definition at line 319 of file evhtp\&.h\&.
 
 .SH "Author"
 .PP 

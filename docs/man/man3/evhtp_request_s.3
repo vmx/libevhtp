@@ -58,7 +58,7 @@ a structure containing all information for a http request\&.
 .br
 .RI "\fIHTTP protocol used\&. \fP"
 .ti -1c
-.RI "\fBhtp_method\fP \fBmethod\fP"
+.RI "htp_method \fBmethod\fP"
 .br
 .RI "\fIHTTP method used\&. \fP"
 .ti -1c
@@ -98,7 +98,7 @@ a structure containing all information for a http request\&.
 .PP 
 a structure containing all information for a http request\&. 
 .PP
-Definition at line 429 of file evhtp\&.h\&.
+Definition at line 431 of file evhtp\&.h\&.
 .SH "Member Function Documentation"
 .PP 
 .SS "evhtp_request_t::TAILQ_ENTRY (\fBevhtp_request_s\fP)"
@@ -110,109 +110,109 @@ Definition at line 429 of file evhtp\&.h\&.
 .PP
 buffer containing data from client 
 .PP
-Definition at line 434 of file evhtp\&.h\&.
+Definition at line 436 of file evhtp\&.h\&.
 .SS "\fBevbuf_t\fP* evhtp_request_t::buffer_out"
 
 .PP
 buffer containing data to client 
 .PP
-Definition at line 435 of file evhtp\&.h\&.
+Definition at line 437 of file evhtp\&.h\&.
 .SS "\fBevhtp_callback_cb\fP evhtp_request_t::cb"
 
 .PP
 the function to call when fully processed 
 .PP
-Definition at line 447 of file evhtp\&.h\&.
+Definition at line 449 of file evhtp\&.h\&.
 .SS "void* evhtp_request_t::cbarg"
 
 .PP
 argument which is passed to the cb function 
 .PP
-Definition at line 448 of file evhtp\&.h\&.
+Definition at line 450 of file evhtp\&.h\&.
 .SS "uint8_t evhtp_request_t::chunked"
 
 .PP
 set to 1 if the request is chunked 
 .PP
-Definition at line 441 of file evhtp\&.h\&.
+Definition at line 443 of file evhtp\&.h\&.
 .SS "evhtp_connection_t* evhtp_request_t::conn"
 
 .PP
 the associated connection 
 .PP
-Definition at line 431 of file evhtp\&.h\&.
+Definition at line 433 of file evhtp\&.h\&.
 .SS "uint8_t evhtp_request_t::error"
 
 .PP
 set if any sort of error has occurred\&. 
 .PP
-Definition at line 441 of file evhtp\&.h\&.
+Definition at line 443 of file evhtp\&.h\&.
 .SS "uint8_t evhtp_request_t::finished"
 
 .PP
 set to 1 if the request is fully processed 
 .PP
-Definition at line 441 of file evhtp\&.h\&.
+Definition at line 443 of file evhtp\&.h\&.
 .SS "\fBevhtp_headers_t\fP* evhtp_request_t::headers_in"
 
 .PP
 headers from client 
 .PP
-Definition at line 436 of file evhtp\&.h\&.
+Definition at line 438 of file evhtp\&.h\&.
 .SS "\fBevhtp_headers_t\fP* evhtp_request_t::headers_out"
 
 .PP
 headers to client 
 .PP
-Definition at line 437 of file evhtp\&.h\&.
+Definition at line 439 of file evhtp\&.h\&.
 .SS "evhtp_hooks_t* evhtp_request_t::hooks"
 
 .PP
 request specific hooks 
 .PP
-Definition at line 432 of file evhtp\&.h\&.
+Definition at line 434 of file evhtp\&.h\&.
 .SS "evhtp_t* evhtp_request_t::htp"
 
 .PP
 the parent evhtp_t structure 
 .PP
-Definition at line 430 of file evhtp\&.h\&.
+Definition at line 432 of file evhtp\&.h\&.
 .SS "uint8_t evhtp_request_t::keepalive"
 
 .PP
 set to 1 if the connection is keep-alive 
 .PP
-Definition at line 441 of file evhtp\&.h\&.
-.SS "\fBhtp_method\fP evhtp_request_t::method"
+Definition at line 443 of file evhtp\&.h\&.
+.SS "htp_method evhtp_request_t::method"
 
 .PP
 HTTP method used\&. 
 .PP
-Definition at line 439 of file evhtp\&.h\&.
+Definition at line 441 of file evhtp\&.h\&.
 .SS "uint8_t evhtp_request_t::pad"
 
 .PP
 to be used in evhtp2 for new stuff 
 .PP
-Definition at line 441 of file evhtp\&.h\&.
+Definition at line 443 of file evhtp\&.h\&.
 .SS "\fBevhtp_proto\fP evhtp_request_t::proto"
 
 .PP
 HTTP protocol used\&. 
 .PP
-Definition at line 438 of file evhtp\&.h\&.
+Definition at line 440 of file evhtp\&.h\&.
 .SS "\fBevhtp_res\fP evhtp_request_t::status"
 
 .PP
 The HTTP response code or other error conditions\&. 
 .PP
-Definition at line 440 of file evhtp\&.h\&.
+Definition at line 442 of file evhtp\&.h\&.
 .SS "evhtp_uri_t* evhtp_request_t::uri"
 
 .PP
 request URI information 
 .PP
-Definition at line 433 of file evhtp\&.h\&.
+Definition at line 435 of file evhtp\&.h\&.
 
 .SH "Author"
 .PP 
