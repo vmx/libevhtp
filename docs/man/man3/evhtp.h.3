@@ -376,10 +376,10 @@ evhtp.h \-
 .ti -1c
 .RI "EVHTP_EXPORT evhtp_t * \fBevhtp_new\fP (evbase_t *evbase, void *arg)"
 .br
-.RI "\fIcreates a new evhtp_t instance \fP"
 .ti -1c
 .RI "EVHTP_EXPORT void \fBevhtp_free\fP (evhtp_t *evhtp)"
 .br
+.RI "\fIfree a evhtp_t context \fP"
 .ti -1c
 .RI "EVHTP_EXPORT void \fBevhtp_set_timeouts\fP (evhtp_t *htp, const struct timeval *r, const struct timeval *w)"
 .br
@@ -684,19 +684,19 @@ evhtp.h \-
 .SS "#define evhtp_header_find   \fBevhtp_kv_find\fP"
 
 .PP
-Definition at line 1171 of file evhtp\&.h\&.
+Definition at line 1182 of file evhtp\&.h\&.
 .SS "#define evhtp_header_free   \fBevhtp_kv_free\fP"
 
 .PP
-Definition at line 1175 of file evhtp\&.h\&.
+Definition at line 1186 of file evhtp\&.h\&.
 .SS "#define evhtp_header_new   \fBevhtp_kv_new\fP"
 
 .PP
-Definition at line 1174 of file evhtp\&.h\&.
+Definition at line 1185 of file evhtp\&.h\&.
 .SS "#define evhtp_header_rm_and_free   \fBevhtp_kv_rm_and_free\fP"
 
 .PP
-Definition at line 1178 of file evhtp\&.h\&.
+Definition at line 1189 of file evhtp\&.h\&.
 .SS "#define evhtp_header_s   \fBevhtp_kv_s\fP"
 
 .PP
@@ -708,23 +708,23 @@ Definition at line 105 of file evhtp\&.h\&.
 .SS "#define evhtp_headers_add_header   \fBevhtp_kvs_add_kv\fP"
 
 .PP
-Definition at line 1179 of file evhtp\&.h\&.
+Definition at line 1190 of file evhtp\&.h\&.
 .SS "#define evhtp_headers_add_headers   \fBevhtp_kvs_add_kvs\fP"
 
 .PP
-Definition at line 1180 of file evhtp\&.h\&.
+Definition at line 1191 of file evhtp\&.h\&.
 .SS "#define evhtp_headers_find_header   \fBevhtp_kvs_find_kv\fP"
 
 .PP
-Definition at line 1172 of file evhtp\&.h\&.
+Definition at line 1183 of file evhtp\&.h\&.
 .SS "#define evhtp_headers_for_each   \fBevhtp_kvs_for_each\fP"
 
 .PP
-Definition at line 1173 of file evhtp\&.h\&.
+Definition at line 1184 of file evhtp\&.h\&.
 .SS "#define evhtp_headers_free   \fBevhtp_kvs_free\fP"
 
 .PP
-Definition at line 1177 of file evhtp\&.h\&.
+Definition at line 1188 of file evhtp\&.h\&.
 .SS "#define evhtp_headers_iterator   \fBevhtp_kvs_iterator\fP"
 
 .PP
@@ -732,7 +732,7 @@ Definition at line 205 of file evhtp\&.h\&.
 .SS "#define evhtp_headers_new   \fBevhtp_kvs_new\fP"
 
 .PP
-Definition at line 1176 of file evhtp\&.h\&.
+Definition at line 1187 of file evhtp\&.h\&.
 .SS "#define evhtp_headers_s   evhtp_kvs_s"
 
 .PP
@@ -744,19 +744,19 @@ Definition at line 106 of file evhtp\&.h\&.
 .SS "#define EVHTP_PARSE_QUERY_FLAG_ALLOW_EMPTY_VALS   (1 << 1)"
 
 .PP
-Definition at line 1066 of file evhtp\&.h\&.
+Definition at line 1077 of file evhtp\&.h\&.
 .SS "#define EVHTP_PARSE_QUERY_FLAG_ALLOW_NULL_VALS   (1 << 2)"
 
 .PP
-Definition at line 1067 of file evhtp\&.h\&.
+Definition at line 1078 of file evhtp\&.h\&.
 .SS "#define EVHTP_PARSE_QUERY_FLAG_IGNORE_FRAGMENTS   (1 << 4)"
 
 .PP
-Definition at line 1069 of file evhtp\&.h\&.
+Definition at line 1080 of file evhtp\&.h\&.
 .SS "#define EVHTP_PARSE_QUERY_FLAG_IGNORE_HEX   (1 << 0)"
 
 .PP
-Definition at line 1065 of file evhtp\&.h\&.
+Definition at line 1076 of file evhtp\&.h\&.
 .SS "#define EVHTP_PARSE_QUERY_FLAG_LENIENT"
 \fBValue:\fP
 .PP
@@ -767,23 +767,23 @@ EVHTP_PARSE_QUERY_FLAG_IGNORE_HEX         \
     | EVHTP_PARSE_QUERY_FLAG_TREAT_SEMICOLON_AS_SEP
 .fi
 .PP
-Definition at line 1070 of file evhtp\&.h\&.
+Definition at line 1081 of file evhtp\&.h\&.
 .SS "#define EVHTP_PARSE_QUERY_FLAG_STRICT   0"
 
 .PP
-Definition at line 1064 of file evhtp\&.h\&.
+Definition at line 1075 of file evhtp\&.h\&.
 .SS "#define EVHTP_PARSE_QUERY_FLAG_TREAT_SEMICOLON_AS_SEP   (1 << 3)"
 
 .PP
-Definition at line 1068 of file evhtp\&.h\&.
+Definition at line 1079 of file evhtp\&.h\&.
 .SS "#define evhtp_query_free   \fBevhtp_kvs_free\fP"
 
 .PP
-Definition at line 1182 of file evhtp\&.h\&.
+Definition at line 1193 of file evhtp\&.h\&.
 .SS "#define evhtp_query_new   \fBevhtp_kvs_new\fP"
 
 .PP
-Definition at line 1181 of file evhtp\&.h\&.
+Definition at line 1192 of file evhtp\&.h\&.
 .SS "#define evhtp_query_s   evhtp_kvs_s"
 
 .PP
@@ -1372,8 +1372,6 @@ when a client sends an Expect: 100-continue, if this is function is called, evht
 .RE
 .PP
 
-.SS "EVHTP_EXPORT void evhtp_free (evhtp_t *evhtp)"
-
 .SS "EVHTP_EXPORT evhtp_callback_t* evhtp_get_cb (evhtp_t *htp, const char *needle)"
 
 .PP
@@ -1650,22 +1648,6 @@ creates an empty list of key/values
 .PP
 make a client request 
 .SS "EVHTP_EXPORT evhtp_t* evhtp_new (evbase_t *evbase, void *arg)"
-
-.PP
-creates a new evhtp_t instance 
-.PP
-\fBParameters:\fP
-.RS 4
-\fIevbase\fP the initialized event base 
-.br
-\fIarg\fP user-defined argument which is evhtp_t specific
-.RE
-.PP
-\fBReturns:\fP
-.RS 4
-a new evhtp_t structure or NULL on error 
-.RE
-.PP
 
 .SS "EVHTP_EXPORT \fBevhtp_query_t\fP* evhtp_parse_query (const char *query, size_tlen)"
 
