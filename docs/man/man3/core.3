@@ -3,12 +3,12 @@
 .nh
 .SH NAME
 Core evhtp functions \- 
-.PP
-creates a new evhtp_t instance  
-
 .SS "Functions"
 
 .in +1c
+.ti -1c
+.RI "EVHTP_EXPORT evhtp_t * \fBevhtp_new\fP (evbase_t *evbase, void *arg)"
+.br
 .ti -1c
 .RI "EVHTP_EXPORT void \fBevhtp_free\fP (evhtp_t *evhtp)"
 .br
@@ -16,22 +16,6 @@ creates a new evhtp_t instance
 .in -1c
 .SH "Detailed Description"
 .PP 
-creates a new evhtp_t instance 
-
-
-.PP
-\fBParameters:\fP
-.RS 4
-\fIevbase\fP the initialized event base 
-.br
-\fIarg\fP user-defined argument which is evhtp_t specific
-.RE
-.PP
-\fBReturns:\fP
-.RS 4
-a new evhtp_t structure or NULL on error 
-.RE
-.PP
 
 .SH "Function Documentation"
 .PP 
@@ -49,6 +33,8 @@ free a evhtp_t context
 .RS 4
 .RE
 .PP
+
+.SS "EVHTP_EXPORT evhtp_t* evhtp_new (evbase_t *evbase, void *arg)"
 
 .SH "Author"
 .PP 
