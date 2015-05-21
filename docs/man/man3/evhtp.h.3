@@ -1,0 +1,2567 @@
+.TH "evhtp.h" 3 "Thu May 21 2015" "Version 1.2.10-dev" "Libevhtp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+evhtp.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <evhtp-config\&.h>\fP
+.br
+\fC#include <evthr\&.h>\fP
+.br
+\fC#include <htparse\&.h>\fP
+.br
+\fC#include <onigposix\&.h>\fP
+.br
+\fC#include <sys/queue\&.h>\fP
+.br
+\fC#include <event2/event\&.h>\fP
+.br
+\fC#include <event2/listener\&.h>\fP
+.br
+\fC#include <event2/buffer\&.h>\fP
+.br
+\fC#include <event2/bufferevent\&.h>\fP
+.br
+\fC#include <event2/bufferevent_ssl\&.h>\fP
+.br
+\fC#include <openssl/ssl\&.h>\fP
+.br
+\fC#include <openssl/err\&.h>\fP
+.br
+\fC#include <openssl/rand\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBevhtp_defaults_5\fP"
+.br
+.ti -1c
+.RI "struct \fBevhtp_alias_t\fP"
+.br
+.ti -1c
+.RI "struct \fBevhtp_t\fP"
+.br
+.RI "\fImain structure containing all configuration information \fP"
+.ti -1c
+.RI "struct \fBevhtp_callback_t\fP"
+.br
+.RI "\fIstructure containing a single callback and configuration \fP"
+.ti -1c
+.RI "struct \fBevhtp_kv_t\fP"
+.br
+.RI "\fIa generic key/value structure \fP"
+.ti -1c
+.RI "struct \fBevhtp_uri_t\fP"
+.br
+.RI "\fIa generic container representing an entire URI strucutre \fP"
+.ti -1c
+.RI "struct \fBevhtp_authority_t\fP"
+.br
+.RI "\fIstructure which represents authority information in a URI \fP"
+.ti -1c
+.RI "struct \fBevhtp_path_t\fP"
+.br
+.RI "\fIstructure which represents a URI path and or file \fP"
+.ti -1c
+.RI "struct \fBevhtp_request_t\fP"
+.br
+.RI "\fIa structure containing all information for a http request\&. \fP"
+.ti -1c
+.RI "struct \fBevhtp_connection_t\fP"
+.br
+.ti -1c
+.RI "struct \fBevhtp_hooks_t\fP"
+.br
+.ti -1c
+.RI "struct \fBevhtp_ssl_cfg_t\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBhtp_debug_strlen\fP(x)   0"
+.br
+.ti -1c
+.RI "#define \fBhtp_log_debug\fP(fmt,\&.\&.\&.)   do {} while (0)"
+.br
+.ti -1c
+.RI "#define \fBevhtp_header_s\fP   \fBevhtp_kv_s\fP"
+.br
+.ti -1c
+.RI "#define \fBevhtp_headers_s\fP   evhtp_kvs_s"
+.br
+.ti -1c
+.RI "#define \fBevhtp_query_s\fP   evhtp_kvs_s"
+.br
+.ti -1c
+.RI "#define \fBevhtp_header_t\fP   evhtp_kv_t"
+.br
+.ti -1c
+.RI "#define \fBevhtp_headers_t\fP   \fBevhtp_kvs_t\fP"
+.br
+.ti -1c
+.RI "#define \fBevhtp_query_t\fP   \fBevhtp_kvs_t\fP"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_VERSION\fP   '1\&.2\&.10'"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_VERSION_MAJOR\fP   1"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_VERSION_MINOR\fP   2"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_VERSION_PATCH\fP   10"
+.br
+.ti -1c
+.RI "#define \fBevhtp_headers_iterator\fP   \fBevhtp_kvs_iterator\fP"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_ERROR\fP   0"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_PAUSE\fP   1"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_FATAL\fP   2"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_USER\fP   3"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_DATA_TOO_LONG\fP   4"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_OK\fP   200"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_100\fP   100"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_CONTINUE\fP   100"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_SWITCH_PROTO\fP   101"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_PROCESSING\fP   102"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_URI_TOOLONG\fP   122"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_200\fP   200"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_CREATED\fP   201"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_ACCEPTED\fP   202"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_NAUTHINFO\fP   203"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_NOCONTENT\fP   204"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_RSTCONTENT\fP   205"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_PARTIAL\fP   206"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_MSTATUS\fP   207"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_IMUSED\fP   226"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_300\fP   300"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_MCHOICE\fP   300"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_MOVEDPERM\fP   301"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_FOUND\fP   302"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_SEEOTHER\fP   303"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_NOTMOD\fP   304"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_USEPROXY\fP   305"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_SWITCHPROXY\fP   306"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_TMPREDIR\fP   307"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_400\fP   400"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_BADREQ\fP   400"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_UNAUTH\fP   401"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_PAYREQ\fP   402"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_FORBIDDEN\fP   403"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_NOTFOUND\fP   404"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_METHNALLOWED\fP   405"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_NACCEPTABLE\fP   406"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_PROXYAUTHREQ\fP   407"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_TIMEOUT\fP   408"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_CONFLICT\fP   409"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_GONE\fP   410"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_LENREQ\fP   411"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_PRECONDFAIL\fP   412"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_ENTOOLARGE\fP   413"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_URITOOLARGE\fP   414"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_UNSUPPORTED\fP   415"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_RANGENOTSC\fP   416"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_EXPECTFAIL\fP   417"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_IAMATEAPOT\fP   418"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_500\fP   500"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_SERVERR\fP   500"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_NOTIMPL\fP   501"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_BADGATEWAY\fP   502"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_SERVUNAVAIL\fP   503"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_GWTIMEOUT\fP   504"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_VERNSUPPORT\fP   505"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_RES_BWEXEED\fP   509"
+.br
+.ti -1c
+.RI "#define \fBevhtp_request_content_len\fP(r)   \fBhtparser_get_content_length\fP(r->conn->parser)"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_PARSE_QUERY_FLAG_STRICT\fP   0"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_PARSE_QUERY_FLAG_IGNORE_HEX\fP   (1 << 0)"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_PARSE_QUERY_FLAG_ALLOW_EMPTY_VALS\fP   (1 << 1)"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_PARSE_QUERY_FLAG_ALLOW_NULL_VALS\fP   (1 << 2)"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_PARSE_QUERY_FLAG_TREAT_SEMICOLON_AS_SEP\fP   (1 << 3)"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_PARSE_QUERY_FLAG_IGNORE_FRAGMENTS\fP   (1 << 4)"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_PARSE_QUERY_FLAG_LENIENT\fP"
+.br
+.ti -1c
+.RI "#define \fBevhtp_header_find\fP   \fBevhtp_kv_find\fP"
+.br
+.ti -1c
+.RI "#define \fBevhtp_headers_find_header\fP   \fBevhtp_kvs_find_kv\fP"
+.br
+.ti -1c
+.RI "#define \fBevhtp_headers_for_each\fP   \fBevhtp_kvs_for_each\fP"
+.br
+.ti -1c
+.RI "#define \fBevhtp_header_new\fP   \fBevhtp_kv_new\fP"
+.br
+.ti -1c
+.RI "#define \fBevhtp_header_free\fP   \fBevhtp_kv_free\fP"
+.br
+.ti -1c
+.RI "#define \fBevhtp_headers_new\fP   \fBevhtp_kvs_new\fP"
+.br
+.ti -1c
+.RI "#define \fBevhtp_headers_free\fP   \fBevhtp_kvs_free\fP"
+.br
+.ti -1c
+.RI "#define \fBevhtp_header_rm_and_free\fP   \fBevhtp_kv_rm_and_free\fP"
+.br
+.ti -1c
+.RI "#define \fBevhtp_headers_add_header\fP   \fBevhtp_kvs_add_kv\fP"
+.br
+.ti -1c
+.RI "#define \fBevhtp_headers_add_headers\fP   \fBevhtp_kvs_add_kvs\fP"
+.br
+.ti -1c
+.RI "#define \fBevhtp_query_new\fP   \fBevhtp_kvs_new\fP"
+.br
+.ti -1c
+.RI "#define \fBevhtp_query_free\fP   \fBevhtp_kvs_free\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef SSL_SESSION \fBevhtp_ssl_sess_t\fP"
+.br
+.ti -1c
+.RI "typedef SSL \fBevhtp_ssl_t\fP"
+.br
+.ti -1c
+.RI "typedef SSL_CTX \fBevhtp_ssl_ctx_t\fP"
+.br
+.ti -1c
+.RI "typedef X509 \fBevhtp_x509_t\fP"
+.br
+.ti -1c
+.RI "typedef X509_STORE_CTX \fBevhtp_x509_store_ctx_t\fP"
+.br
+.ti -1c
+.RI "typedef struct evbuffer \fBevbuf_t\fP"
+.br
+.ti -1c
+.RI "typedef struct event \fBevent_t\fP"
+.br
+.ti -1c
+.RI "typedef struct evconnlistener \fBevserv_t\fP"
+.br
+.ti -1c
+.RI "typedef struct bufferevent \fBevbev_t\fP"
+.br
+.ti -1c
+.RI "typedef pthread_mutex_t \fBevhtp_mutex_t\fP"
+.br
+.ti -1c
+.RI "typedef struct evhtp_callbacks_s \fBevhtp_callbacks_t\fP"
+.br
+.ti -1c
+.RI "typedef struct evhtp_kvs_s \fBevhtp_kvs_t\fP"
+.br
+.ti -1c
+.RI "typedef uint16_t \fBevhtp_res\fP"
+.br
+.ti -1c
+.RI "typedef uint8_t \fBevhtp_error_flags\fP"
+.br
+.ti -1c
+.RI "typedef enum \fBevhtp_hook_type\fP \fBevhtp_hook_type\fP"
+.br
+.ti -1c
+.RI "typedef enum \fBevhtp_callback_type\fP \fBevhtp_callback_type\fP"
+.br
+.ti -1c
+.RI "typedef enum \fBevhtp_proto\fP \fBevhtp_proto\fP"
+.br
+.ti -1c
+.RI "typedef enum \fBevhtp_ssl_scache_type\fP \fBevhtp_ssl_scache_type\fP"
+.br
+.ti -1c
+.RI "typedef enum \fBevhtp_type\fP \fBevhtp_type\fP"
+.br
+.ti -1c
+.RI "typedef void(* \fBevhtp_thread_init_cb\fP )(evhtp_t *htp, \fBevthr_t\fP *thr, void *arg)"
+.br
+.ti -1c
+.RI "typedef void(* \fBevhtp_callback_cb\fP )(evhtp_request_t *req, void *arg)"
+.br
+.ti -1c
+.RI "typedef void(* \fBevhtp_hook_err_cb\fP )(evhtp_request_t *req, \fBevhtp_error_flags\fP errtype, void *arg)"
+.br
+.ti -1c
+.RI "typedef void(* \fBevhtp_hook_event_cb\fP )(evhtp_connection_t *conn, short events, void *arg)"
+.br
+.ti -1c
+.RI "typedef \fBevhtp_res\fP(* \fBevhtp_hook\fP )()"
+.br
+.ti -1c
+.RI "typedef \fBevhtp_res\fP(* \fBevhtp_hook_conn_err_cb\fP )(evhtp_connection_t *connection, \fBevhtp_error_flags\fP errtype, void *arg)"
+.br
+.ti -1c
+.RI "typedef \fBevhtp_res\fP(* \fBevhtp_pre_accept_cb\fP )(evhtp_connection_t *conn, void *arg)"
+.br
+.ti -1c
+.RI "typedef \fBevhtp_res\fP(* \fBevhtp_post_accept_cb\fP )(evhtp_connection_t *conn, void *arg)"
+.br
+.ti -1c
+.RI "typedef \fBevhtp_res\fP(* \fBevhtp_hook_header_cb\fP )(evhtp_request_t *req, \fBevhtp_header_t\fP *hdr, void *arg)"
+.br
+.ti -1c
+.RI "typedef \fBevhtp_res\fP(* \fBevhtp_hook_headers_cb\fP )(evhtp_request_t *req, \fBevhtp_headers_t\fP *hdr, void *arg)"
+.br
+.ti -1c
+.RI "typedef \fBevhtp_res\fP(* \fBevhtp_hook_path_cb\fP )(evhtp_request_t *req, evhtp_path_t *path, void *arg)"
+.br
+.ti -1c
+.RI "typedef \fBevhtp_res\fP(* \fBevhtp_hook_read_cb\fP )(evhtp_request_t *req, \fBevbuf_t\fP *buf, void *arg)"
+.br
+.ti -1c
+.RI "typedef \fBevhtp_res\fP(* \fBevhtp_hook_request_fini_cb\fP )(evhtp_request_t *req, void *arg)"
+.br
+.ti -1c
+.RI "typedef \fBevhtp_res\fP(* \fBevhtp_hook_connection_fini_cb\fP )(evhtp_connection_t *connection, void *arg)"
+.br
+.ti -1c
+.RI "typedef \fBevhtp_res\fP(* \fBevhtp_hook_chunk_new_cb\fP )(evhtp_request_t *r, uint64_t len, void *arg)"
+.br
+.ti -1c
+.RI "typedef \fBevhtp_res\fP(* \fBevhtp_hook_chunk_fini_cb\fP )(evhtp_request_t *r, void *arg)"
+.br
+.ti -1c
+.RI "typedef \fBevhtp_res\fP(* \fBevhtp_hook_chunks_fini_cb\fP )(evhtp_request_t *r, void *arg)"
+.br
+.ti -1c
+.RI "typedef \fBevhtp_res\fP(* \fBevhtp_hook_headers_start_cb\fP )(evhtp_request_t *r, void *arg)"
+.br
+.ti -1c
+.RI "typedef \fBevhtp_res\fP(* \fBevhtp_hook_hostname_cb\fP )(evhtp_request_t *r, const char *hostname, void *arg)"
+.br
+.ti -1c
+.RI "typedef \fBevhtp_res\fP(* \fBevhtp_hook_write_cb\fP )(evhtp_connection_t *conn, void *arg)"
+.br
+.ti -1c
+.RI "typedef int(* \fBevhtp_kvs_iterator\fP )(evhtp_kv_t *kv, void *arg)"
+.br
+.ti -1c
+.RI "typedef int(* \fBevhtp_headers_iterator\fP )(\fBevhtp_header_t\fP *header, void *arg)"
+.br
+.ti -1c
+.RI "typedef int(* \fBevhtp_ssl_verify_cb\fP )(int pre_verify, \fBevhtp_x509_store_ctx_t\fP *ctx)"
+.br
+.ti -1c
+.RI "typedef int(* \fBevhtp_ssl_chk_issued_cb\fP )(\fBevhtp_x509_store_ctx_t\fP *ctx, \fBevhtp_x509_t\fP *x, \fBevhtp_x509_t\fP *issuer)"
+.br
+.ti -1c
+.RI "typedef int(* \fBevhtp_ssl_scache_add\fP )(evhtp_connection_t *connection, unsigned char *sid, int sid_len, \fBevhtp_ssl_sess_t\fP *sess)"
+.br
+.ti -1c
+.RI "typedef void(* \fBevhtp_ssl_scache_del\fP )(evhtp_t *htp, unsigned char *sid, int sid_len)"
+.br
+.ti -1c
+.RI "typedef \fBevhtp_ssl_sess_t\fP *(* \fBevhtp_ssl_scache_get\fP )(evhtp_connection_t *connection, unsigned char *sid, int sid_len)"
+.br
+.ti -1c
+.RI "typedef void *(* \fBevhtp_ssl_scache_init\fP )(evhtp_t *)"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBevhtp_ssl_scache_type\fP { \fBevhtp_ssl_scache_type_disabled\fP = 0, \fBevhtp_ssl_scache_type_internal\fP, \fBevhtp_ssl_scache_type_user\fP, \fBevhtp_ssl_scache_type_builtin\fP }"
+.br
+.ti -1c
+.RI "enum \fBevhtp_hook_type\fP { \fBevhtp_hook_on_header\fP, \fBevhtp_hook_on_headers\fP, \fBevhtp_hook_on_path\fP, \fBevhtp_hook_on_read\fP, \fBevhtp_hook_on_request_fini\fP, \fBevhtp_hook_on_connection_fini\fP, \fBevhtp_hook_on_new_chunk\fP, \fBevhtp_hook_on_chunk_complete\fP, \fBevhtp_hook_on_chunks_complete\fP, \fBevhtp_hook_on_headers_start\fP, \fBevhtp_hook_on_error\fP, \fBevhtp_hook_on_hostname\fP, \fBevhtp_hook_on_write\fP, \fBevhtp_hook_on_event\fP, \fBevhtp_hook_on_conn_error\fP }"
+.br
+.RI "\fItypes associated with where a developer can hook into during the request processing cycle\&. \fP"
+.ti -1c
+.RI "enum \fBevhtp_callback_type\fP { \fBevhtp_callback_type_hash\fP, \fBevhtp_callback_type_glob\fP, \fBevhtp_callback_type_regex\fP }"
+.br
+.ti -1c
+.RI "enum \fBevhtp_proto\fP { \fBEVHTP_PROTO_INVALID\fP, \fBEVHTP_PROTO_10\fP, \fBEVHTP_PROTO_11\fP }"
+.br
+.ti -1c
+.RI "enum \fBevhtp_type\fP { \fBevhtp_type_client\fP, \fBevhtp_type_server\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTAILQ_HEAD\fP (evhtp_callbacks_s, \fBevhtp_callback_s\fP)"
+.br
+.ti -1c
+.RI "\fBTAILQ_HEAD\fP (evhtp_kvs_s, \fBevhtp_kv_s\fP)"
+.br
+.ti -1c
+.RI "evhtp_t * \fBevhtp_new\fP (\fBevbase_t\fP *evbase, void *arg)"
+.br
+.RI "\fIcreates a new evhtp_t instance \fP"
+.ti -1c
+.RI "void \fBevhtp_free\fP (evhtp_t *evhtp)"
+.br
+.ti -1c
+.RI "void \fBevhtp_set_timeouts\fP (evhtp_t *htp, const struct timeval *r, const struct timeval *w)"
+.br
+.RI "\fIset a read/write timeout on all things evhtp_t\&. \fP"
+.ti -1c
+.RI "void \fBevhtp_set_parser_flags\fP (evhtp_t *htp, int flags)"
+.br
+.RI "\fIduring the request processing cycle, these flags will be used to for query argument parsing\&. \fP"
+.ti -1c
+.RI "void \fBevhtp_set_bev_flags\fP (evhtp_t *htp, int flags)"
+.br
+.RI "\fIbufferevent flags which will be used for bev sockets\&. \fP"
+.ti -1c
+.RI "int \fBevhtp_ssl_use_threads\fP (void)"
+.br
+.ti -1c
+.RI "int \fBevhtp_ssl_init\fP (evhtp_t *htp, evhtp_ssl_cfg_t *ssl_cfg)"
+.br
+.ti -1c
+.RI "void \fBevhtp_disable_100_continue\fP (evhtp_t *htp)"
+.br
+.RI "\fIwhen a client sends an Expect: 100-continue, if this is function is called, evhtp will not send a HTTP/x\&.x continue response\&. \fP"
+.ti -1c
+.RI "int \fBevhtp_use_callback_locks\fP (evhtp_t *htp)"
+.br
+.RI "\fIcreates a lock around callbacks and hooks, allowing for threaded applications to add/remove/modify hooks & callbacks in a thread-safe manner\&. \fP"
+.ti -1c
+.RI "void \fBevhtp_set_gencb\fP (evhtp_t *htp, \fBevhtp_callback_cb\fP cb, void *arg)"
+.br
+.RI "\fIsets a callback which is called if no other callbacks are matched \fP"
+.ti -1c
+.RI "void \fBevhtp_set_pre_accept_cb\fP (evhtp_t *htp, \fBevhtp_pre_accept_cb\fP, void *arg)"
+.br
+.RI "\fIcall a user-defined function before the connection is accepted\&. \fP"
+.ti -1c
+.RI "void \fBevhtp_set_post_accept_cb\fP (evhtp_t *htp, \fBevhtp_post_accept_cb\fP, void *arg)"
+.br
+.RI "\fIcall a user-defined function right after a connection is accepted\&. \fP"
+.ti -1c
+.RI "evhtp_callback_t * \fBevhtp_set_cb\fP (evhtp_t *htp, const char *path, \fBevhtp_callback_cb\fP cb, void *arg)"
+.br
+.RI "\fIsets a callback to be executed on a specific path \fP"
+.ti -1c
+.RI "evhtp_callback_t * \fBevhtp_set_regex_cb\fP (evhtp_t *htp, const char *pattern, \fBevhtp_callback_cb\fP cb, void *arg)"
+.br
+.RI "\fIsets a callback to be executed based on a regex pattern \fP"
+.ti -1c
+.RI "evhtp_callback_t * \fBevhtp_set_glob_cb\fP (evhtp_t *htp, const char *pattern, \fBevhtp_callback_cb\fP cb, void *arg)"
+.br
+.RI "\fIsets a callback to to be executed on simple glob/wildcard patterns this is useful if the app does not care about what was matched, but just that it matched\&. \fP"
+.ti -1c
+.RI "evhtp_callback_t * \fBevhtp_get_cb\fP (evhtp_t *htp, const char *needle)"
+.br
+.RI "\fIattempts to find the callback matching the exact string 'needle'\&. \fP"
+.ti -1c
+.RI "int \fBevhtp_set_hook\fP (evhtp_hooks_t **hooks, \fBevhtp_hook_type\fP type, \fBevhtp_hook\fP cb, void *arg)"
+.br
+.RI "\fIsets a callback hook for either a connection or a path/regex \&. \fP"
+.ti -1c
+.RI "int \fBevhtp_unset_hook\fP (evhtp_hooks_t **hooks, \fBevhtp_hook_type\fP type)"
+.br
+.RI "\fIremove a specific hook from being called\&. \fP"
+.ti -1c
+.RI "int \fBevhtp_unset_all_hooks\fP (evhtp_hooks_t **hooks)"
+.br
+.RI "\fIremoves all hooks\&. \fP"
+.ti -1c
+.RI "int \fBevhtp_bind_socket\fP (evhtp_t *htp, const char *addr, uint16_t port, int backlog)"
+.br
+.RI "\fIbind to a socket, optionally with specific protocol support formatting\&. \fP"
+.ti -1c
+.RI "void \fBevhtp_unbind_socket\fP (evhtp_t *htp)"
+.br
+.RI "\fIstops the listening socket\&. \fP"
+.ti -1c
+.RI "int \fBevhtp_bind_sockaddr\fP (evhtp_t *htp, struct sockaddr *, size_t sin_len, int backlog)"
+.br
+.RI "\fIbind to an already allocated sockaddr\&. \fP"
+.ti -1c
+.RI "int \fBevhtp_use_threads\fP (evhtp_t *htp, \fBevhtp_thread_init_cb\fP init_cb, int nthreads, void *arg)"
+.br
+.RI "\fIEnable thread-pool support for an evhtp_t context\&. \fP"
+.ti -1c
+.RI "void \fBevhtp_send_reply\fP (evhtp_request_t *request, \fBevhtp_res\fP code)"
+.br
+.RI "\fIgenerates all the right information for a reply to be sent to the client \fP"
+.ti -1c
+.RI "void \fBevhtp_send_reply_start\fP (evhtp_request_t *request, \fBevhtp_res\fP code)"
+.br
+.ti -1c
+.RI "void \fBevhtp_send_reply_body\fP (evhtp_request_t *request, \fBevbuf_t\fP *buf)"
+.br
+.ti -1c
+.RI "void \fBevhtp_send_reply_end\fP (evhtp_request_t *request)"
+.br
+.ti -1c
+.RI "int \fBevhtp_response_needs_body\fP (const \fBevhtp_res\fP code, const \fBhtp_method\fP method)"
+.br
+.RI "\fIDetermine if a response should have a body\&. \fP"
+.ti -1c
+.RI "void \fBevhtp_send_reply_chunk_start\fP (evhtp_request_t *request, \fBevhtp_res\fP code)"
+.br
+.RI "\fIstart a chunked response\&. \fP"
+.ti -1c
+.RI "void \fBevhtp_send_reply_chunk\fP (evhtp_request_t *request, \fBevbuf_t\fP *buf)"
+.br
+.RI "\fIsend a chunk reply\&. \fP"
+.ti -1c
+.RI "void \fBevhtp_send_reply_chunk_end\fP (evhtp_request_t *request)"
+.br
+.RI "\fIcall when all chunks have been sent and you wish to send the last bits\&. \fP"
+.ti -1c
+.RI "evhtp_callback_t * \fBevhtp_callback_new\fP (const char *path, \fBevhtp_callback_type\fP type, \fBevhtp_callback_cb\fP cb, void *arg)"
+.br
+.RI "\fIcreates a new evhtp_callback_t structure\&. \fP"
+.ti -1c
+.RI "void \fBevhtp_callback_free\fP (evhtp_callback_t *callback)"
+.br
+.RI "\fIfrees information associated with a ainflwx callback\&. \fP"
+.ti -1c
+.RI "int \fBevhtp_callbacks_add_callback\fP (\fBevhtp_callbacks_t\fP *cbs, evhtp_callback_t *cb)"
+.br
+.RI "\fIAdds a evhtp_callback_t to the evhtp_callbacks_t list\&. \fP"
+.ti -1c
+.RI "int \fBevhtp_add_vhost\fP (evhtp_t *evhtp, const char *name, evhtp_t *vhost)"
+.br
+.RI "\fIadd an evhtp_t structure (with its own callbacks) to a base evhtp_t structure for virtual hosts\&. \fP"
+.ti -1c
+.RI "int \fBevhtp_add_alias\fP (evhtp_t *evhtp, const char *name)"
+.br
+.RI "\fIAdd an alias hostname for a virtual-host specific evhtp_t\&. \fP"
+.ti -1c
+.RI "evhtp_kv_t * \fBevhtp_kv_new\fP (const char *key, const char *val, char kalloc, char valloc)"
+.br
+.RI "\fIAllocates a new key/value structure\&. \fP"
+.ti -1c
+.RI "\fBevhtp_kvs_t\fP * \fBevhtp_kvs_new\fP (void)"
+.br
+.RI "\fIcreates an empty list of key/values \fP"
+.ti -1c
+.RI "void \fBevhtp_kv_free\fP (evhtp_kv_t *kv)"
+.br
+.RI "\fIfrees resources allocated for a single key/value \fP"
+.ti -1c
+.RI "void \fBevhtp_kvs_free\fP (\fBevhtp_kvs_t\fP *kvs)"
+.br
+.RI "\fIfrees a the list of key/values, and all underlying entries \fP"
+.ti -1c
+.RI "void \fBevhtp_kv_rm_and_free\fP (\fBevhtp_kvs_t\fP *kvs, evhtp_kv_t *kv)"
+.br
+.RI "\fIfree's resources associated with 'kv' if ONLY found within the key/value list \fP"
+.ti -1c
+.RI "const char * \fBevhtp_kv_find\fP (\fBevhtp_kvs_t\fP *kvs, const char *key)"
+.br
+.RI "\fIfind the string value of 'key' from the key/value list 'kvs' \fP"
+.ti -1c
+.RI "evhtp_kv_t * \fBevhtp_kvs_find_kv\fP (\fBevhtp_kvs_t\fP *kvs, const char *key)"
+.br
+.RI "\fIfind the evhtp_kv_t reference 'key' from the k/val list 'kvs' \fP"
+.ti -1c
+.RI "void \fBevhtp_kvs_add_kv\fP (\fBevhtp_kvs_t\fP *kvs, evhtp_kv_t *kv)"
+.br
+.RI "\fIappends a key/val structure to a evhtp_kvs_t tailq \fP"
+.ti -1c
+.RI "void \fBevhtp_kvs_add_kvs\fP (\fBevhtp_kvs_t\fP *dst, \fBevhtp_kvs_t\fP *src)"
+.br
+.RI "\fIappends all key/val structures from src tailq onto dst tailq \fP"
+.ti -1c
+.RI "int \fBevhtp_kvs_for_each\fP (\fBevhtp_kvs_t\fP *kvs, \fBevhtp_kvs_iterator\fP cb, void *arg)"
+.br
+.RI "\fIcallback iterator which executes 'cb' for every entry in 'kvs' \fP"
+.ti -1c
+.RI "\fBevhtp_query_t\fP * \fBevhtp_parse_query_wflags\fP (const char *query, size_t len, int flags)"
+.br
+.RI "\fIParses the query portion of the uri into a set of key/values\&. \fP"
+.ti -1c
+.RI "\fBevhtp_query_t\fP * \fBevhtp_parse_query\fP (const char *query, size_t len)"
+.br
+.RI "\fIParses the query portion of the uri into a set of key/values in a strict manner\&. \fP"
+.ti -1c
+.RI "int \fBevhtp_unescape_string\fP (unsigned char **out, unsigned char *str, size_t str_len)"
+.br
+.RI "\fIUnescapes strings like '%7B1,%202,%203%7D' would become '{1, 2, 3}'\&. \fP"
+.ti -1c
+.RI "\fBevhtp_header_t\fP * \fBevhtp_header_new\fP (const char *key, const char *val, char kalloc, char valloc)"
+.br
+.RI "\fIcreates a new evhtp_header_t key/val structure \fP"
+.ti -1c
+.RI "\fBevhtp_header_t\fP * \fBevhtp_header_key_add\fP (\fBevhtp_headers_t\fP *headers, const char *key, char kalloc)"
+.br
+.RI "\fIcreates a new evhtp_header_t, sets only the key, and adds to the evhtp_headers TAILQ \fP"
+.ti -1c
+.RI "\fBevhtp_header_t\fP * \fBevhtp_header_val_add\fP (\fBevhtp_headers_t\fP *headers, const char *val, char valloc)"
+.br
+.RI "\fIfinds the last header in the headers tailq and adds the value \fP"
+.ti -1c
+.RI "void \fBevhtp_headers_add_header\fP (\fBevhtp_headers_t\fP *headers, \fBevhtp_header_t\fP *header)"
+.br
+.RI "\fIadds an evhtp_header_t to the end of the evhtp_headers_t tailq \fP"
+.ti -1c
+.RI "const char * \fBevhtp_header_find\fP (\fBevhtp_headers_t\fP *headers, const char *key)"
+.br
+.RI "\fIfinds the value of a key in a evhtp_headers_t structure \fP"
+.ti -1c
+.RI "\fBhtp_method\fP \fBevhtp_request_get_method\fP (evhtp_request_t *r)"
+.br
+.RI "\fIreturns the htp_method enum version of the request method\&. \fP"
+.ti -1c
+.RI "\fBevhtp_proto\fP \fBevhtp_request_get_proto\fP (evhtp_request_t *r)"
+.br
+.ti -1c
+.RI "void \fBevhtp_connection_pause\fP (evhtp_connection_t *connection)"
+.br
+.ti -1c
+.RI "void \fBevhtp_connection_resume\fP (evhtp_connection_t *connection)"
+.br
+.ti -1c
+.RI "void \fBevhtp_request_pause\fP (evhtp_request_t *request)"
+.br
+.ti -1c
+.RI "void \fBevhtp_request_resume\fP (evhtp_request_t *request)"
+.br
+.ti -1c
+.RI "evhtp_connection_t * \fBevhtp_request_get_connection\fP (evhtp_request_t *request)"
+.br
+.RI "\fIreturns the underlying evhtp_connection_t structure from a request \fP"
+.ti -1c
+.RI "void \fBevhtp_connection_set_bev\fP (evhtp_connection_t *conn, \fBevbev_t\fP *bev)"
+.br
+.RI "\fISets the connections underlying bufferevent\&. \fP"
+.ti -1c
+.RI "void \fBevhtp_request_set_bev\fP (evhtp_request_t *request, \fBevbev_t\fP *bev)"
+.br
+.RI "\fIsets the underlying bufferevent for a evhtp_request \fP"
+.ti -1c
+.RI "\fBevbev_t\fP * \fBevhtp_connection_get_bev\fP (evhtp_connection_t *conn)"
+.br
+.RI "\fIreturns the underlying connections bufferevent \fP"
+.ti -1c
+.RI "void \fBevhtp_connection_set_timeouts\fP (evhtp_connection_t *conn, const struct timeval *r, const struct timeval *w)"
+.br
+.RI "\fIsets a connection-specific read/write timeout which overrides the global read/write settings\&. \fP"
+.ti -1c
+.RI "\fBevbev_t\fP * \fBevhtp_request_get_bev\fP (evhtp_request_t *request)"
+.br
+.RI "\fIreturns the underlying requests bufferevent \fP"
+.ti -1c
+.RI "\fBevbev_t\fP * \fBevhtp_connection_take_ownership\fP (evhtp_connection_t *connection)"
+.br
+.RI "\fIlet a user take ownership of the underlying bufferevent and free all other underlying resources\&. \fP"
+.ti -1c
+.RI "void \fBevhtp_connection_free\fP (evhtp_connection_t *connection)"
+.br
+.RI "\fIfree's all connection related resources, this will also call your request fini hook and request fini hook\&. \fP"
+.ti -1c
+.RI "void \fBevhtp_request_free\fP (evhtp_request_t *request)"
+.br
+.ti -1c
+.RI "void \fBevhtp_set_max_body_size\fP (evhtp_t *htp, uint64_t len)"
+.br
+.RI "\fIset a max body size to accept for an incoming request, this will default to unlimited\&. \fP"
+.ti -1c
+.RI "void \fBevhtp_connection_set_max_body_size\fP (evhtp_connection_t *conn, uint64_t len)"
+.br
+.RI "\fIset a max body size for a specific connection, this will default to the size set by evhtp_set_max_body_size \fP"
+.ti -1c
+.RI "void \fBevhtp_request_set_max_body_size\fP (evhtp_request_t *request, uint64_t len)"
+.br
+.RI "\fIjust calls evhtp_connection_set_max_body_size for the request\&. \fP"
+.ti -1c
+.RI "void \fBevhtp_request_set_keepalive\fP (evhtp_request_t *request, int val)"
+.br
+.ti -1c
+.RI "void \fBevhtp_set_max_keepalive_requests\fP (evhtp_t *htp, uint64_t num)"
+.br
+.RI "\fIsets a maximum number of requests that a single connection can make\&. \fP"
+.ti -1c
+.RI "evhtp_connection_t * \fBevhtp_connection_new_dns\fP (\fBevbase_t\fP *evbase, struct evdns_base *dns_base, const char *addr, uint16_t port)"
+.br
+.RI "\fIallocate a new connection \fP"
+.ti -1c
+.RI "evhtp_connection_t * \fBevhtp_connection_new\fP (\fBevbase_t\fP *evbase, const char *addr, uint16_t port)"
+.br
+.RI "\fIallocate a new connection \fP"
+.ti -1c
+.RI "evhtp_connection_t * \fBevhtp_connection_ssl_new\fP (\fBevbase_t\fP *evbase, const char *addr, uint16_t port, \fBevhtp_ssl_ctx_t\fP *ctx)"
+.br
+.ti -1c
+.RI "evhtp_request_t * \fBevhtp_request_new\fP (\fBevhtp_callback_cb\fP cb, void *arg)"
+.br
+.RI "\fIallocate a new request \fP"
+.ti -1c
+.RI "int \fBevhtp_make_request\fP (evhtp_connection_t *c, evhtp_request_t *r, \fBhtp_method\fP meth, const char *uri)"
+.br
+.RI "\fImake a client request \fP"
+.ti -1c
+.RI "unsigned int \fBevhtp_request_status\fP (evhtp_request_t *)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define evhtp_header_find   \fBevhtp_kv_find\fP"
+
+.PP
+Definition at line 1169 of file evhtp\&.h\&.
+.SS "#define evhtp_header_free   \fBevhtp_kv_free\fP"
+
+.PP
+Definition at line 1173 of file evhtp\&.h\&.
+.SS "#define evhtp_header_new   \fBevhtp_kv_new\fP"
+
+.PP
+Definition at line 1172 of file evhtp\&.h\&.
+.SS "#define evhtp_header_rm_and_free   \fBevhtp_kv_rm_and_free\fP"
+
+.PP
+Definition at line 1176 of file evhtp\&.h\&.
+.SS "#define evhtp_header_s   \fBevhtp_kv_s\fP"
+
+.PP
+Definition at line 101 of file evhtp\&.h\&.
+.SS "#define evhtp_header_t   evhtp_kv_t"
+
+.PP
+Definition at line 105 of file evhtp\&.h\&.
+.SS "#define evhtp_headers_add_header   \fBevhtp_kvs_add_kv\fP"
+
+.PP
+Definition at line 1177 of file evhtp\&.h\&.
+.SS "#define evhtp_headers_add_headers   \fBevhtp_kvs_add_kvs\fP"
+
+.PP
+Definition at line 1178 of file evhtp\&.h\&.
+.SS "#define evhtp_headers_find_header   \fBevhtp_kvs_find_kv\fP"
+
+.PP
+Definition at line 1170 of file evhtp\&.h\&.
+.SS "#define evhtp_headers_for_each   \fBevhtp_kvs_for_each\fP"
+
+.PP
+Definition at line 1171 of file evhtp\&.h\&.
+.SS "#define evhtp_headers_free   \fBevhtp_kvs_free\fP"
+
+.PP
+Definition at line 1175 of file evhtp\&.h\&.
+.SS "#define evhtp_headers_iterator   \fBevhtp_kvs_iterator\fP"
+
+.PP
+Definition at line 205 of file evhtp\&.h\&.
+.SS "#define evhtp_headers_new   \fBevhtp_kvs_new\fP"
+
+.PP
+Definition at line 1174 of file evhtp\&.h\&.
+.SS "#define evhtp_headers_s   evhtp_kvs_s"
+
+.PP
+Definition at line 102 of file evhtp\&.h\&.
+.SS "#define evhtp_headers_t   \fBevhtp_kvs_t\fP"
+
+.PP
+Definition at line 106 of file evhtp\&.h\&.
+.SS "#define EVHTP_PARSE_QUERY_FLAG_ALLOW_EMPTY_VALS   (1 << 1)"
+
+.PP
+Definition at line 1064 of file evhtp\&.h\&.
+.SS "#define EVHTP_PARSE_QUERY_FLAG_ALLOW_NULL_VALS   (1 << 2)"
+
+.PP
+Definition at line 1065 of file evhtp\&.h\&.
+.SS "#define EVHTP_PARSE_QUERY_FLAG_IGNORE_FRAGMENTS   (1 << 4)"
+
+.PP
+Definition at line 1067 of file evhtp\&.h\&.
+.SS "#define EVHTP_PARSE_QUERY_FLAG_IGNORE_HEX   (1 << 0)"
+
+.PP
+Definition at line 1063 of file evhtp\&.h\&.
+.SS "#define EVHTP_PARSE_QUERY_FLAG_LENIENT"
+\fBValue:\fP
+.PP
+.nf
+EVHTP_PARSE_QUERY_FLAG_IGNORE_HEX         \
+    | EVHTP_PARSE_QUERY_FLAG_ALLOW_EMPTY_VALS \
+    | EVHTP_PARSE_QUERY_FLAG_ALLOW_NULL_VALS  \
+    | EVHTP_PARSE_QUERY_FLAG_TREAT_SEMICOLON_AS_SEP
+.fi
+.PP
+Definition at line 1068 of file evhtp\&.h\&.
+.SS "#define EVHTP_PARSE_QUERY_FLAG_STRICT   0"
+
+.PP
+Definition at line 1062 of file evhtp\&.h\&.
+.SS "#define EVHTP_PARSE_QUERY_FLAG_TREAT_SEMICOLON_AS_SEP   (1 << 3)"
+
+.PP
+Definition at line 1066 of file evhtp\&.h\&.
+.SS "#define evhtp_query_free   \fBevhtp_kvs_free\fP"
+
+.PP
+Definition at line 1180 of file evhtp\&.h\&.
+.SS "#define evhtp_query_new   \fBevhtp_kvs_new\fP"
+
+.PP
+Definition at line 1179 of file evhtp\&.h\&.
+.SS "#define evhtp_query_s   evhtp_kvs_s"
+
+.PP
+Definition at line 103 of file evhtp\&.h\&.
+.SS "#define evhtp_query_t   \fBevhtp_kvs_t\fP"
+
+.PP
+Definition at line 107 of file evhtp\&.h\&.
+.SS "#define evhtp_request_content_len(r)   \fBhtparser_get_content_length\fP(r->conn->parser)"
+
+.PP
+Definition at line 453 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_100   100"
+
+.PP
+Definition at line 214 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_200   200"
+
+.PP
+Definition at line 220 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_300   300"
+
+.PP
+Definition at line 230 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_400   400"
+
+.PP
+Definition at line 240 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_500   500"
+
+.PP
+Definition at line 261 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_ACCEPTED   202"
+
+.PP
+Definition at line 222 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_BADGATEWAY   502"
+
+.PP
+Definition at line 264 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_BADREQ   400"
+
+.PP
+Definition at line 241 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_BWEXEED   509"
+
+.PP
+Definition at line 268 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_CONFLICT   409"
+
+.PP
+Definition at line 250 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_CONTINUE   100"
+
+.PP
+Definition at line 215 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_CREATED   201"
+
+.PP
+Definition at line 221 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_DATA_TOO_LONG   4"
+
+.PP
+Definition at line 211 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_ENTOOLARGE   413"
+
+.PP
+Definition at line 254 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_ERROR   0"
+
+.PP
+Definition at line 207 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_EXPECTFAIL   417"
+
+.PP
+Definition at line 258 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_FATAL   2"
+
+.PP
+Definition at line 209 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_FORBIDDEN   403"
+
+.PP
+Definition at line 244 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_FOUND   302"
+
+.PP
+Definition at line 233 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_GONE   410"
+
+.PP
+Definition at line 251 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_GWTIMEOUT   504"
+
+.PP
+Definition at line 266 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_IAMATEAPOT   418"
+
+.PP
+Definition at line 259 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_IMUSED   226"
+
+.PP
+Definition at line 228 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_LENREQ   411"
+
+.PP
+Definition at line 252 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_MCHOICE   300"
+
+.PP
+Definition at line 231 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_METHNALLOWED   405"
+
+.PP
+Definition at line 246 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_MOVEDPERM   301"
+
+.PP
+Definition at line 232 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_MSTATUS   207"
+
+.PP
+Definition at line 227 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_NACCEPTABLE   406"
+
+.PP
+Definition at line 247 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_NAUTHINFO   203"
+
+.PP
+Definition at line 223 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_NOCONTENT   204"
+
+.PP
+Definition at line 224 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_NOTFOUND   404"
+
+.PP
+Definition at line 245 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_NOTIMPL   501"
+
+.PP
+Definition at line 263 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_NOTMOD   304"
+
+.PP
+Definition at line 235 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_OK   200"
+
+.PP
+Definition at line 212 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_PARTIAL   206"
+
+.PP
+Definition at line 226 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_PAUSE   1"
+
+.PP
+Definition at line 208 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_PAYREQ   402"
+
+.PP
+Definition at line 243 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_PRECONDFAIL   412"
+
+.PP
+Definition at line 253 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_PROCESSING   102"
+
+.PP
+Definition at line 217 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_PROXYAUTHREQ   407"
+
+.PP
+Definition at line 248 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_RANGENOTSC   416"
+
+.PP
+Definition at line 257 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_RSTCONTENT   205"
+
+.PP
+Definition at line 225 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_SEEOTHER   303"
+
+.PP
+Definition at line 234 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_SERVERR   500"
+
+.PP
+Definition at line 262 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_SERVUNAVAIL   503"
+
+.PP
+Definition at line 265 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_SWITCH_PROTO   101"
+
+.PP
+Definition at line 216 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_SWITCHPROXY   306"
+
+.PP
+Definition at line 237 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_TIMEOUT   408"
+
+.PP
+Definition at line 249 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_TMPREDIR   307"
+
+.PP
+Definition at line 238 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_UNAUTH   401"
+
+.PP
+Definition at line 242 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_UNSUPPORTED   415"
+
+.PP
+Definition at line 256 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_URI_TOOLONG   122"
+
+.PP
+Definition at line 218 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_URITOOLARGE   414"
+
+.PP
+Definition at line 255 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_USEPROXY   305"
+
+.PP
+Definition at line 236 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_USER   3"
+
+.PP
+Definition at line 210 of file evhtp\&.h\&.
+.SS "#define EVHTP_RES_VERNSUPPORT   505"
+
+.PP
+Definition at line 267 of file evhtp\&.h\&.
+.SS "#define EVHTP_VERSION   '1\&.2\&.10'"
+
+.PP
+Definition at line 200 of file evhtp\&.h\&.
+.SS "#define EVHTP_VERSION_MAJOR   1"
+
+.PP
+Definition at line 201 of file evhtp\&.h\&.
+.SS "#define EVHTP_VERSION_MINOR   2"
+
+.PP
+Definition at line 202 of file evhtp\&.h\&.
+.SS "#define EVHTP_VERSION_PATCH   10"
+
+.PP
+Definition at line 203 of file evhtp\&.h\&.
+.SS "#define htp_debug_strlen(x)   0"
+
+.PP
+Definition at line 49 of file evhtp\&.h\&.
+.SS "#define htp_log_debug(fmt, \&.\&.\&.)   do {} while (0)"
+
+.PP
+Definition at line 50 of file evhtp\&.h\&.
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef struct bufferevent \fBevbev_t\fP"
+
+.PP
+Definition at line 71 of file evhtp\&.h\&.
+.SS "typedef struct evbuffer \fBevbuf_t\fP"
+
+.PP
+Definition at line 68 of file evhtp\&.h\&.
+.SS "typedef struct event \fBevent_t\fP"
+
+.PP
+Definition at line 69 of file evhtp\&.h\&.
+.SS "typedef void(*  evhtp_callback_cb)(evhtp_request_t *req, void *arg)"
+
+.PP
+Definition at line 164 of file evhtp\&.h\&.
+.SS "typedef enum \fBevhtp_callback_type\fP \fBevhtp_callback_type\fP"
+
+.PP
+Definition at line 158 of file evhtp\&.h\&.
+.SS "typedef struct evhtp_callbacks_s \fBevhtp_callbacks_t\fP"
+
+.PP
+Definition at line 84 of file evhtp\&.h\&.
+.SS "typedef uint8_t \fBevhtp_error_flags\fP"
+
+.PP
+Definition at line 98 of file evhtp\&.h\&.
+.SS "typedef int(*  evhtp_headers_iterator)(\fBevhtp_header_t\fP *header, void *arg)"
+
+.PP
+Definition at line 188 of file evhtp\&.h\&.
+.SS "typedef \fBevhtp_res\fP(*  evhtp_hook)()"
+
+.PP
+Definition at line 169 of file evhtp\&.h\&.
+.SS "typedef \fBevhtp_res\fP(*  evhtp_hook_chunk_fini_cb)(evhtp_request_t *r, void *arg)"
+
+.PP
+Definition at line 181 of file evhtp\&.h\&.
+.SS "typedef \fBevhtp_res\fP(*  evhtp_hook_chunk_new_cb)(evhtp_request_t *r, uint64_t len, void *arg)"
+
+.PP
+Definition at line 180 of file evhtp\&.h\&.
+.SS "typedef \fBevhtp_res\fP(*  evhtp_hook_chunks_fini_cb)(evhtp_request_t *r, void *arg)"
+
+.PP
+Definition at line 182 of file evhtp\&.h\&.
+.SS "typedef \fBevhtp_res\fP(*  evhtp_hook_conn_err_cb)(evhtp_connection_t *connection, \fBevhtp_error_flags\fP errtype, void *arg)"
+
+.PP
+Definition at line 171 of file evhtp\&.h\&.
+.SS "typedef \fBevhtp_res\fP(*  evhtp_hook_connection_fini_cb)(evhtp_connection_t *connection, void *arg)"
+
+.PP
+Definition at line 179 of file evhtp\&.h\&.
+.SS "typedef void(*  evhtp_hook_err_cb)(evhtp_request_t *req, \fBevhtp_error_flags\fP errtype, void *arg)"
+
+.PP
+Definition at line 165 of file evhtp\&.h\&.
+.SS "typedef void(*  evhtp_hook_event_cb)(evhtp_connection_t *conn, short events, void *arg)"
+
+.PP
+Definition at line 166 of file evhtp\&.h\&.
+.SS "typedef \fBevhtp_res\fP(*  evhtp_hook_header_cb)(evhtp_request_t *req, \fBevhtp_header_t\fP *hdr, void *arg)"
+
+.PP
+Definition at line 174 of file evhtp\&.h\&.
+.SS "typedef \fBevhtp_res\fP(*  evhtp_hook_headers_cb)(evhtp_request_t *req, \fBevhtp_headers_t\fP *hdr, void *arg)"
+
+.PP
+Definition at line 175 of file evhtp\&.h\&.
+.SS "typedef \fBevhtp_res\fP(*  evhtp_hook_headers_start_cb)(evhtp_request_t *r, void *arg)"
+
+.PP
+Definition at line 183 of file evhtp\&.h\&.
+.SS "typedef \fBevhtp_res\fP(*  evhtp_hook_hostname_cb)(evhtp_request_t *r, const char *hostname, void *arg)"
+
+.PP
+Definition at line 184 of file evhtp\&.h\&.
+.SS "typedef \fBevhtp_res\fP(*  evhtp_hook_path_cb)(evhtp_request_t *req, evhtp_path_t *path, void *arg)"
+
+.PP
+Definition at line 176 of file evhtp\&.h\&.
+.SS "typedef \fBevhtp_res\fP(*  evhtp_hook_read_cb)(evhtp_request_t *req, \fBevbuf_t\fP *buf, void *arg)"
+
+.PP
+Definition at line 177 of file evhtp\&.h\&.
+.SS "typedef \fBevhtp_res\fP(*  evhtp_hook_request_fini_cb)(evhtp_request_t *req, void *arg)"
+
+.PP
+Definition at line 178 of file evhtp\&.h\&.
+.SS "typedef enum \fBevhtp_hook_type\fP \fBevhtp_hook_type\fP"
+
+.PP
+Definition at line 157 of file evhtp\&.h\&.
+.SS "typedef \fBevhtp_res\fP(*  evhtp_hook_write_cb)(evhtp_connection_t *conn, void *arg)"
+
+.PP
+Definition at line 185 of file evhtp\&.h\&.
+.SS "typedef int(*  evhtp_kvs_iterator)(evhtp_kv_t *kv, void *arg)"
+
+.PP
+Definition at line 187 of file evhtp\&.h\&.
+.SS "typedef struct evhtp_kvs_s \fBevhtp_kvs_t\fP"
+
+.PP
+Definition at line 88 of file evhtp\&.h\&.
+.SS "typedef pthread_mutex_t \fBevhtp_mutex_t\fP"
+
+.PP
+Definition at line 79 of file evhtp\&.h\&.
+.SS "typedef \fBevhtp_res\fP(*  evhtp_post_accept_cb)(evhtp_connection_t *conn, void *arg)"
+
+.PP
+Definition at line 173 of file evhtp\&.h\&.
+.SS "typedef \fBevhtp_res\fP(*  evhtp_pre_accept_cb)(evhtp_connection_t *conn, void *arg)"
+
+.PP
+Definition at line 172 of file evhtp\&.h\&.
+.SS "typedef enum \fBevhtp_proto\fP \fBevhtp_proto\fP"
+
+.PP
+Definition at line 159 of file evhtp\&.h\&.
+.SS "typedef uint16_t \fBevhtp_res\fP"
+
+.PP
+Definition at line 97 of file evhtp\&.h\&.
+.SS "typedef int(*  evhtp_ssl_chk_issued_cb)(\fBevhtp_x509_store_ctx_t\fP *ctx, \fBevhtp_x509_t\fP *x, \fBevhtp_x509_t\fP *issuer)"
+
+.PP
+Definition at line 192 of file evhtp\&.h\&.
+.SS "typedef SSL_CTX \fBevhtp_ssl_ctx_t\fP"
+
+.PP
+Definition at line 57 of file evhtp\&.h\&.
+.SS "typedef int(*  evhtp_ssl_scache_add)(evhtp_connection_t *connection, unsigned char *sid, int sid_len, \fBevhtp_ssl_sess_t\fP *sess)"
+
+.PP
+Definition at line 194 of file evhtp\&.h\&.
+.SS "typedef void(*  evhtp_ssl_scache_del)(evhtp_t *htp, unsigned char *sid, int sid_len)"
+
+.PP
+Definition at line 195 of file evhtp\&.h\&.
+.SS "typedef \fBevhtp_ssl_sess_t\fP*(*  evhtp_ssl_scache_get)(evhtp_connection_t *connection, unsigned char *sid, int sid_len)"
+
+.PP
+Definition at line 196 of file evhtp\&.h\&.
+.SS "typedef void*(*  evhtp_ssl_scache_init)(evhtp_t *)"
+
+.PP
+Definition at line 197 of file evhtp\&.h\&.
+.SS "typedef enum \fBevhtp_ssl_scache_type\fP \fBevhtp_ssl_scache_type\fP"
+
+.PP
+Definition at line 160 of file evhtp\&.h\&.
+.SS "typedef SSL_SESSION \fBevhtp_ssl_sess_t\fP"
+
+.PP
+Definition at line 55 of file evhtp\&.h\&.
+.SS "typedef SSL \fBevhtp_ssl_t\fP"
+
+.PP
+Definition at line 56 of file evhtp\&.h\&.
+.SS "typedef int(*  evhtp_ssl_verify_cb)(int pre_verify, \fBevhtp_x509_store_ctx_t\fP *ctx)"
+
+.PP
+Definition at line 191 of file evhtp\&.h\&.
+.SS "typedef void(*  evhtp_thread_init_cb)(evhtp_t *htp, \fBevthr_t\fP *thr, void *arg)"
+
+.PP
+Definition at line 163 of file evhtp\&.h\&.
+.SS "typedef enum \fBevhtp_type\fP \fBevhtp_type\fP"
+
+.PP
+Definition at line 161 of file evhtp\&.h\&.
+.SS "typedef X509_STORE_CTX \fBevhtp_x509_store_ctx_t\fP"
+
+.PP
+Definition at line 59 of file evhtp\&.h\&.
+.SS "typedef X509 \fBevhtp_x509_t\fP"
+
+.PP
+Definition at line 58 of file evhtp\&.h\&.
+.SS "typedef struct evconnlistener \fBevserv_t\fP"
+
+.PP
+Definition at line 70 of file evhtp\&.h\&.
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBevhtp_callback_type\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIevhtp_callback_type_hash \fP\fP
+.TP
+\fB\fIevhtp_callback_type_glob \fP\fP
+.TP
+\fB\fIevhtp_callback_type_regex \fP\fP
+.PP
+Definition at line 138 of file evhtp\&.h\&.
+.SS "enum \fBevhtp_hook_type\fP"
+
+.PP
+types associated with where a developer can hook into during the request processing cycle\&. 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIevhtp_hook_on_header \fP\fP
+type which defines to hook after one header has been parsed 
+.TP
+\fB\fIevhtp_hook_on_headers \fP\fP
+type which defines to hook after all headers have been parsed 
+.TP
+\fB\fIevhtp_hook_on_path \fP\fP
+type which defines to hook once a path has been parsed 
+.TP
+\fB\fIevhtp_hook_on_read \fP\fP
+type which defines to hook whenever the parser recieves data in a body 
+.TP
+\fB\fIevhtp_hook_on_request_fini \fP\fP
+type which defines to hook before the request is free'd 
+.TP
+\fB\fIevhtp_hook_on_connection_fini \fP\fP
+.TP
+\fB\fIevhtp_hook_on_new_chunk \fP\fP
+.TP
+\fB\fIevhtp_hook_on_chunk_complete \fP\fP
+.TP
+\fB\fIevhtp_hook_on_chunks_complete \fP\fP
+.TP
+\fB\fIevhtp_hook_on_headers_start \fP\fP
+.TP
+\fB\fIevhtp_hook_on_error \fP\fP
+type which defines to hook whenever an error occurs 
+.TP
+\fB\fIevhtp_hook_on_hostname \fP\fP
+.TP
+\fB\fIevhtp_hook_on_write \fP\fP
+.TP
+\fB\fIevhtp_hook_on_event \fP\fP
+.TP
+\fB\fIevhtp_hook_on_conn_error \fP\fP
+type which defines to hook whenever a connection error occurs 
+.PP
+Definition at line 120 of file evhtp\&.h\&.
+.SS "enum \fBevhtp_proto\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIEVHTP_PROTO_INVALID \fP\fP
+.TP
+\fB\fIEVHTP_PROTO_10 \fP\fP
+.TP
+\fB\fIEVHTP_PROTO_11 \fP\fP
+.PP
+Definition at line 146 of file evhtp\&.h\&.
+.SS "enum \fBevhtp_ssl_scache_type\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIevhtp_ssl_scache_type_disabled \fP\fP
+.TP
+\fB\fIevhtp_ssl_scache_type_internal \fP\fP
+.TP
+\fB\fIevhtp_ssl_scache_type_user \fP\fP
+.TP
+\fB\fIevhtp_ssl_scache_type_builtin \fP\fP
+.PP
+Definition at line 109 of file evhtp\&.h\&.
+.SS "enum \fBevhtp_type\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIevhtp_type_client \fP\fP
+.TP
+\fB\fIevhtp_type_server \fP\fP
+.PP
+Definition at line 152 of file evhtp\&.h\&.
+.SH "Function Documentation"
+.PP 
+.SS "int evhtp_add_alias (evhtp_t *evhtp, const char *name)"
+
+.PP
+Add an alias hostname for a virtual-host specific evhtp_t\&. This avoids having multiple evhtp_t virtual hosts with the same callback for the same vhost\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIevhtp\fP 
+.br
+\fIname\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.SS "int evhtp_add_vhost (evhtp_t *evhtp, const char *name, evhtp_t *vhost)"
+
+.PP
+add an evhtp_t structure (with its own callbacks) to a base evhtp_t structure for virtual hosts\&. It should be noted that if you enable SSL on the base evhtp_t and your version of OpenSSL supports SNI, the SNI hostname will always take precedence over the Host header value\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIevhtp\fP 
+.br
+\fIname\fP 
+.br
+\fIvhost\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.SS "int evhtp_bind_sockaddr (evhtp_t *htp, struct sockaddr *, size_tsin_len, intbacklog)"
+
+.PP
+bind to an already allocated sockaddr\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhtp\fP s 
+.br
+\fIsin_len\fP 
+.br
+\fIbacklog\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.SS "int evhtp_bind_socket (evhtp_t *htp, const char *addr, uint16_tport, intbacklog)"
+
+.PP
+bind to a socket, optionally with specific protocol support formatting\&. The addr can be defined as one of the following: ipv6:<ipv6addr> for binding to an IPv6 address\&. unix:<named pipe>=''> for binding to a unix named socket ipv4:<ipv4addr> for binding to an ipv4 address Otherwise the addr is assumed to be ipv4\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhtp\fP 
+.br
+\fIaddr\fP 
+.br
+\fIport\fP 
+.br
+\fIbacklog\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.SS "void evhtp_callback_free (evhtp_callback_t *callback)"
+
+.PP
+frees information associated with a ainflwx callback\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcallback\fP 
+.RE
+.PP
+
+.SS "evhtp_callback_t* evhtp_callback_new (const char *path, \fBevhtp_callback_type\fPtype, \fBevhtp_callback_cb\fPcb, void *arg)"
+
+.PP
+creates a new evhtp_callback_t structure\&. All callbacks are stored in this structure which define what the final function to be called after all parsing is done\&. A callback can be either a static string or a regular expression\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpath\fP can either be a static path (/path/to/resource/) or a POSIX compatible regular expression (^/resource/(\&.*)) 
+.br
+\fItype\fP informs the function what type of of information is is contained within the path argument\&. This can either be callback_type_path, or callback_type_regex\&. 
+.br
+\fIcb\fP the callback function to be invoked 
+.br
+\fIarg\fP optional argument which is passed when the callback is executed\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success, -1 on error\&. 
+.RE
+.PP
+
+.SS "int evhtp_callbacks_add_callback (\fBevhtp_callbacks_t\fP *cbs, evhtp_callback_t *cb)"
+
+.PP
+Adds a evhtp_callback_t to the evhtp_callbacks_t list\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcbs\fP an allocated evhtp_callbacks_t structure 
+.br
+\fIcb\fP an initialized evhtp_callback_t structure
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success, -1 on error 
+.RE
+.PP
+
+.SS "void evhtp_connection_free (evhtp_connection_t *connection)"
+
+.PP
+free's all connection related resources, this will also call your request fini hook and request fini hook\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIconnection\fP 
+.RE
+.PP
+
+.SS "\fBevbev_t\fP* evhtp_connection_get_bev (evhtp_connection_t *conn)"
+
+.PP
+returns the underlying connections bufferevent 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIconn\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+bufferevent on success, otherwise NULL 
+.RE
+.PP
+
+.SS "evhtp_connection_t* evhtp_connection_new (\fBevbase_t\fP *evbase, const char *addr, uint16_tport)"
+
+.PP
+allocate a new connection 
+.SS "evhtp_connection_t* evhtp_connection_new_dns (\fBevbase_t\fP *evbase, struct evdns_base *dns_base, const char *addr, uint16_tport)"
+
+.PP
+allocate a new connection 
+.SS "void evhtp_connection_pause (evhtp_connection_t *connection)"
+
+.SS "void evhtp_connection_resume (evhtp_connection_t *connection)"
+
+.SS "void evhtp_connection_set_bev (evhtp_connection_t *conn, \fBevbev_t\fP *bev)"
+
+.PP
+Sets the connections underlying bufferevent\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIconn\fP 
+.br
+\fIbev\fP 
+.RE
+.PP
+
+.SS "void evhtp_connection_set_max_body_size (evhtp_connection_t *conn, uint64_tlen)"
+
+.PP
+set a max body size for a specific connection, this will default to the size set by evhtp_set_max_body_size 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIconn\fP 
+.br
+\fIlen\fP 
+.RE
+.PP
+
+.SS "void evhtp_connection_set_timeouts (evhtp_connection_t *conn, const struct timeval *r, const struct timeval *w)"
+
+.PP
+sets a connection-specific read/write timeout which overrides the global read/write settings\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIconn\fP 
+.br
+\fIr\fP timeval for read 
+.br
+\fIw\fP timeval for write 
+.RE
+.PP
+
+.SS "evhtp_connection_t* evhtp_connection_ssl_new (\fBevbase_t\fP *evbase, const char *addr, uint16_tport, \fBevhtp_ssl_ctx_t\fP *ctx)"
+
+.SS "\fBevbev_t\fP* evhtp_connection_take_ownership (evhtp_connection_t *connection)"
+
+.PP
+let a user take ownership of the underlying bufferevent and free all other underlying resources\&. Warning: this will free all evhtp_connection/request structures, remove all associated hooks and reset the bufferevent to defaults, i\&.e\&., disable EV_READ, and set all callbacks to NULL\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIconnection\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+underlying connections bufferevent\&. 
+.RE
+.PP
+
+.SS "void evhtp_disable_100_continue (evhtp_t *htp)"
+
+.PP
+when a client sends an Expect: 100-continue, if this is function is called, evhtp will not send a HTTP/x\&.x continue response\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhtp\fP 
+.RE
+.PP
+
+.SS "void evhtp_free (evhtp_t *evhtp)"
+
+.SS "evhtp_callback_t* evhtp_get_cb (evhtp_t *htp, const char *needle)"
+
+.PP
+attempts to find the callback matching the exact string 'needle'\&. This is useful in cases where we want to get the original handle, but is not in scope\&.
+.PP
+with pattern based callbacks, this does not attempt to find a callback that would match the string if the pattern matcher was executed\&.
+.PP
+Meaning: evhtp_set_glob_cb(htp, '/foo/bar*', \&.\&.\&.\&.);
+.PP
+Calling evhtp_get_cb(htp, '/foo/bar/baz');
+.PP
+Will return NULL since it's not the exact pattern set
+.PP
+Calling evhtp_get_cb(htp, '/foo/bar*');
+.PP
+Is the correct usage\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhtp\fP 
+.br
+\fIneedle\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+NULL if callback is not not found 
+.RE
+.PP
+
+.SS "const char* evhtp_header_find (\fBevhtp_headers_t\fP *headers, const char *key)"
+
+.PP
+finds the value of a key in a evhtp_headers_t structure 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIheaders\fP the evhtp_headers_t tailq 
+.br
+\fIkey\fP the key to find
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the value of the header key if found, NULL if not found\&. 
+.RE
+.PP
+
+.SS "\fBevhtp_header_t\fP* evhtp_header_key_add (\fBevhtp_headers_t\fP *headers, const char *key, charkalloc)"
+
+.PP
+creates a new evhtp_header_t, sets only the key, and adds to the evhtp_headers TAILQ 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIheaders\fP the evhtp_headers_t TAILQ (evhtp_kv_t) 
+.br
+\fIkey\fP a null terminated string 
+.br
+\fIkalloc\fP if 1 the string will be copied, otherwise assigned
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+an evhtp_header_t pointer or NULL on error 
+.RE
+.PP
+
+.SS "\fBevhtp_header_t\fP* evhtp_header_new (const char *key, const char *val, charkalloc, charvalloc)"
+
+.PP
+creates a new evhtp_header_t key/val structure 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkey\fP a null terminated string 
+.br
+\fIval\fP a null terminated string 
+.br
+\fIkalloc\fP if 1, key will be copied, otherwise no copy performed 
+.br
+\fIvalloc\fP if 1, val will be copied, otehrwise no copy performed
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+evhtp_header_t * or NULL on error 
+.RE
+.PP
+
+.SS "\fBevhtp_header_t\fP* evhtp_header_val_add (\fBevhtp_headers_t\fP *headers, const char *val, charvalloc)"
+
+.PP
+finds the last header in the headers tailq and adds the value 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIheaders\fP the evhtp_headers_t TAILQ (evhtp_kv_t) 
+.br
+\fIval\fP a null terminated string 
+.br
+\fIvalloc\fP if 1 the string will be copied, otherwise assigned
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+an evhtp_header_t pointer or NULL on error 
+.RE
+.PP
+
+.SS "void evhtp_headers_add_header (\fBevhtp_headers_t\fP *headers, \fBevhtp_header_t\fP *header)"
+
+.PP
+adds an evhtp_header_t to the end of the evhtp_headers_t tailq 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIheaders\fP 
+.br
+\fIheader\fP 
+.RE
+.PP
+
+.SS "const char* evhtp_kv_find (\fBevhtp_kvs_t\fP *kvs, const char *key)"
+
+.PP
+find the string value of 'key' from the key/value list 'kvs' 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkvs\fP 
+.br
+\fIkey\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+NULL if not found 
+.RE
+.PP
+
+.SS "void evhtp_kv_free (evhtp_kv_t *kv)"
+
+.PP
+frees resources allocated for a single key/value 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkv\fP 
+.RE
+.PP
+
+.SS "evhtp_kv_t* evhtp_kv_new (const char *key, const char *val, charkalloc, charvalloc)"
+
+.PP
+Allocates a new key/value structure\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkey\fP null terminated string 
+.br
+\fIval\fP null terminated string 
+.br
+\fIkalloc\fP if set to 1, the key will be copied, if 0 no copy is done\&. 
+.br
+\fIvalloc\fP if set to 1, the val will be copied, if 0 no copy is done\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+evhtp_kv_t * on success, NULL on error\&. 
+.RE
+.PP
+
+.SS "void evhtp_kv_rm_and_free (\fBevhtp_kvs_t\fP *kvs, evhtp_kv_t *kv)"
+
+.PP
+free's resources associated with 'kv' if ONLY found within the key/value list 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkvs\fP 
+.br
+\fIkv\fP 
+.RE
+.PP
+
+.SS "void evhtp_kvs_add_kv (\fBevhtp_kvs_t\fP *kvs, evhtp_kv_t *kv)"
+
+.PP
+appends a key/val structure to a evhtp_kvs_t tailq 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkvs\fP an evhtp_kvs_t structure 
+.br
+\fIkv\fP an evhtp_kv_t structure 
+.RE
+.PP
+
+.SS "void evhtp_kvs_add_kvs (\fBevhtp_kvs_t\fP *dst, \fBevhtp_kvs_t\fP *src)"
+
+.PP
+appends all key/val structures from src tailq onto dst tailq 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdst\fP an evhtp_kvs_t structure 
+.br
+\fIsrc\fP an evhtp_kvs_t structure 
+.RE
+.PP
+
+.SS "evhtp_kv_t* evhtp_kvs_find_kv (\fBevhtp_kvs_t\fP *kvs, const char *key)"
+
+.PP
+find the evhtp_kv_t reference 'key' from the k/val list 'kvs' 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkvs\fP 
+.br
+\fIkey\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.SS "int evhtp_kvs_for_each (\fBevhtp_kvs_t\fP *kvs, \fBevhtp_kvs_iterator\fPcb, void *arg)"
+
+.PP
+callback iterator which executes 'cb' for every entry in 'kvs' 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkvs\fP 
+.br
+\fIcb\fP 
+.br
+\fIarg\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.SS "void evhtp_kvs_free (\fBevhtp_kvs_t\fP *kvs)"
+
+.PP
+frees a the list of key/values, and all underlying entries 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkvs\fP 
+.RE
+.PP
+
+.SS "\fBevhtp_kvs_t\fP* evhtp_kvs_new (void)"
+
+.PP
+creates an empty list of key/values 
+.PP
+\fBReturns:\fP
+.RS 4
+
+.RE
+.PP
+
+.SS "int evhtp_make_request (evhtp_connection_t *c, evhtp_request_t *r, \fBhtp_method\fPmeth, const char *uri)"
+
+.PP
+make a client request 
+.SS "evhtp_t* evhtp_new (\fBevbase_t\fP *evbase, void *arg)"
+
+.PP
+creates a new evhtp_t instance 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIevbase\fP the initialized event base 
+.br
+\fIarg\fP user-defined argument which is evhtp_t specific
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a new evhtp_t structure or NULL on error 
+.RE
+.PP
+
+.SS "\fBevhtp_query_t\fP* evhtp_parse_query (const char *query, size_tlen)"
+
+.PP
+Parses the query portion of the uri into a set of key/values in a strict manner\&. Parses query arguments like '?herp=derp&foo=bar&blah=baz'
+.PP
+\fBParameters:\fP
+.RS 4
+\fIquery\fP data containing the uri query arguments 
+.br
+\fIlen\fP size of the data
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+evhtp_query_t * on success, NULL on error 
+.RE
+.PP
+
+.SS "\fBevhtp_query_t\fP* evhtp_parse_query_wflags (const char *query, size_tlen, intflags)"
+
+.PP
+Parses the query portion of the uri into a set of key/values\&. Parses query arguments like '?herp=&foo=bar;blah=baz&a=%3'
+.PP
+\fBParameters:\fP
+.RS 4
+\fIquery\fP data containing the uri query arguments 
+.br
+\fIlen\fP size of the data 
+.br
+\fIflags\fP parse query flags to alter 'strictness' (see EVHTP_PARSE_QUERY_FLAG_*)
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+evhtp_query_t * on success, NULL on error 
+.RE
+.PP
+
+.SS "void evhtp_request_free (evhtp_request_t *request)"
+
+.SS "\fBevbev_t\fP* evhtp_request_get_bev (evhtp_request_t *request)"
+
+.PP
+returns the underlying requests bufferevent 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIrequest\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+bufferevent on success, otherwise NULL 
+.RE
+.PP
+
+.SS "evhtp_connection_t* evhtp_request_get_connection (evhtp_request_t *request)"
+
+.PP
+returns the underlying evhtp_connection_t structure from a request 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIrequest\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+evhtp_connection_t on success, otherwise NULL 
+.RE
+.PP
+
+.SS "\fBhtp_method\fP evhtp_request_get_method (evhtp_request_t *r)"
+
+.PP
+returns the htp_method enum version of the request method\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+htp_method enum 
+.RE
+.PP
+
+.SS "\fBevhtp_proto\fP evhtp_request_get_proto (evhtp_request_t *r)"
+
+.SS "evhtp_request_t* evhtp_request_new (\fBevhtp_callback_cb\fPcb, void *arg)"
+
+.PP
+allocate a new request 
+.SS "void evhtp_request_pause (evhtp_request_t *request)"
+
+.SS "void evhtp_request_resume (evhtp_request_t *request)"
+
+.SS "void evhtp_request_set_bev (evhtp_request_t *request, \fBevbev_t\fP *bev)"
+
+.PP
+sets the underlying bufferevent for a evhtp_request 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIrequest\fP 
+.br
+\fIbev\fP 
+.RE
+.PP
+
+.SS "void evhtp_request_set_keepalive (evhtp_request_t *request, intval)"
+
+.SS "void evhtp_request_set_max_body_size (evhtp_request_t *request, uint64_tlen)"
+
+.PP
+just calls evhtp_connection_set_max_body_size for the request\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIrequest\fP 
+.br
+\fIlen\fP 
+.RE
+.PP
+
+.SS "unsigned int evhtp_request_status (evhtp_request_t *)"
+
+.SS "int evhtp_response_needs_body (const \fBevhtp_res\fPcode, const \fBhtp_method\fPmethod)"
+
+.PP
+Determine if a response should have a body\&. Follows the rules in RFC 2616 section 4\&.3\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+1 if the response MUST have a body; 0 if the response MUST NOT have a body\&. 
+.RE
+.PP
+
+.SS "void evhtp_send_reply (evhtp_request_t *request, \fBevhtp_res\fPcode)"
+
+.PP
+generates all the right information for a reply to be sent to the client 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIrequest\fP 
+.br
+\fIcode\fP HTTP return status code 
+.RE
+.PP
+
+.SS "void evhtp_send_reply_body (evhtp_request_t *request, \fBevbuf_t\fP *buf)"
+
+.SS "void evhtp_send_reply_chunk (evhtp_request_t *request, \fBevbuf_t\fP *buf)"
+
+.PP
+send a chunk reply\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIrequest\fP 
+.br
+\fIbuf\fP 
+.RE
+.PP
+
+.SS "void evhtp_send_reply_chunk_end (evhtp_request_t *request)"
+
+.PP
+call when all chunks have been sent and you wish to send the last bits\&. This will add the last 0CRLFCRCL and call send_reply_end()\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIrequest\fP 
+.RE
+.PP
+
+.SS "void evhtp_send_reply_chunk_start (evhtp_request_t *request, \fBevhtp_res\fPcode)"
+
+.PP
+start a chunked response\&. If data already exists on the output buffer, this will be converted to the first chunk\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIrequest\fP 
+.br
+\fIcode\fP 
+.RE
+.PP
+
+.SS "void evhtp_send_reply_end (evhtp_request_t *request)"
+
+.SS "void evhtp_send_reply_start (evhtp_request_t *request, \fBevhtp_res\fPcode)"
+
+.SS "void evhtp_set_bev_flags (evhtp_t *htp, intflags)"
+
+.PP
+bufferevent flags which will be used for bev sockets\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhtp\fP 
+.br
+\fIflags\fP 
+.RE
+.PP
+
+.SS "evhtp_callback_t* evhtp_set_cb (evhtp_t *htp, const char *path, \fBevhtp_callback_cb\fPcb, void *arg)"
+
+.PP
+sets a callback to be executed on a specific path 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhtp\fP the initialized evhtp_t 
+.br
+\fIpath\fP the path to match 
+.br
+\fIcb\fP the function to be executed 
+.br
+\fIarg\fP user-defined argument passed to the callback
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+evhtp_callback_t * on success, NULL on error\&. 
+.RE
+.PP
+
+.SS "void evhtp_set_gencb (evhtp_t *htp, \fBevhtp_callback_cb\fPcb, void *arg)"
+
+.PP
+sets a callback which is called if no other callbacks are matched 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhtp\fP the initialized evhtp_t 
+.br
+\fIcb\fP the function to be executed 
+.br
+\fIarg\fP user-defined argument passed to the callback 
+.RE
+.PP
+
+.SS "evhtp_callback_t* evhtp_set_glob_cb (evhtp_t *htp, const char *pattern, \fBevhtp_callback_cb\fPcb, void *arg)"
+
+.PP
+sets a callback to to be executed on simple glob/wildcard patterns this is useful if the app does not care about what was matched, but just that it matched\&. This is technically faster than regex\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhtp\fP 
+.br
+\fIpattern\fP wildcard pattern, the '*' can be set at either or both the front or end\&. 
+.br
+\fIcb\fP 
+.br
+\fIarg\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.SS "int evhtp_set_hook (evhtp_hooks_t **hooks, \fBevhtp_hook_type\fPtype, \fBevhtp_hook\fPcb, void *arg)"
+
+.PP
+sets a callback hook for either a connection or a path/regex \&. A user may set a variety of hooks either per-connection, or per-callback\&. This allows the developer to hook into various parts of the request processing cycle\&.
+.PP
+a per-connection hook can be set at any time, but it is recommended to set these during either a pre-accept phase, or post-accept phase\&. This allows a developer to set hooks before any other hooks are called\&.
+.PP
+a per-callback hook works differently\&. In this mode a developer can setup a set of hooks prior to starting the event loop for specific callbacks\&. For example if you wanted to hook something ONLY for a callback set by evhtp_set_cb or evhtp_set_regex_cb this is the method of doing so\&.
+.PP
+per-callback example:
+.PP
+evhtp_callback_t * cb = evhtp_set_regex_cb(htp, '/anything/(\&.*)', default_cb, NULL);
+.PP
+evhtp_set_hook(&cb->hooks, evhtp_hook_on_headers, anything_headers_cb, NULL);
+.PP
+evhtp_set_hook(&cb->hooks, evhtp_hook_on_fini, anything_fini_cb, NULL);
+.PP
+With the above example, once libevhtp has determined that it has a user-defined callback for /anything/\&.*; anything_headers_cb will be executed after all headers have been parsed, and anything_fini_cb will be executed before the request is \fBfree()\fP'd\&.
+.PP
+The same logic applies to per-connection hooks, but it should be noted that if a per-callback hook is set, the per-connection hook will be ignored\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhooks\fP double pointer to the evhtp_hooks_t structure 
+.br
+\fItype\fP the hook type 
+.br
+\fIcb\fP the callback to be executed\&. 
+.br
+\fIarg\fP optional argument which is passed when the callback is executed
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success, -1 on error (if hooks is NULL, it is allocated) 
+.RE
+.PP
+
+.SS "void evhtp_set_max_body_size (evhtp_t *htp, uint64_tlen)"
+
+.PP
+set a max body size to accept for an incoming request, this will default to unlimited\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhtp\fP 
+.br
+\fIlen\fP 
+.RE
+.PP
+
+.SS "void evhtp_set_max_keepalive_requests (evhtp_t *htp, uint64_tnum)"
+
+.PP
+sets a maximum number of requests that a single connection can make\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhtp\fP 
+.br
+\fInum\fP 
+.RE
+.PP
+
+.SS "void evhtp_set_parser_flags (evhtp_t *htp, intflags)"
+
+.PP
+during the request processing cycle, these flags will be used to for query argument parsing\&. i\&.e\&., what to parse and not to parse\&. 
+.PP
+.nf
+  SEE: EVHTP_PARSE_QUERY_* stuff.
+
+  For example, if you do not wish for the streaming parser attempting the act
+  of fragment parsing:
+     evhtp_set_parser_flags(htp, EVHTP_PARSE_QUERY_FLAG_IGNORE_FRAGMENTS);
+
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhtp\fP 
+.br
+\fIflags\fP 
+.RE
+.PP
+
+.SS "void evhtp_set_post_accept_cb (evhtp_t *htp, \fBevhtp_post_accept_cb\fP, void *arg)"
+
+.PP
+call a user-defined function right after a connection is accepted\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhtp\fP 
+.br
+\fIevhtp_post_accept_cb\fP 
+.br
+\fIarg\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.SS "void evhtp_set_pre_accept_cb (evhtp_t *htp, \fBevhtp_pre_accept_cb\fP, void *arg)"
+
+.PP
+call a user-defined function before the connection is accepted\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhtp\fP 
+.br
+\fIevhtp_pre_accept_cb\fP 
+.br
+\fIarg\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.SS "evhtp_callback_t* evhtp_set_regex_cb (evhtp_t *htp, const char *pattern, \fBevhtp_callback_cb\fPcb, void *arg)"
+
+.PP
+sets a callback to be executed based on a regex pattern 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhtp\fP the initialized evhtp_t 
+.br
+\fIpattern\fP a POSIX compat regular expression 
+.br
+\fIcb\fP the function to be executed 
+.br
+\fIarg\fP user-defined argument passed to the callback
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+evhtp_callback_t * on success, NULL on error 
+.RE
+.PP
+
+.SS "void evhtp_set_timeouts (evhtp_t *htp, const struct timeval *r, const struct timeval *w)"
+
+.PP
+set a read/write timeout on all things evhtp_t\&. When the timeout expires your error hook will be called with the libevent supplied event flags\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhtp\fP the base evhtp_t struct 
+.br
+\fIr\fP read-timeout in timeval 
+.br
+\fIw\fP write-timeout in timeval\&. 
+.RE
+.PP
+
+.SS "int evhtp_ssl_init (evhtp_t *htp, evhtp_ssl_cfg_t *ssl_cfg)"
+
+.SS "int evhtp_ssl_use_threads (void)"
+
+.SS "void evhtp_unbind_socket (evhtp_t *htp)"
+
+.PP
+stops the listening socket\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhtp\fP 
+.RE
+.PP
+
+.SS "int evhtp_unescape_string (unsigned char **out, unsigned char *str, size_tstr_len)"
+
+.PP
+Unescapes strings like '%7B1,%202,%203%7D' would become '{1, 2, 3}'\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIout\fP double pointer where output is stored\&. This is allocated by the user\&. 
+.br
+\fIstr\fP the string to unescape 
+.br
+\fIstr_len\fP the length of the string to unescape
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success, -1 on error 
+.RE
+.PP
+
+.SS "int evhtp_unset_all_hooks (evhtp_hooks_t **hooks)"
+
+.PP
+removes all hooks\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhooks\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.SS "int evhtp_unset_hook (evhtp_hooks_t **hooks, \fBevhtp_hook_type\fPtype)"
+
+.PP
+remove a specific hook from being called\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhooks\fP 
+.br
+\fItype\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.SS "int evhtp_use_callback_locks (evhtp_t *htp)"
+
+.PP
+creates a lock around callbacks and hooks, allowing for threaded applications to add/remove/modify hooks & callbacks in a thread-safe manner\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhtp\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success, -1 on error 
+.RE
+.PP
+
+.SS "int evhtp_use_threads (evhtp_t *htp, \fBevhtp_thread_init_cb\fPinit_cb, intnthreads, void *arg)"
+
+.PP
+Enable thread-pool support for an evhtp_t context\&. Connectios are distributed across 'nthreads'\&. An optional 'on-start' callback can be set which allows you to manipulate the thread-specific inforation (such as the thread-specific event_base)\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhtp\fP 
+.br
+\fIinit_cb\fP 
+.br
+\fInthreads\fP 
+.br
+\fIarg\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.SS "TAILQ_HEAD (evhtp_callbacks_s, \fBevhtp_callback_s\fP)"
+
+.SS "TAILQ_HEAD (evhtp_kvs_s, \fBevhtp_kv_s\fP)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Libevhtp from the source code\&.

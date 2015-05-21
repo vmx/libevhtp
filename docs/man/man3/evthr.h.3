@@ -1,0 +1,183 @@
+.TH "evthr.h" 3 "Thu May 21 2015" "Version 1.2.10-dev" "Libevhtp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+evthr.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include <event2/event\&.h>\fP
+.br
+\fC#include <evhtp-config\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fB__EVTHR_H__\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct event_base \fBevbase_t\fP"
+.br
+.ti -1c
+.RI "typedef struct event \fBev_t\fP"
+.br
+.ti -1c
+.RI "typedef struct evthr_pool \fBevthr_pool_t\fP"
+.br
+.ti -1c
+.RI "typedef struct evthr \fBevthr_t\fP"
+.br
+.ti -1c
+.RI "typedef enum \fBevthr_res\fP \fBevthr_res\fP"
+.br
+.ti -1c
+.RI "typedef void(* \fBevthr_cb\fP )(\fBevthr_t\fP *thr, void *cmd_arg, void *shared)"
+.br
+.ti -1c
+.RI "typedef void(* \fBevthr_init_cb\fP )(\fBevthr_t\fP *thr, void *shared)"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBevthr_res\fP { \fBEVTHR_RES_OK\fP = 0, \fBEVTHR_RES_BACKLOG\fP, \fBEVTHR_RES_RETRY\fP, \fBEVTHR_RES_NOCB\fP, \fBEVTHR_RES_FATAL\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBevthr_t\fP * \fBevthr_new\fP (\fBevthr_init_cb\fP init_cb, void *arg)"
+.br
+.ti -1c
+.RI "\fBevbase_t\fP * \fBevthr_get_base\fP (\fBevthr_t\fP *thr)"
+.br
+.ti -1c
+.RI "void \fBevthr_set_aux\fP (\fBevthr_t\fP *thr, void *aux)"
+.br
+.ti -1c
+.RI "void * \fBevthr_get_aux\fP (\fBevthr_t\fP *thr)"
+.br
+.ti -1c
+.RI "int \fBevthr_start\fP (\fBevthr_t\fP *evthr)"
+.br
+.ti -1c
+.RI "\fBevthr_res\fP \fBevthr_stop\fP (\fBevthr_t\fP *evthr)"
+.br
+.ti -1c
+.RI "\fBevthr_res\fP \fBevthr_defer\fP (\fBevthr_t\fP *evthr, \fBevthr_cb\fP cb, void *arg)"
+.br
+.ti -1c
+.RI "void \fBevthr_free\fP (\fBevthr_t\fP *evthr)"
+.br
+.ti -1c
+.RI "\fBevthr_pool_t\fP * \fBevthr_pool_new\fP (int nthreads, \fBevthr_init_cb\fP init_cb, void *shared)"
+.br
+.ti -1c
+.RI "int \fBevthr_pool_start\fP (\fBevthr_pool_t\fP *pool)"
+.br
+.ti -1c
+.RI "\fBevthr_res\fP \fBevthr_pool_stop\fP (\fBevthr_pool_t\fP *pool)"
+.br
+.ti -1c
+.RI "\fBevthr_res\fP \fBevthr_pool_defer\fP (\fBevthr_pool_t\fP *pool, \fBevthr_cb\fP cb, void *arg)"
+.br
+.ti -1c
+.RI "void \fBevthr_pool_free\fP (\fBevthr_pool_t\fP *pool)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define __EVTHR_H__"
+
+.PP
+Definition at line 5 of file evthr\&.h\&.
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef struct event \fBev_t\fP"
+
+.PP
+Definition at line 27 of file evthr\&.h\&.
+.SS "typedef struct event_base \fBevbase_t\fP"
+
+.PP
+Definition at line 26 of file evthr\&.h\&.
+.SS "typedef void(*  evthr_cb)(\fBevthr_t\fP *thr, void *cmd_arg, void *shared)"
+
+.PP
+Definition at line 33 of file evthr\&.h\&.
+.SS "typedef void(*  evthr_init_cb)(\fBevthr_t\fP *thr, void *shared)"
+
+.PP
+Definition at line 34 of file evthr\&.h\&.
+.SS "typedef struct evthr_pool \fBevthr_pool_t\fP"
+
+.PP
+Definition at line 29 of file evthr\&.h\&.
+.SS "typedef enum \fBevthr_res\fP \fBevthr_res\fP"
+
+.PP
+Definition at line 31 of file evthr\&.h\&.
+.SS "typedef struct evthr \fBevthr_t\fP"
+
+.PP
+Definition at line 30 of file evthr\&.h\&.
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBevthr_res\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIEVTHR_RES_OK \fP\fP
+.TP
+\fB\fIEVTHR_RES_BACKLOG \fP\fP
+.TP
+\fB\fIEVTHR_RES_RETRY \fP\fP
+.TP
+\fB\fIEVTHR_RES_NOCB \fP\fP
+.TP
+\fB\fIEVTHR_RES_FATAL \fP\fP
+.PP
+Definition at line 15 of file evthr\&.h\&.
+.SH "Function Documentation"
+.PP 
+.SS "\fBevthr_res\fP evthr_defer (\fBevthr_t\fP *evthr, \fBevthr_cb\fPcb, void *arg)"
+
+.SS "void evthr_free (\fBevthr_t\fP *evthr)"
+
+.SS "void* evthr_get_aux (\fBevthr_t\fP *thr)"
+
+.SS "\fBevbase_t\fP* evthr_get_base (\fBevthr_t\fP *thr)"
+
+.SS "\fBevthr_t\fP* evthr_new (\fBevthr_init_cb\fPinit_cb, void *arg)"
+
+.SS "\fBevthr_res\fP evthr_pool_defer (\fBevthr_pool_t\fP *pool, \fBevthr_cb\fPcb, void *arg)"
+
+.SS "void evthr_pool_free (\fBevthr_pool_t\fP *pool)"
+
+.SS "\fBevthr_pool_t\fP* evthr_pool_new (intnthreads, \fBevthr_init_cb\fPinit_cb, void *shared)"
+
+.SS "int evthr_pool_start (\fBevthr_pool_t\fP *pool)"
+
+.SS "\fBevthr_res\fP evthr_pool_stop (\fBevthr_pool_t\fP *pool)"
+
+.SS "void evthr_set_aux (\fBevthr_t\fP *thr, void *aux)"
+
+.SS "int evthr_start (\fBevthr_t\fP *evthr)"
+
+.SS "\fBevthr_res\fP evthr_stop (\fBevthr_t\fP *evthr)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Libevhtp from the source code\&.

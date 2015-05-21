@@ -1,0 +1,141 @@
+.TH "evhtp-config.h.in" 3 "Thu May 21 2015" "Version 1.2.10-dev" "Libevhtp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+evhtp-config.h.in \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <google/tcmalloc\&.h>\fP
+.br
+\fC#include <jemalloc/jemalloc\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fB__EVHTP_CONFIG_H__\fP"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_DISABLE_EVTHR\fP"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_DISABLE_REGEX\fP"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_DISABLE_SSL\fP"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_DISABLE_EVTHR\fP"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_USE_TCMALLOC\fP"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_USE_JEMALLOC\fP"
+.br
+.ti -1c
+.RI "#define \fBEVHTP_USE_TCMALLOC\fP"
+.br
+.ti -1c
+.RI "#define \fBmalloc\fP(size)   tc_malloc(size)"
+.br
+.ti -1c
+.RI "#define \fBcalloc\fP(count, size)   tc_calloc(count, size)"
+.br
+.ti -1c
+.RI "#define \fBrealloc\fP(ptr, size)   tc_realloc(ptr, size)"
+.br
+.ti -1c
+.RI "#define \fBfree\fP(ptr)   tc_free(ptr)"
+.br
+.ti -1c
+.RI "#define \fBJEMALLOC_NO_DEMANGLE\fP"
+.br
+.ti -1c
+.RI "#define \fBmalloc\fP(size)   je_malloc(size)"
+.br
+.ti -1c
+.RI "#define \fBcalloc\fP(count, size)   je_calloc(count, size)"
+.br
+.ti -1c
+.RI "#define \fBrealloc\fP(ptr, size)   je_realloc(ptr, size)"
+.br
+.ti -1c
+.RI "#define \fBfree\fP(ptr)   je_free(ptr)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define __EVHTP_CONFIG_H__"
+
+.PP
+Definition at line 2 of file evhtp-config\&.h\&.in\&.
+.SS "#define calloc(count, size)   tc_calloc(count, size)"
+
+.PP
+Definition at line 42 of file evhtp-config\&.h\&.in\&.
+.SS "#define calloc(count, size)   je_calloc(count, size)"
+
+.PP
+Definition at line 42 of file evhtp-config\&.h\&.in\&.
+.SS "#define EVHTP_DISABLE_EVTHR"
+
+.PP
+Definition at line 25 of file evhtp-config\&.h\&.in\&.
+.SS "#define EVHTP_DISABLE_EVTHR"
+
+.PP
+Definition at line 25 of file evhtp-config\&.h\&.in\&.
+.SS "#define EVHTP_DISABLE_REGEX"
+
+.PP
+Definition at line 23 of file evhtp-config\&.h\&.in\&.
+.SS "#define EVHTP_DISABLE_SSL"
+
+.PP
+Definition at line 24 of file evhtp-config\&.h\&.in\&.
+.SS "#define EVHTP_USE_JEMALLOC"
+
+.PP
+Definition at line 27 of file evhtp-config\&.h\&.in\&.
+.SS "#define EVHTP_USE_TCMALLOC"
+
+.PP
+Definition at line 28 of file evhtp-config\&.h\&.in\&.
+.SS "#define EVHTP_USE_TCMALLOC"
+
+.PP
+Definition at line 28 of file evhtp-config\&.h\&.in\&.
+.SS "#define free(ptr)   tc_free(ptr)"
+
+.PP
+Definition at line 44 of file evhtp-config\&.h\&.in\&.
+.SS "#define free(ptr)   je_free(ptr)"
+
+.PP
+Definition at line 44 of file evhtp-config\&.h\&.in\&.
+.SS "#define JEMALLOC_NO_DEMANGLE"
+
+.PP
+Definition at line 39 of file evhtp-config\&.h\&.in\&.
+.SS "#define malloc(size)   tc_malloc(size)"
+
+.PP
+Definition at line 41 of file evhtp-config\&.h\&.in\&.
+.SS "#define malloc(size)   je_malloc(size)"
+
+.PP
+Definition at line 41 of file evhtp-config\&.h\&.in\&.
+.SS "#define realloc(ptr, size)   tc_realloc(ptr, size)"
+
+.PP
+Definition at line 43 of file evhtp-config\&.h\&.in\&.
+.SS "#define realloc(ptr, size)   je_realloc(ptr, size)"
+
+.PP
+Definition at line 43 of file evhtp-config\&.h\&.in\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Libevhtp from the source code\&.

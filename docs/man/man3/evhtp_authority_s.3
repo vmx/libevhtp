@@ -1,0 +1,68 @@
+.TH "evhtp_authority_t" 3 "Thu May 21 2015" "Version 1.2.10-dev" "Libevhtp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+evhtp_authority_t \- 
+.PP
+structure which represents authority information in a URI  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <evhtp\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "char * \fBusername\fP"
+.br
+.RI "\fIthe username in URI (scheme://USER:\&. \fP"
+.ti -1c
+.RI "char * \fBpassword\fP"
+.br
+.RI "\fIthe password in URI (scheme://\&.\&.\&.:PASS\&. \fP"
+.ti -1c
+.RI "char * \fBhostname\fP"
+.br
+.RI "\fIhostname if present in URI \fP"
+.ti -1c
+.RI "uint16_t \fBport\fP"
+.br
+.RI "\fIport if present in URI \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+structure which represents authority information in a URI 
+.PP
+Definition at line 400 of file evhtp\&.h\&.
+.SH "Field Documentation"
+.PP 
+.SS "char* evhtp_authority_t::hostname"
+
+.PP
+hostname if present in URI 
+.PP
+Definition at line 403 of file evhtp\&.h\&.
+.SS "char* evhtp_authority_t::password"
+
+.PP
+the password in URI (scheme://\&.\&.\&.:PASS\&. 
+.PP
+Definition at line 402 of file evhtp\&.h\&.
+.SS "uint16_t evhtp_authority_t::port"
+
+.PP
+port if present in URI 
+.PP
+Definition at line 404 of file evhtp\&.h\&.
+.SS "char* evhtp_authority_t::username"
+
+.PP
+the username in URI (scheme://USER:\&. 
+.PP
+Definition at line 401 of file evhtp\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Libevhtp from the source code\&.

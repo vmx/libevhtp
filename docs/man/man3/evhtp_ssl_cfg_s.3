@@ -1,0 +1,177 @@
+.TH "evhtp_ssl_cfg_t" 3 "Thu May 21 2015" "Version 1.2.10-dev" "Libevhtp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+evhtp_ssl_cfg_t \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <evhtp\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "char * \fBpemfile\fP"
+.br
+.ti -1c
+.RI "char * \fBprivfile\fP"
+.br
+.ti -1c
+.RI "char * \fBcafile\fP"
+.br
+.ti -1c
+.RI "char * \fBcapath\fP"
+.br
+.ti -1c
+.RI "char * \fBciphers\fP"
+.br
+.ti -1c
+.RI "char * \fBnamed_curve\fP"
+.br
+.ti -1c
+.RI "char * \fBdhparams\fP"
+.br
+.ti -1c
+.RI "long \fBssl_opts\fP"
+.br
+.ti -1c
+.RI "long \fBssl_ctx_timeout\fP"
+.br
+.ti -1c
+.RI "int \fBverify_peer\fP"
+.br
+.ti -1c
+.RI "int \fBverify_depth\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_ssl_verify_cb\fP \fBx509_verify_cb\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_ssl_chk_issued_cb\fP \fBx509_chk_issued_cb\fP"
+.br
+.ti -1c
+.RI "long \fBstore_flags\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_ssl_scache_type\fP \fBscache_type\fP"
+.br
+.ti -1c
+.RI "long \fBscache_timeout\fP"
+.br
+.ti -1c
+.RI "long \fBscache_size\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_ssl_scache_init\fP \fBscache_init\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_ssl_scache_add\fP \fBscache_add\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_ssl_scache_get\fP \fBscache_get\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_ssl_scache_del\fP \fBscache_del\fP"
+.br
+.ti -1c
+.RI "void * \fBargs\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 527 of file evhtp\&.h\&.
+.SH "Field Documentation"
+.PP 
+.SS "void* evhtp_ssl_cfg_t::args"
+
+.PP
+Definition at line 549 of file evhtp\&.h\&.
+.SS "char* evhtp_ssl_cfg_t::cafile"
+
+.PP
+Definition at line 530 of file evhtp\&.h\&.
+.SS "char* evhtp_ssl_cfg_t::capath"
+
+.PP
+Definition at line 531 of file evhtp\&.h\&.
+.SS "char* evhtp_ssl_cfg_t::ciphers"
+
+.PP
+Definition at line 532 of file evhtp\&.h\&.
+.SS "char* evhtp_ssl_cfg_t::dhparams"
+
+.PP
+Definition at line 534 of file evhtp\&.h\&.
+.SS "char* evhtp_ssl_cfg_t::named_curve"
+
+.PP
+Definition at line 533 of file evhtp\&.h\&.
+.SS "char* evhtp_ssl_cfg_t::pemfile"
+
+.PP
+Definition at line 528 of file evhtp\&.h\&.
+.SS "char* evhtp_ssl_cfg_t::privfile"
+
+.PP
+Definition at line 529 of file evhtp\&.h\&.
+.SS "\fBevhtp_ssl_scache_add\fP evhtp_ssl_cfg_t::scache_add"
+
+.PP
+Definition at line 546 of file evhtp\&.h\&.
+.SS "\fBevhtp_ssl_scache_del\fP evhtp_ssl_cfg_t::scache_del"
+
+.PP
+Definition at line 548 of file evhtp\&.h\&.
+.SS "\fBevhtp_ssl_scache_get\fP evhtp_ssl_cfg_t::scache_get"
+
+.PP
+Definition at line 547 of file evhtp\&.h\&.
+.SS "\fBevhtp_ssl_scache_init\fP evhtp_ssl_cfg_t::scache_init"
+
+.PP
+Definition at line 545 of file evhtp\&.h\&.
+.SS "long evhtp_ssl_cfg_t::scache_size"
+
+.PP
+Definition at line 544 of file evhtp\&.h\&.
+.SS "long evhtp_ssl_cfg_t::scache_timeout"
+
+.PP
+Definition at line 543 of file evhtp\&.h\&.
+.SS "\fBevhtp_ssl_scache_type\fP evhtp_ssl_cfg_t::scache_type"
+
+.PP
+Definition at line 542 of file evhtp\&.h\&.
+.SS "long evhtp_ssl_cfg_t::ssl_ctx_timeout"
+
+.PP
+Definition at line 536 of file evhtp\&.h\&.
+.SS "long evhtp_ssl_cfg_t::ssl_opts"
+
+.PP
+Definition at line 535 of file evhtp\&.h\&.
+.SS "long evhtp_ssl_cfg_t::store_flags"
+
+.PP
+Definition at line 541 of file evhtp\&.h\&.
+.SS "int evhtp_ssl_cfg_t::verify_depth"
+
+.PP
+Definition at line 538 of file evhtp\&.h\&.
+.SS "int evhtp_ssl_cfg_t::verify_peer"
+
+.PP
+Definition at line 537 of file evhtp\&.h\&.
+.SS "\fBevhtp_ssl_chk_issued_cb\fP evhtp_ssl_cfg_t::x509_chk_issued_cb"
+
+.PP
+Definition at line 540 of file evhtp\&.h\&.
+.SS "\fBevhtp_ssl_verify_cb\fP evhtp_ssl_cfg_t::x509_verify_cb"
+
+.PP
+Definition at line 539 of file evhtp\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Libevhtp from the source code\&.

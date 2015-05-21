@@ -1,0 +1,219 @@
+.TH "evhtp_request_t" 3 "Thu May 21 2015" "Version 1.2.10-dev" "Libevhtp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+evhtp_request_t \- 
+.PP
+a structure containing all information for a http request\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <evhtp\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTAILQ_ENTRY\fP (\fBevhtp_request_s\fP) next"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "evhtp_t * \fBhtp\fP"
+.br
+.RI "\fIthe parent evhtp_t structure \fP"
+.ti -1c
+.RI "evhtp_connection_t * \fBconn\fP"
+.br
+.RI "\fIthe associated connection \fP"
+.ti -1c
+.RI "evhtp_hooks_t * \fBhooks\fP"
+.br
+.RI "\fIrequest specific hooks \fP"
+.ti -1c
+.RI "evhtp_uri_t * \fBuri\fP"
+.br
+.RI "\fIrequest URI information \fP"
+.ti -1c
+.RI "\fBevbuf_t\fP * \fBbuffer_in\fP"
+.br
+.RI "\fIbuffer containing data from client \fP"
+.ti -1c
+.RI "\fBevbuf_t\fP * \fBbuffer_out\fP"
+.br
+.RI "\fIbuffer containing data to client \fP"
+.ti -1c
+.RI "\fBevhtp_headers_t\fP * \fBheaders_in\fP"
+.br
+.RI "\fIheaders from client \fP"
+.ti -1c
+.RI "\fBevhtp_headers_t\fP * \fBheaders_out\fP"
+.br
+.RI "\fIheaders to client \fP"
+.ti -1c
+.RI "\fBevhtp_proto\fP \fBproto\fP"
+.br
+.RI "\fIHTTP protocol used\&. \fP"
+.ti -1c
+.RI "\fBhtp_method\fP \fBmethod\fP"
+.br
+.RI "\fIHTTP method used\&. \fP"
+.ti -1c
+.RI "\fBevhtp_res\fP \fBstatus\fP"
+.br
+.RI "\fIThe HTTP response code or other error conditions\&. \fP"
+.ti -1c
+.RI "uint8_t \fBkeepalive\fP: 1"
+.br
+.RI "\fIset to 1 if the connection is keep-alive \fP"
+.ti -1c
+.RI "uint8_t \fBfinished\fP: 1"
+.br
+.RI "\fIset to 1 if the request is fully processed \fP"
+.ti -1c
+.RI "uint8_t \fBchunked\fP: 1"
+.br
+.RI "\fIset to 1 if the request is chunked \fP"
+.ti -1c
+.RI "uint8_t \fBerror\fP: 1"
+.br
+.RI "\fIset if any sort of error has occurred\&. \fP"
+.ti -1c
+.RI "uint8_t \fBpad\fP: 4"
+.br
+.RI "\fIto be used in evhtp2 for new stuff \fP"
+.ti -1c
+.RI "\fBevhtp_callback_cb\fP \fBcb\fP"
+.br
+.RI "\fIthe function to call when fully processed \fP"
+.ti -1c
+.RI "void * \fBcbarg\fP"
+.br
+.RI "\fIargument which is passed to the cb function \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+a structure containing all information for a http request\&. 
+.PP
+Definition at line 429 of file evhtp\&.h\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "evhtp_request_t::TAILQ_ENTRY (\fBevhtp_request_s\fP)"
+
+.SH "Field Documentation"
+.PP 
+.SS "\fBevbuf_t\fP* evhtp_request_t::buffer_in"
+
+.PP
+buffer containing data from client 
+.PP
+Definition at line 434 of file evhtp\&.h\&.
+.SS "\fBevbuf_t\fP* evhtp_request_t::buffer_out"
+
+.PP
+buffer containing data to client 
+.PP
+Definition at line 435 of file evhtp\&.h\&.
+.SS "\fBevhtp_callback_cb\fP evhtp_request_t::cb"
+
+.PP
+the function to call when fully processed 
+.PP
+Definition at line 447 of file evhtp\&.h\&.
+.SS "void* evhtp_request_t::cbarg"
+
+.PP
+argument which is passed to the cb function 
+.PP
+Definition at line 448 of file evhtp\&.h\&.
+.SS "uint8_t evhtp_request_t::chunked"
+
+.PP
+set to 1 if the request is chunked 
+.PP
+Definition at line 441 of file evhtp\&.h\&.
+.SS "evhtp_connection_t* evhtp_request_t::conn"
+
+.PP
+the associated connection 
+.PP
+Definition at line 431 of file evhtp\&.h\&.
+.SS "uint8_t evhtp_request_t::error"
+
+.PP
+set if any sort of error has occurred\&. 
+.PP
+Definition at line 441 of file evhtp\&.h\&.
+.SS "uint8_t evhtp_request_t::finished"
+
+.PP
+set to 1 if the request is fully processed 
+.PP
+Definition at line 441 of file evhtp\&.h\&.
+.SS "\fBevhtp_headers_t\fP* evhtp_request_t::headers_in"
+
+.PP
+headers from client 
+.PP
+Definition at line 436 of file evhtp\&.h\&.
+.SS "\fBevhtp_headers_t\fP* evhtp_request_t::headers_out"
+
+.PP
+headers to client 
+.PP
+Definition at line 437 of file evhtp\&.h\&.
+.SS "evhtp_hooks_t* evhtp_request_t::hooks"
+
+.PP
+request specific hooks 
+.PP
+Definition at line 432 of file evhtp\&.h\&.
+.SS "evhtp_t* evhtp_request_t::htp"
+
+.PP
+the parent evhtp_t structure 
+.PP
+Definition at line 430 of file evhtp\&.h\&.
+.SS "uint8_t evhtp_request_t::keepalive"
+
+.PP
+set to 1 if the connection is keep-alive 
+.PP
+Definition at line 441 of file evhtp\&.h\&.
+.SS "\fBhtp_method\fP evhtp_request_t::method"
+
+.PP
+HTTP method used\&. 
+.PP
+Definition at line 439 of file evhtp\&.h\&.
+.SS "uint8_t evhtp_request_t::pad"
+
+.PP
+to be used in evhtp2 for new stuff 
+.PP
+Definition at line 441 of file evhtp\&.h\&.
+.SS "\fBevhtp_proto\fP evhtp_request_t::proto"
+
+.PP
+HTTP protocol used\&. 
+.PP
+Definition at line 438 of file evhtp\&.h\&.
+.SS "\fBevhtp_res\fP evhtp_request_t::status"
+
+.PP
+The HTTP response code or other error conditions\&. 
+.PP
+Definition at line 440 of file evhtp\&.h\&.
+.SS "evhtp_uri_t* evhtp_request_t::uri"
+
+.PP
+request URI information 
+.PP
+Definition at line 433 of file evhtp\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Libevhtp from the source code\&.

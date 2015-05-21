@@ -1,0 +1,124 @@
+.TH "evhtp_callback_t" 3 "Thu May 21 2015" "Version 1.2.10-dev" "Libevhtp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+evhtp_callback_t \- 
+.PP
+structure containing a single callback and configuration  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <evhtp\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTAILQ_ENTRY\fP (\fBevhtp_callback_s\fP) next"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "\fBevhtp_callback_type\fP \fBtype\fP"
+.br
+.RI "\fIthe type of callback (regex|path) \fP"
+.ti -1c
+.RI "\fBevhtp_callback_cb\fP \fBcb\fP"
+.br
+.RI "\fIthe actual callback function \fP"
+.ti -1c
+.RI "unsigned int \fBhash\fP"
+.br
+.RI "\fIthe full hash generated integer \fP"
+.ti -1c
+.RI "void * \fBcbarg\fP"
+.br
+.RI "\fIuser-defind arguments passed to the cb \fP"
+.ti -1c
+.RI "evhtp_hooks_t * \fBhooks\fP"
+.br
+.RI "\fIper-callback hooks \fP"
+.ti -1c
+.RI "union {"
+.br
+.ti -1c
+.RI "   char * \fBpath\fP"
+.br
+.ti -1c
+.RI "   char * \fBglob\fP"
+.br
+.ti -1c
+.RI "   regex_t * \fBregex\fP"
+.br
+.ti -1c
+.RI "} \fBval\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+structure containing a single callback and configuration 
+
+The definition structure which is used within the evhtp_callbacks_t structure\&. This holds information about what should execute for either a single or regex path\&.
+.PP
+For example, if you registered a callback to be executed on a request for '/herp/derp', your defined callback will be executed\&.
+.PP
+Optionally you can set callback-specific hooks just like per-connection hooks using the same rules\&. 
+.PP
+Definition at line 344 of file evhtp\&.h\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "evhtp_callback_t::TAILQ_ENTRY (\fBevhtp_callback_s\fP)"
+
+.SH "Field Documentation"
+.PP 
+.SS "\fBevhtp_callback_cb\fP evhtp_callback_t::cb"
+
+.PP
+the actual callback function 
+.PP
+Definition at line 346 of file evhtp\&.h\&.
+.SS "void* evhtp_callback_t::cbarg"
+
+.PP
+user-defind arguments passed to the cb 
+.PP
+Definition at line 348 of file evhtp\&.h\&.
+.SS "char* evhtp_callback_t::glob"
+
+.PP
+Definition at line 353 of file evhtp\&.h\&.
+.SS "unsigned int evhtp_callback_t::hash"
+
+.PP
+the full hash generated integer 
+.PP
+Definition at line 347 of file evhtp\&.h\&.
+.SS "evhtp_hooks_t* evhtp_callback_t::hooks"
+
+.PP
+per-callback hooks 
+.PP
+Definition at line 349 of file evhtp\&.h\&.
+.SS "char* evhtp_callback_t::path"
+
+.PP
+Definition at line 352 of file evhtp\&.h\&.
+.SS "regex_t* evhtp_callback_t::regex"
+
+.PP
+Definition at line 355 of file evhtp\&.h\&.
+.SS "\fBevhtp_callback_type\fP evhtp_callback_t::type"
+
+.PP
+the type of callback (regex|path) 
+.PP
+Definition at line 345 of file evhtp\&.h\&.
+.SS "union { \&.\&.\&. }   evhtp_callback_t::val"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Libevhtp from the source code\&.

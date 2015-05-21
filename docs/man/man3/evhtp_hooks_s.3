@@ -1,0 +1,233 @@
+.TH "evhtp_hooks_t" 3 "Thu May 21 2015" "Version 1.2.10-dev" "Libevhtp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+evhtp_hooks_t \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <evhtp\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "\fBevhtp_hook_headers_start_cb\fP \fBon_headers_start\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_hook_header_cb\fP \fBon_header\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_hook_headers_cb\fP \fBon_headers\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_hook_path_cb\fP \fBon_path\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_hook_read_cb\fP \fBon_read\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_hook_request_fini_cb\fP \fBon_request_fini\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_hook_connection_fini_cb\fP \fBon_connection_fini\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_hook_conn_err_cb\fP \fBon_connection_error\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_hook_err_cb\fP \fBon_error\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_hook_chunk_new_cb\fP \fBon_new_chunk\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_hook_chunk_fini_cb\fP \fBon_chunk_fini\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_hook_chunks_fini_cb\fP \fBon_chunks_fini\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_hook_hostname_cb\fP \fBon_hostname\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_hook_write_cb\fP \fBon_write\fP"
+.br
+.ti -1c
+.RI "\fBevhtp_hook_event_cb\fP \fBon_event\fP"
+.br
+.ti -1c
+.RI "void * \fBon_headers_start_arg\fP"
+.br
+.ti -1c
+.RI "void * \fBon_header_arg\fP"
+.br
+.ti -1c
+.RI "void * \fBon_headers_arg\fP"
+.br
+.ti -1c
+.RI "void * \fBon_path_arg\fP"
+.br
+.ti -1c
+.RI "void * \fBon_read_arg\fP"
+.br
+.ti -1c
+.RI "void * \fBon_request_fini_arg\fP"
+.br
+.ti -1c
+.RI "void * \fBon_connection_fini_arg\fP"
+.br
+.ti -1c
+.RI "void * \fBon_connection_error_arg\fP"
+.br
+.ti -1c
+.RI "void * \fBon_error_arg\fP"
+.br
+.ti -1c
+.RI "void * \fBon_new_chunk_arg\fP"
+.br
+.ti -1c
+.RI "void * \fBon_chunk_fini_arg\fP"
+.br
+.ti -1c
+.RI "void * \fBon_chunks_fini_arg\fP"
+.br
+.ti -1c
+.RI "void * \fBon_hostname_arg\fP"
+.br
+.ti -1c
+.RI "void * \fBon_write_arg\fP"
+.br
+.ti -1c
+.RI "void * \fBon_event_arg\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 492 of file evhtp\&.h\&.
+.SH "Field Documentation"
+.PP 
+.SS "\fBevhtp_hook_chunk_fini_cb\fP evhtp_hooks_t::on_chunk_fini"
+
+.PP
+Definition at line 503 of file evhtp\&.h\&.
+.SS "void* evhtp_hooks_t::on_chunk_fini_arg"
+
+.PP
+Definition at line 519 of file evhtp\&.h\&.
+.SS "\fBevhtp_hook_chunks_fini_cb\fP evhtp_hooks_t::on_chunks_fini"
+
+.PP
+Definition at line 504 of file evhtp\&.h\&.
+.SS "void* evhtp_hooks_t::on_chunks_fini_arg"
+
+.PP
+Definition at line 520 of file evhtp\&.h\&.
+.SS "\fBevhtp_hook_conn_err_cb\fP evhtp_hooks_t::on_connection_error"
+
+.PP
+Definition at line 500 of file evhtp\&.h\&.
+.SS "void* evhtp_hooks_t::on_connection_error_arg"
+
+.PP
+Definition at line 516 of file evhtp\&.h\&.
+.SS "\fBevhtp_hook_connection_fini_cb\fP evhtp_hooks_t::on_connection_fini"
+
+.PP
+Definition at line 499 of file evhtp\&.h\&.
+.SS "void* evhtp_hooks_t::on_connection_fini_arg"
+
+.PP
+Definition at line 515 of file evhtp\&.h\&.
+.SS "\fBevhtp_hook_err_cb\fP evhtp_hooks_t::on_error"
+
+.PP
+Definition at line 501 of file evhtp\&.h\&.
+.SS "void* evhtp_hooks_t::on_error_arg"
+
+.PP
+Definition at line 517 of file evhtp\&.h\&.
+.SS "\fBevhtp_hook_event_cb\fP evhtp_hooks_t::on_event"
+
+.PP
+Definition at line 507 of file evhtp\&.h\&.
+.SS "void* evhtp_hooks_t::on_event_arg"
+
+.PP
+Definition at line 523 of file evhtp\&.h\&.
+.SS "\fBevhtp_hook_header_cb\fP evhtp_hooks_t::on_header"
+
+.PP
+Definition at line 494 of file evhtp\&.h\&.
+.SS "void* evhtp_hooks_t::on_header_arg"
+
+.PP
+Definition at line 510 of file evhtp\&.h\&.
+.SS "\fBevhtp_hook_headers_cb\fP evhtp_hooks_t::on_headers"
+
+.PP
+Definition at line 495 of file evhtp\&.h\&.
+.SS "void* evhtp_hooks_t::on_headers_arg"
+
+.PP
+Definition at line 511 of file evhtp\&.h\&.
+.SS "\fBevhtp_hook_headers_start_cb\fP evhtp_hooks_t::on_headers_start"
+
+.PP
+Definition at line 493 of file evhtp\&.h\&.
+.SS "void* evhtp_hooks_t::on_headers_start_arg"
+
+.PP
+Definition at line 509 of file evhtp\&.h\&.
+.SS "\fBevhtp_hook_hostname_cb\fP evhtp_hooks_t::on_hostname"
+
+.PP
+Definition at line 505 of file evhtp\&.h\&.
+.SS "void* evhtp_hooks_t::on_hostname_arg"
+
+.PP
+Definition at line 521 of file evhtp\&.h\&.
+.SS "\fBevhtp_hook_chunk_new_cb\fP evhtp_hooks_t::on_new_chunk"
+
+.PP
+Definition at line 502 of file evhtp\&.h\&.
+.SS "void* evhtp_hooks_t::on_new_chunk_arg"
+
+.PP
+Definition at line 518 of file evhtp\&.h\&.
+.SS "\fBevhtp_hook_path_cb\fP evhtp_hooks_t::on_path"
+
+.PP
+Definition at line 496 of file evhtp\&.h\&.
+.SS "void* evhtp_hooks_t::on_path_arg"
+
+.PP
+Definition at line 512 of file evhtp\&.h\&.
+.SS "\fBevhtp_hook_read_cb\fP evhtp_hooks_t::on_read"
+
+.PP
+Definition at line 497 of file evhtp\&.h\&.
+.SS "void* evhtp_hooks_t::on_read_arg"
+
+.PP
+Definition at line 513 of file evhtp\&.h\&.
+.SS "\fBevhtp_hook_request_fini_cb\fP evhtp_hooks_t::on_request_fini"
+
+.PP
+Definition at line 498 of file evhtp\&.h\&.
+.SS "void* evhtp_hooks_t::on_request_fini_arg"
+
+.PP
+Definition at line 514 of file evhtp\&.h\&.
+.SS "\fBevhtp_hook_write_cb\fP evhtp_hooks_t::on_write"
+
+.PP
+Definition at line 506 of file evhtp\&.h\&.
+.SS "void* evhtp_hooks_t::on_write_arg"
+
+.PP
+Definition at line 522 of file evhtp\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Libevhtp from the source code\&.
