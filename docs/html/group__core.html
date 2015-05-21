@@ -47,6 +47,7 @@
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:gaa4b16ecda5fa6b60c003d98198fa37a1"><td class="memItemLeft" align="right" valign="top">EVHTP_EXPORT evhtp_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__core.html#gaa4b16ecda5fa6b60c003d98198fa37a1">evhtp_new</a> (evbase_t *evbase, void *arg)</td></tr>
+<tr class="memdesc:gaa4b16ecda5fa6b60c003d98198fa37a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">creates a new evhtp_t instance  <a href="#gaa4b16ecda5fa6b60c003d98198fa37a1">More...</a><br/></td></tr>
 <tr class="separator:gaa4b16ecda5fa6b60c003d98198fa37a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga847390a47422662b122bf95ecf7229e8"><td class="memItemLeft" align="right" valign="top">EVHTP_EXPORT void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__core.html#ga847390a47422662b122bf95ecf7229e8">evhtp_free</a> (evhtp_t *evhtp)</td></tr>
 <tr class="memdesc:ga847390a47422662b122bf95ecf7229e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">free a evhtp_t context  <a href="#ga847390a47422662b122bf95ecf7229e8">More...</a><br/></td></tr>
@@ -103,12 +104,22 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>creates a new evhtp_t instance </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">evbase</td><td>the initialized event base </td></tr>
+    <tr><td class="paramname">arg</td><td>user-defined argument which is evhtp_t specific</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a new evhtp_t structure or NULL on error </dd></dl>
+
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 21 2015 19:42:46 for Libevhtp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 21 2015 19:45:06 for Libevhtp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

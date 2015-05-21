@@ -554,14 +554,6 @@
 <div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;};</div>
 <div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;<span class="comment"> * @brief creates a new evhtp_t instance</span></div>
-<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;<span class="comment"> * @param evbase the initialized event base</span></div>
-<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;<span class="comment"> * @param arg user-defined argument which is evhtp_t specific</span></div>
-<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;<span class="comment"> * @return a new evhtp_t structure or NULL on error</span></div>
-<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;EVHTP_EXPORT evhtp_t * <a class="code" href="group__core.html#gaa4b16ecda5fa6b60c003d98198fa37a1">evhtp_new</a>(evbase_t * evbase, <span class="keywordtype">void</span> * arg);</div>
 <div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;</div>
 <div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;</div>
@@ -901,7 +893,7 @@
 <div class="ttc" id="structevhtp__ssl__cfg__s_html_acc2e04c88caadeba8108db89f3b07a52"><div class="ttname"><a href="structevhtp__ssl__cfg__s.html#acc2e04c88caadeba8108db89f3b07a52">evhtp_ssl_cfg_s::store_flags</a></div><div class="ttdeci">long store_flags</div><div class="ttdef"><b>Definition:</b> <a href="evhtp_8h_source.html#l00543">evhtp.h:543</a></div></div>
 <div class="ttc" id="structevhtp__hooks__s_html_abacc0568f0ba66f997a2aea336b4448b"><div class="ttname"><a href="structevhtp__hooks__s.html#abacc0568f0ba66f997a2aea336b4448b">evhtp_hooks_s::on_header</a></div><div class="ttdeci">evhtp_hook_header_cb on_header</div><div class="ttdef"><b>Definition:</b> <a href="evhtp_8h_source.html#l00496">evhtp.h:496</a></div></div>
 <div class="ttc" id="structevhtp__callback__s_html_ae8f46e56915c6eafa4f0fbaa69a5b3af"><div class="ttname"><a href="structevhtp__callback__s.html#ae8f46e56915c6eafa4f0fbaa69a5b3af">evhtp_callback_s::hash</a></div><div class="ttdeci">unsigned int hash</div><div class="ttdoc">the full hash generated integer </div><div class="ttdef"><b>Definition:</b> <a href="evhtp_8h_source.html#l00349">evhtp.h:349</a></div></div>
-<div class="ttc" id="group__core_html_gaa4b16ecda5fa6b60c003d98198fa37a1"><div class="ttname"><a href="group__core.html#gaa4b16ecda5fa6b60c003d98198fa37a1">evhtp_new</a></div><div class="ttdeci">EVHTP_EXPORT evhtp_t * evhtp_new(evbase_t *evbase, void *arg)</div></div>
+<div class="ttc" id="group__core_html_gaa4b16ecda5fa6b60c003d98198fa37a1"><div class="ttname"><a href="group__core.html#gaa4b16ecda5fa6b60c003d98198fa37a1">evhtp_new</a></div><div class="ttdeci">EVHTP_EXPORT evhtp_t * evhtp_new(evbase_t *evbase, void *arg)</div><div class="ttdoc">creates a new evhtp_t instance </div></div>
 <div class="ttc" id="structevhtp__ssl__cfg__s_html_aaaf83db3423c9dd5718ae0a4b7d6ff7b"><div class="ttname"><a href="structevhtp__ssl__cfg__s.html#aaaf83db3423c9dd5718ae0a4b7d6ff7b">evhtp_ssl_cfg_s::ssl_ctx_timeout</a></div><div class="ttdeci">long ssl_ctx_timeout</div><div class="ttdef"><b>Definition:</b> <a href="evhtp_8h_source.html#l00538">evhtp.h:538</a></div></div>
 <div class="ttc" id="evhtp_8h_html_a50626a9b6079fb747f2cf946ea4d45d3"><div class="ttname"><a href="evhtp_8h.html#a50626a9b6079fb747f2cf946ea4d45d3">evhtp_ssl_sess_t</a></div><div class="ttdeci">SSL_SESSION evhtp_ssl_sess_t</div><div class="ttdef"><b>Definition:</b> <a href="evhtp_8h_source.html#l00055">evhtp.h:55</a></div></div>
 <div class="ttc" id="structevhtp__hooks__s_html_a906496a5f5674c538591695b504b95f6"><div class="ttname"><a href="structevhtp__hooks__s.html#a906496a5f5674c538591695b504b95f6">evhtp_hooks_s::on_path</a></div><div class="ttdeci">evhtp_hook_path_cb on_path</div><div class="ttdef"><b>Definition:</b> <a href="evhtp_8h_source.html#l00498">evhtp.h:498</a></div></div>
@@ -1119,7 +1111,7 @@
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 21 2015 19:42:46 for Libevhtp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 21 2015 19:45:06 for Libevhtp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
