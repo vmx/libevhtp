@@ -2,7 +2,6 @@ var evhtp_8h =
 [
     [ "evhtp_defaults_5", "structevhtp__defaults__s.html", "structevhtp__defaults__s" ],
     [ "evhtp_alias_t", "structevhtp__alias__s.html", "structevhtp__alias__s" ],
-    [ "evhtp_t", "structevhtp__s.html", "structevhtp__s" ],
     [ "evhtp_callback_t", "structevhtp__callback__s.html", "structevhtp__callback__s" ],
     [ "evhtp_kv_t", "structevhtp__kv__s.html", "structevhtp__kv__s" ],
     [ "evhtp_uri_t", "structevhtp__uri__s.html", "structevhtp__uri__s" ],

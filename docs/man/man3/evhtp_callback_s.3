@@ -67,7 +67,7 @@ For example, if you registered a callback to be executed on a request for '/herp
 .PP
 Optionally you can set callback-specific hooks just like per-connection hooks using the same rules\&. 
 .PP
-Definition at line 346 of file evhtp\&.h\&.
+Definition at line 347 of file evhtp\&.h\&.
 .SH "Member Function Documentation"
 .PP 
 .SS "evhtp_callback_t::TAILQ_ENTRY (\fBevhtp_callback_s\fP)"
@@ -79,43 +79,43 @@ Definition at line 346 of file evhtp\&.h\&.
 .PP
 the actual callback function 
 .PP
-Definition at line 348 of file evhtp\&.h\&.
+Definition at line 349 of file evhtp\&.h\&.
 .SS "void* evhtp_callback_t::cbarg"
 
 .PP
 user-defind arguments passed to the cb 
 .PP
-Definition at line 350 of file evhtp\&.h\&.
+Definition at line 351 of file evhtp\&.h\&.
 .SS "char* evhtp_callback_t::glob"
 
 .PP
-Definition at line 355 of file evhtp\&.h\&.
+Definition at line 356 of file evhtp\&.h\&.
 .SS "unsigned int evhtp_callback_t::hash"
 
 .PP
 the full hash generated integer 
 .PP
-Definition at line 349 of file evhtp\&.h\&.
+Definition at line 350 of file evhtp\&.h\&.
 .SS "evhtp_hooks_t* evhtp_callback_t::hooks"
 
 .PP
 per-callback hooks 
 .PP
-Definition at line 351 of file evhtp\&.h\&.
+Definition at line 352 of file evhtp\&.h\&.
 .SS "char* evhtp_callback_t::path"
 
 .PP
-Definition at line 354 of file evhtp\&.h\&.
+Definition at line 355 of file evhtp\&.h\&.
 .SS "regex_t* evhtp_callback_t::regex"
 
 .PP
-Definition at line 357 of file evhtp\&.h\&.
+Definition at line 358 of file evhtp\&.h\&.
 .SS "\fBevhtp_callback_type\fP evhtp_callback_t::type"
 
 .PP
 the type of callback (regex|path) 
 .PP
-Definition at line 347 of file evhtp\&.h\&.
+Definition at line 348 of file evhtp\&.h\&.
 .SS "union { \&.\&.\&. }   evhtp_callback_t::val"
 
 

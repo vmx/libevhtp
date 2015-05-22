@@ -1,4 +1,4 @@
 var modules =
 [
-    [ "Core evhtp functions", "group__core.html", "group__core" ]
+    [ "Core evhtp functions", "group__evhtp__core.html", "group__evhtp__core" ]
 ];
