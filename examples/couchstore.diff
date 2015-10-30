@@ -1,0 +1,96 @@
+diff --git a/src/btree_read.cc b/src/btree_read.cc
+index 7f9e041..ed86ac2 100644
+--- a/src/btree_read.cc
++++ b/src/btree_read.cc
+@@ -124,6 +124,7 @@ cleanup:
+     return errcode;
+ }
+ 
++LIBCOUCHSTORE_API
+ couchstore_error_t btree_lookup(couchfile_lookup_request *rq,
+                                 uint64_t root_pointer)
+ {
+diff --git a/src/couch_btree.h b/src/couch_btree.h
+index ac13646..da9bbdf 100644
+--- a/src/couch_btree.h
++++ b/src/couch_btree.h
+@@ -41,6 +41,7 @@ extern "C" {
+                                              const sized_buf *reduce_value);
+     } couchfile_lookup_request;
+ 
++    LIBCOUCHSTORE_API
+     couchstore_error_t btree_lookup(couchfile_lookup_request *rq,
+                                     uint64_t root_pointer);
+ 
+diff --git a/src/couch_file_read.cc b/src/couch_file_read.cc
+index 8007d3c..3d51d6f 100644
+--- a/src/couch_file_read.cc
++++ b/src/couch_file_read.cc
+@@ -147,6 +147,7 @@ static int pread_bin_internal(tree_file *file,
+     return info.chunk_len;
+ }
+ 
++LIBCOUCHSTORE_API
+ int pread_header(tree_file *file,
+                  cs_off_t pos,
+                  char **ret_ptr,
+diff --git a/src/views/index_header.c b/src/views/index_header.c
+index a18646b..1d4f6dc 100644
+--- a/src/views/index_header.c
++++ b/src/views/index_header.c
+@@ -45,6 +45,7 @@ static int part_id_cmp(const void *a, const void *b);
+ static int part_versions_cmp(const void *a, const void *b);
+ 
+ 
++LIBCOUCHSTORE_API
+ couchstore_error_t decode_index_header(const char *bytes,
+                                        size_t len,
+                                        index_header_t **header)
+diff --git a/src/views/index_header.h b/src/views/index_header.h
+index bb17d0c..266951e 100644
+--- a/src/views/index_header.h
++++ b/src/views/index_header.h
+@@ -90,6 +90,7 @@ typedef struct {
+ } index_header_t;
+ 
+ 
++LIBCOUCHSTORE_API
+ couchstore_error_t decode_index_header(const char *bytes,
+                                        size_t len,
+                                        index_header_t **header);
+diff --git a/src/views/util.c b/src/views/util.c
+index aad9cf0..8056980 100644
+--- a/src/views/util.c
++++ b/src/views/util.c
+@@ -33,6 +33,7 @@ static bool is_incremental_update_record(view_file_merge_ctx_t *ctx) {
+ }
+ 
+ 
++LIBCOUCHSTORE_API
+ int view_key_cmp(const sized_buf *key1, const sized_buf *key2,
+                  const void *user_ctx)
+ {
+diff --git a/src/views/util.h b/src/views/util.h
+index a58405b..1be78ce 100644
+--- a/src/views/util.h
++++ b/src/views/util.h
+@@ -59,6 +59,7 @@ extern "C" {
+     } view_file_merge_ctx_t;
+ 
+     /* compare keys of a view btree */
++    LIBCOUCHSTORE_API
+     int view_key_cmp(const sized_buf *key1, const sized_buf *key2,
+                      const void *user_ctx);
+ 
+diff --git a/src/views/view_group.h b/src/views/view_group.h
+index 0070153..055dc65 100644
+--- a/src/views/view_group.h
++++ b/src/views/view_group.h
+@@ -112,6 +112,7 @@ extern "C" {
+                                                uint64_t *pos,
+                                                const index_header_t *header);
+ 
++    LIBCOUCHSTORE_API
+     couchstore_error_t open_view_group_file(const char *path,
+                                             couchstore_open_flags open_flags,
+                                             tree_file *file);

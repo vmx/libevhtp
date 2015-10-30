@@ -1,3 +1,6 @@
+/* NOTE vmx 2015-10-30: You'll need to make some more functions public in
+   couchstore in order to be able to use this. There's a patch file included
+   in `examples/couchstore.diff` */
 #include "config.h"
 #include <string.h>
 #include <stdbool.h>
