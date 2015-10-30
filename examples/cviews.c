@@ -1,6 +1,9 @@
 /* NOTE vmx 2015-10-30: You'll need to make some more functions public in
    couchstore in order to be able to use this. There's a patch file included
-   in `examples/couchstore.diff` */
+   in `examples/couchstore.diff`
+   The whole project needs to be compiled without multi-threading support,
+   else it falls apart. do it with: cmake .. -DEVHTP_DISABLE_EVTHR:STRING=ON
+*/
 #include "config.h"
 #include <string.h>
 #include <stdbool.h>
